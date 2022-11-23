@@ -1,7 +1,7 @@
 import m from "mithril";
 
 export default (props?) => {
-	let tt = 0;
+	let tt = props;
 	const THX = () => {
 		switch (tt) {
 			case 1:
