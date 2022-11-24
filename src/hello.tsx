@@ -38,18 +38,17 @@ export default (props?: number) => {
 	};
 
 	return {
-		oncreate: () => {
-			calTimeLeft("2023-01-25 00:00:00", 500);
+		oncreate: async () => {
+			const resp: { code: number; data: { end: string } } = await m.request({
+				method: "GET",
+				url: "/api/get",
+				params: { id: 1 },
+				body: { name: "test" },
+			});
+			console.log(resp);
+			calTimeLeft(`${resp.data.end} 00:00:00`, 500);
 		},
-		oninit: async () => {
-			// const resp = await m.request({
-			// 	method: "GET",
-			// 	url: "/api/get",
-			// 	params: { id: 1 },
-			// 	body: { name: "test" },
-			// });
-			// tt = 0;
-		},
+		oninit: () => {},
 		view: () => (
 			<>
 				<div class="h-screen w-screen bg-slate-100 py-12 antialiased">

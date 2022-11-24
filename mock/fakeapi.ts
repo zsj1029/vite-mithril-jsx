@@ -5,13 +5,11 @@ export default [
 		url: "/api/get",
 		method: "get",
 		response: (req) => {
-			// await new Promise((r) => setTimeout(r, 3000));
-			// console.log(req);
 			return {
 				code: 0,
 				data: {
 					name: Mock.Random.name(),
-					query: req,
+					end: Mock.Random.datetime("2023-MM-dd"),
 				},
 			};
 		},
