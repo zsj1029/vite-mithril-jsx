@@ -1,10 +1,8 @@
 import m from "mithril";
-import "@/app.css";
-import preact from "@/assets/preact.svg";
+import mithril from "@/assets/mithril.svg";
 
 export default () => {
 	// Local state ...
-	let x = 1;
 	const abc = {
 		a: 1,
 		b: [
@@ -24,16 +22,18 @@ export default () => {
 			<>
 				<div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
 					<div class="shrink">
-						<img class="h-12 w-12" src={preact} alt="ChitChat Logo" />
+						<img class="h-12 w-12" src={mithril} alt="ChitChat Logo" />
 					</div>
 					<div>
-						<div class="text-xl  text-red-400">{abc.a}</div>
-						<a href="#!/hello">Hello Url</a>
+						<div class="text-xl  text-red-400">Jayzz</div>
+						<a class="underline" href="#!/hello">
+							Route to Lic Page
+						</a>
 						<p class="text-slate-500">You have a new message!</p>
 					</div>
 				</div>
 				<div class="p-8 max-w-sm mx-auto bg-slate-50 rounded-lg shadow-xl space-x-4 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
-					<img class="block mx-auto h-24 rounded-full sm:mx-0 sm:shrink-0" src={preact} alt="Woman's Face" />
+					<img class="block mx-auto h-24 rounded-xl sm:mx-0 sm:shrink-0" src={mithril} alt="Woman's Face" />
 					<div class="text-center space-y-2 sm:text-left">
 						<div class="space-y-0.5">
 							<p class="text-lg text-black font-semibold">Jayzz</p>
@@ -41,7 +41,6 @@ export default () => {
 						</div>
 						<button
 							onclick={() => {
-								console.log(x);
 								abc.a++;
 								abc.b.push({ name: 66, age: 55 });
 							}}
