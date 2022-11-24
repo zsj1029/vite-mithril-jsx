@@ -3,7 +3,6 @@ lockfileVersion: 5.4
 specifiers:
   '@babel/core': ^7.20.2
   '@babel/plugin-transform-react-jsx': ^7.19.0
-  '@openui5/ts-types': ^1.108.1
   '@types/mithril': ^2.0.11
   '@types/mockjs': ^1.0.7
   '@types/node': ^18.11.9
@@ -29,7 +28,6 @@ dependencies:
 devDependencies:
   '@babel/core': 7.20.2
   '@babel/plugin-transform-react-jsx': 7.19.0_@babel+core@7.20.2
-  '@openui5/ts-types': 1.108.1
   '@types/mithril': 2.0.11
   '@types/mockjs': 1.0.7
   '@types/node': 18.11.9
@@ -397,10 +395,6 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
-    dev: true
-
-  /@openui5/ts-types/1.108.1:
-    resolution: {integrity: sha512-EAbufVEuKzq4AuJ2TQQ8Bulrg2lkEgIeAi9EtYxDDTWLDKcbs+sA3DhjcxLc6QCdfNG5ltWjVYy3XxU18ieQWw==}
     dev: true
 
   /@rollup/plugin-node-resolve/13.3.0:
