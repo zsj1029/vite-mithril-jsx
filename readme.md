@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/npm/l/mithril.svg)](https://github.com/MithrilJS/mithril.js/blob/next/LICENSE) &nbsp;
 [![Zulip, join chat](https://img.shields.io/badge/zulip-join_chat-brightgreen.svg)](https://mithril.zulipchat.com/)
 
-[Pnpm](<https://github.com/pnpm/pnpm>). Easy to upgrade package by `pnpm up`
+[pnpm](<https://github.com/pnpm/pnpm>) like npm. But more easy to manage package.
 
 ```shell
 npm install pnpm -g
