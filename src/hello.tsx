@@ -7,7 +7,7 @@ export default (props?: number) => {
 		m: 0,
 		s: 0,
 	};
-	let expiration: string;
+	let expiration = "0000/00/00";
 
 	const trigger = () => {
 		const uploadInput = document.getElementById("upload");
@@ -54,9 +54,9 @@ export default (props?: number) => {
 			<div class="h-screen w-screen bg-slate-100 py-12 antialiased">
 				<div class="w-1/2 max-w-[500px] min-w-[400px] h-full mx-auto flex flex-col justify-around  border-2 bg-yellow-100 shadow-lg border-green-500 border-dashed rounded-2xl">
 					<p class=" text-gray-700 font-semibold text-center text-2xl">License Management</p>
-					<p class="basis-3/5 rounded-xl drop-shadow-xl shadow-inner border-2 border-blue-200 bg-gray-700 sh text-white p-2 m-4 whitespace-pre-line overflow-y-auto">
+					<p class="basis-3/5 rounded-xl drop-shadow-xl shadow-inner border-2 border-blue-200 bg-gray-700 sh text-white p-2 m-4 whitespace-pre overflow-auto">
 						################################
-						<br /> # Product: Prod 2022
+						<br /> # Product: Prod 2022 # Product: Prod 2022
 						<br /> # License type: Eval
 						<br /> # Create by: Jayzz.Zhang
 						<br /> # Address: jayzz@s2ceda.com
@@ -77,7 +77,7 @@ export default (props?: number) => {
 					</p>
 					<p class="basis-1/5 mt-1 text-center">
 						<h2 class="font-mono  text-green-700">
-							license expiration date: <span class="underline ">{expiration}</span>
+							license expiration at: <span class="underline ">{expiration}</span>
 						</h2>
 						<h2 class="font-serif mt-4 text-red-500 tracking-widest">
 							time left:&nbsp;

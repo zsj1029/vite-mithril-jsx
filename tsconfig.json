@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ESNext",
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"],
@@ -21,7 +21,6 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
-    "jsxImportSource": "solid-js",
   },
   "include": ["./src"],
   "references": [{ "path": "./tsconfig.node.json" }]

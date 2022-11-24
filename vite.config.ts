@@ -12,7 +12,7 @@ export default defineConfig({
 		jsxFragment: "'['",
 	},
 	build: {
-		target: "es2015",
+		target: "ESNext",
 		cssTarget: "chrome80",
 	},
 	resolve: {
