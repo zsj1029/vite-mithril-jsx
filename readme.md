@@ -18,6 +18,11 @@ Open link <https://localhost:5173/> in your browser
 
 A very classic countdown example by Mithril & Jsx
 
+- mithril jsx code style
+- codesplit build by route
+- xhr get data
+- some tailwind css useage
+
 ![screenshot](https://github.com/zsj1029/vite-project/blob/master/pic.jpg?raw=true)
 
 ### Package including
