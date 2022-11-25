@@ -27,7 +27,7 @@ jobs:
           npm install pnpm -g
           pnpm i
           pnpm up
-          pnpm run build --base=${{ steps.deployment.outputs.page_url }}
+          pnpm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
