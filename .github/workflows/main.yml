@@ -8,8 +8,6 @@ on:
       - ".gitignore"
       - ".gitmodules"
       - "bin"
-env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 permissions:
   contents: write
@@ -36,13 +34,18 @@ jobs:
         run: |
           yarn install
           npm run build
-          cd ./dist
-          echo > .nojekyll
-          git config --global user.name "zsj1029"
-          git config --global user.email "zsj1029@gmail.com"
-          git init
-          git checkout -B gh-pages
-          git add -A
-          git commit -m 'deploy'
-          git remote add origin ${{ secrets.GITHUB_TOKEN }}@github.com/zsj1029/vite-mithril-jsx.git
-          git push origin gh-pages
+          # cd ./dist
+          # echo > .nojekyll
+          # git config --global user.name "zsj1029"
+          # git config --global user.email "zsj1029@gmail.com"
+          # git init
+          # git checkout -B gh-pages
+          # git add -A
+          # git commit -m 'deploy'
+          # git remote add origin ${{ secrets.GITHUB_TOKEN }}@github.com/zsj1029/vite-mithril-jsx.git
+          # git push origin gh-pages
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist/
