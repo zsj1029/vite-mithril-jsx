@@ -30,15 +30,13 @@ jobs:
           node-version: 18
       - name: Build Package
         run: |
-          npm install pnpm -g
-          pnpm i
-          pnpm up
-          pnpm run build
+          yarn install
+          npm run build
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: ./dist
+      # - name: Upload artifact
+      #   uses: actions/upload-pages-artifact@v1
+      #   with:
+      #     path: ./dist
 
   deploy:
     runs-on: macos-latest
