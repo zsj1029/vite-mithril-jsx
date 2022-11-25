@@ -1,4 +1,4 @@
-import m from "mithril";
+import m, { VnodeDOM } from "mithril";
 
 export default (props?: number) => {
 	let leftTime = {
@@ -38,7 +38,7 @@ export default (props?: number) => {
 	};
 
 	return {
-		oncreate: async () => {
+		oncreate: async (vnode: VnodeDOM) => {
 			const resp: { code: number; data: { end: string } } = await m.request({
 				method: "GET",
 				url: "/api/get",
@@ -47,6 +47,7 @@ export default (props?: number) => {
 			});
 			console.log(resp);
 			calTimeLeft(`${resp.data.end} 00:00:00`, 500);
+			console.log(vnode.dom.querySelector("#upload"));
 		},
 		oninit: () => {},
 		view: () => (
