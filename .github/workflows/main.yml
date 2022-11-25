@@ -38,8 +38,8 @@ jobs:
           npm run build
           cd ./dist
           echo > .nojekyll
-          git config user.name zsj1029
-          git config user.email zsj1029@gmail.com
+          git config --global user.name "zsj1029"
+          git config --global user.email "zsj1029@gmail.com"
           git init
           git checkout -B gh-pages
           git add -A
