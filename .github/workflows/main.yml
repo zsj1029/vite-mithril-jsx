@@ -44,5 +44,5 @@ jobs:
           git checkout -B gh-pages
           git add -A
           git commit -m 'deploy'
-          git remote add origin https://github.com/zsj1029/vite-mithril-jsx.git
+          git remote add origin zsj1029@github.com/zsj1029/vite-mithril-jsx.git
           git push origin gh-pages
