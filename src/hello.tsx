@@ -1,4 +1,5 @@
 import m, { VnodeDOM } from "mithril";
+import Mock from "mockjs";
 
 export default (props?: number) => {
 	let leftTime = {
@@ -39,17 +40,23 @@ export default (props?: number) => {
 
 	return {
 		oncreate: async (vnode: VnodeDOM) => {
-			const resp: { code: number; data: { end: string } } = await m.request({
-				method: "GET",
-				url: "/api/get",
-				params: { id: 1 },
-				body: { name: "test" },
-			});
-			console.log(resp);
-			calTimeLeft(`${resp.data.end} 00:00:00`, 500);
 			console.log(vnode.dom.querySelector("#upload"));
+			let endTime;
+			try {
+				const resp: { code: number; data: { end: string } } = await m.request({
+					method: "GET",
+					url: "/api/get",
+					params: { id: 1 },
+					body: { name: "test" },
+				});
+				endTime = resp.data.end;
+			} catch (e) {
+				endTime = Mock.Random.datetime("2023-MM-dd");
+			}
+
+			calTimeLeft(`${endTime} 00:00:00`, 500);
 		},
-		oninit: () => {},
+		// oninit: () => {},
 		view: () => (
 			<>
 				<div class="h-screen w-screen bg-slate-100 py-12 antialiased">
