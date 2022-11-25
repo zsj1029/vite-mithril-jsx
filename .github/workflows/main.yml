@@ -8,7 +8,9 @@ on:
       - ".gitignore"
       - ".gitmodules"
       - "bin"
-# github_token: ${{ secrets.GITHUB_TOKEN }}
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 permissions:
   contents: write
   pages: write
@@ -30,6 +32,7 @@ jobs:
           node-version: 18
 
       - name: Build Package
+
         run: |
           yarn install
           npm run build
