@@ -1,36 +1,46 @@
 name: Github Action Deploy
-on: push
+on:
+  push:
+    branches: ["master"]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: macos-latest
 
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    permissions:
-      contents: write
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
       - name: Install Nodejs v18
         uses: actions/setup-node@v3
         with:
           node-version: 18
-
       - name: Build Package
         run: |
           npm install pnpm -g
           pnpm i
-          pnpm run build
+          pnpm up
+          pnpm run build --base=${{ steps.deployment.outputs.page_url }}
 
-      - name: Deploy to github-pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
         with:
-          github_token: ${{ secrets.SSH }}
-          publish_dir: ./dist
+          path: ./dist
+
+  deploy:
+    runs-on: macos-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
