@@ -2,6 +2,12 @@ name: Github Action Deploy
 on:
   push:
     branches: ["master"]
+    paths-ignore:
+      - "readme.md"
+      - ".env"
+      - ".gitignore"
+      - ".gitmodules"
+      - "bin"
 
 permissions:
   contents: read
@@ -36,11 +42,13 @@ jobs:
 
   deploy:
     runs-on: macos-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    # environment:
+    #   name: github-pages
+    #   url: ${{ steps.deployment.outputs.page_url }}
     needs: build
     steps:
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
