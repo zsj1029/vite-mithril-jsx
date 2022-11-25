@@ -51,7 +51,7 @@ export default (props?: number) => {
 				});
 				endTime = resp.data.end;
 			} catch (e) {
-				endTime = Mock.Random.date();
+				endTime = Mock.Random.date("2024-MM-dd");
 			}
 
 			calTimeLeft(`${endTime} 00:00:00`, 500);
