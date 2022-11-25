@@ -35,12 +35,13 @@ jobs:
           npm run build
           cd ./dist
           echo > .nojekyll
+          git config user.name zsj1029
+          git config user.email zsj1029@gmail.com
           git init
           git checkout -B gh-pages
           git add -A
           git commit -m -'deploy'
           git remote rm origin
           git remote add origin ***github.com/zsj1029/vite-mithril-jsx.git
-          git config user.name zsj1029
-          git config user.email zsj1029@gmail.com
+
           git push origin gh-pages
