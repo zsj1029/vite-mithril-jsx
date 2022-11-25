@@ -1,5 +1,4 @@
 import m, { VnodeDOM } from "mithril";
-import Mock from "mockjs";
 
 export default (props?: number) => {
 	let leftTime = {
@@ -51,7 +50,7 @@ export default (props?: number) => {
 				});
 				endTime = resp.data.end;
 			} catch (e) {
-				endTime = Mock.Random.date("2024-MM-dd");
+				endTime = "2024-11-11";
 			}
 
 			calTimeLeft(`${endTime} 00:00:00`, 500);
