@@ -1,20 +1,24 @@
 import m from "mithril";
-
+import { Component } from "mithril";
 import { User } from "./model";
 
-export default () => {
-	return {
-		view: () => (
-			<button
-				id="test"
-				class="hidden"
-				onclick={() => {
-					User.name = "1111";
-					User.age = (Math.random() * 10000) | 0;
-				}}
-			>
-				{User.age}
-			</button>
-		),
-	};
+let aa = {
+	x: 1,
+	y: 2,
+};
+
+export default {
+	view: ({ attrs: { name, age } }) => (
+		<button
+			id="test"
+			onclick={() => {
+				User.name = "1111";
+				User.age = (Math.random() * 10000) | 0;
+				User.sex = 123;
+				aa.x++;
+			}}
+		>
+			{aa.x},{name}
+		</button>
+	),
 };

@@ -2,18 +2,20 @@ import { Component } from "mithril";
 import m, { Vnode } from "mithril";
 import { User } from "./model";
 
-type IUser = {
+interface IUser {
 	name: string;
 	age: number;
 	sex: 1;
-};
-export default (): Component<IUser> => {
+}
+export default (props: Vnode): Component<IUser> => {
+	let cc: IUser = props.attrs;
 	return {
-		oninit: ({ attrs }) => {
-			console.log("hello1.tsx", attrs);
+		oninit: () => {
+			console.log("hello1.tsx", cc.age);
+			cc.age = 6666;
 		},
 		view: ({ attrs: { name, age, sex } }) =>
-			m("main", { class: "hidden" }, [
+			m("main", [
 				m("h1", { class: "text-xl" }, `${name},${age},${sex}`),
 				m(
 					"button",
