@@ -1,19 +1,30 @@
 import m, { VnodeDOM } from "mithril";
 
-export default (props?: number) => {
+import Hello from "@/hello1";
+import HtmlEle from "./htmlEle";
+import { User } from "./model";
+
+export default (props?: any) => {
 	let leftTime = {
 		d: 0,
 		h: 0,
 		m: 0,
-		s: 0,
+		s: 12,
 	};
 	let expiration = "0000/00/00";
 
 	const trigger = () => {
 		const uploadInput = document.getElementById("upload");
 		uploadInput?.click();
+		console.log(document.querySelector("#upload"));
 		// x++;
 	};
+
+	// const HtmlEle = (
+	// 	<button id="test" onclick={() => (User.name = ":123123")}>
+	// 		{leftTime.s}
+	// 	</button>
+	// );
 
 	const calTimeLeft = (endTime: string, refresh = 500) => {
 		const dy = 86400;
@@ -21,6 +32,7 @@ export default (props?: number) => {
 		const min = 60;
 		const end = Date.parse(endTime);
 		expiration = new Date(endTime).toLocaleDateString();
+		// console.log(vnode.dom.querySelector("#upload"));
 		setInterval(() => {
 			const leftSec = ((end - Date.now()) / 1000) | 0;
 			const days = (leftSec / dy) | 0;
@@ -39,7 +51,6 @@ export default (props?: number) => {
 
 	return {
 		oncreate: async (vnode: VnodeDOM) => {
-			console.log(vnode.dom.querySelector("#upload"));
 			let endTime;
 			try {
 				const resp: { code: number; data: { end: string } } = await m.request({
@@ -54,14 +65,19 @@ export default (props?: number) => {
 			}
 
 			calTimeLeft(`${endTime} 00:00:00`, 500);
+
+			// m.mount(document.getElementById("mountP") as Element, Hello);
 		},
-		// oninit: () => {},
+		oninit: () => {},
 		view: () => (
 			<>
+				<Hello name={User.name} age={User.age} />
+				<HtmlEle />
+				<p id="mountP" />
 				<div class="h-screen w-screen bg-slate-100 py-12 antialiased">
 					<div class="w-1/2 max-w-[500px] min-w-[400px] h-full mx-auto flex flex-col justify-around  border-2 bg-yellow-100 shadow-lg border-green-500 border-dashed rounded-2xl">
 						<p class=" text-gray-700 font-semibold text-center text-2xl">License Management</p>
-						<p class="basis-3/5 rounded-xl drop-shadow-xl shadow-inner border-2 border-blue-200 bg-gray-700 sh text-white p-2 m-4 whitespace-pre overflow-auto">
+						<p class="basis-3/5 rounded-xl drop-shadow-xl shadow-inner border-2 border-blue-200 bg-gray-700  text-white p-2 m-4 whitespace-pre overflow-auto">
 							################################
 							<br /> # Product: Prod 2022 # Product: Prod 2022
 							<br /> # License type: Eval

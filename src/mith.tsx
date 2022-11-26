@@ -1,7 +1,7 @@
 import m from "mithril";
 import mithril from "@/assets/mithril.svg";
 
-export default () => {
+export default (props: any) => {
 	// Local state ...
 	const abc = {
 		a: 1,
