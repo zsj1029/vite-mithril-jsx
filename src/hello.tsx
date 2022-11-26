@@ -1,7 +1,7 @@
 import m, { VnodeDOM } from "mithril";
 
 import Hello from "@/hello1";
-import HtmlEle from "./htmlEle";
+import { HtmlEle } from "./htmlEle";
 import { User } from "./model";
 
 export default (props?: any) => {
@@ -72,7 +72,7 @@ export default (props?: any) => {
 		view: () => (
 			<>
 				<Hello name={User.name} age={User.age} />
-				<HtmlEle name={User.name} age={User.age} />
+				<HtmlEle pName={User.name} age={User.age} />
 				<p id="mountP" />
 				<div class="h-screen w-screen bg-slate-100 py-12 antialiased">
 					<div class="w-1/2 max-w-[500px] min-w-[400px] h-full mx-auto flex flex-col justify-around  border-2 bg-yellow-100 shadow-lg border-green-500 border-dashed rounded-2xl">
