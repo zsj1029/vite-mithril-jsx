@@ -60,9 +60,9 @@ export default {
 	},
 	view: ({ attrs }) => (
 		<>
-			{/* {attrs.test}
-			{m(ESM, { s: leftTime.s })}
-			<Index num={leftTime.s} /> */}
+			{/* {attrs.test} */}
+			{/* {m(ESM, { s: leftTime.s })} */}
+			<Index num={leftTime.s} />
 			{/* <HtmlEle pName={User.name} age={User.age}>
 				<strong class="text-red-500"> LastName</strong>
 			</HtmlEle>
@@ -105,7 +105,7 @@ export default {
 							</span>
 						</h3>
 					</p>
-					<input id="upload" type="file" class="hidden" />
+					<input id="upload" type="file" class="hidden" placeholder="upload lic" />
 					<button
 						onclick={() => trigger()}
 						class="bg-green-600  hover:bg-green-700 mb-2 ring-offset-1 max-w-fit self-center border-green-400 ring-1 text-white p-2 rounded-xl text-sm"

@@ -1,7 +1,7 @@
 /* @refresh reload */
-import "@/index.css";
+
 import "virtual:windi.css";
-// import "@/water.css";
+import "@/assets/water/builds/water.css";
 import m from "mithril";
 
 import ESM from "./esm";
