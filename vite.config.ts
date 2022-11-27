@@ -3,6 +3,7 @@ import { defineConfig } from "vite";
 import { resolve } from "path";
 import { viteMockServe } from "vite-plugin-mock";
 import basicSsl from "@vitejs/plugin-basic-ssl";
+import WindiCSS from "vite-plugin-windicss";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -22,5 +23,5 @@ export default defineConfig({
 			"@": resolve(__dirname, "./src"),
 		},
 	},
-	plugins: [basicSsl(), viteMockServe()],
+	plugins: [basicSsl(), viteMockServe(), WindiCSS()],
 });

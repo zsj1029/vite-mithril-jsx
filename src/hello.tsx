@@ -1,6 +1,5 @@
 import m, { VnodeDOM } from "mithril";
 
-import Hello from "@/hello1";
 import { HtmlEle } from "./htmlEle";
 import { User } from "./model";
 
@@ -71,9 +70,9 @@ export default (props?: any) => {
 		oninit: () => {},
 		view: () => (
 			<>
-				<Hello name={User.name} age={User.age} />
-				<HtmlEle pName={User.name} age={User.age} />
-				<p id="mountP" />
+				{/* <Hello name={User.name} age={User.age} /> */}
+				{/* <HtmlEle pName={User.name} age={User.age} /> */}
+				{/* <p id="mountP" /> */}
 				<div class="h-screen w-screen bg-slate-100 py-12 antialiased">
 					<div class="w-1/2 max-w-[500px] min-w-[400px] h-full mx-auto flex flex-col justify-around  border-2 bg-yellow-100 shadow-lg border-green-500 border-dashed rounded-2xl">
 						<p class=" text-gray-700 font-semibold text-center text-2xl">License Management</p>
@@ -99,15 +98,15 @@ export default (props?: any) => {
 							################################
 						</p>
 						<p class="basis-1/5 mt-1 text-center">
-							<h2 class="font-mono  text-green-700">
+							<h3 class="font-mono  text-green-700">
 								license expiration at: <span class="underline ">{expiration}</span>
-							</h2>
-							<h2 class="font-serif mt-4 text-red-500 tracking-widest">
+							</h3>
+							<h3 class="font-serif mt-4 text-red-500 tracking-widest">
 								time left:&nbsp;
 								<span class="underline font-thin">
 									{leftTime.d}d·{leftTime.h}h·{leftTime.m}m·{leftTime.s}s
 								</span>
-							</h2>
+							</h3>
 						</p>
 						<input id="upload" type="file" class="hidden" />
 						<button
