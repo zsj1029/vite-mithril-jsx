@@ -16,7 +16,7 @@ export default {
 						User.age = 9999;
 					},
 				},
-				`other btn ${User.age} ss:${s}`,
+				`other btn ${age}  ss:${s}`,
 			),
 		]),
 	// view: () => <h1>hello h1</h1>,

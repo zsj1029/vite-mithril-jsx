@@ -61,13 +61,15 @@ export default {
 	view: ({ attrs }) => (
 		<>
 			{/* {attrs.test} */}
-			{/* {m(ESM, { s: leftTime.s })} */}
+			{/* {m(ESM, { age: User.age, s: leftTime.s })}
 			<Index num={leftTime.s} />
-			{/* <HtmlEle pName={User.name} age={User.age}>
-				<strong class="text-red-500"> LastName</strong>
-			</HtmlEle>
-
 			<HtmlEle pName={User.name} age={User.age}>
+				<strong class="text-red-500" onclick={() => alert(JSON.stringify(leftTime))}>
+					LastName
+				</strong>
+			</HtmlEle> */}
+
+			{/* <HtmlEle pName={User.name} age={User.age}>
 				<strong class="text-red-500"> LastName</strong>
 			</HtmlEle> */}
 			<div class="h-screen w-screen bg-slate-100 py-12 antialiased">

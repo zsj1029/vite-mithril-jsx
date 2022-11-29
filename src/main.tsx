@@ -9,9 +9,9 @@ import { User } from "@/model";
 const root = document.getElementById("root") as HTMLElement;
 // m.mount(document.getElementById("root") as HTMLElement, App);
 
-m.route(root, "/coutDown/test1", {
+m.route(root, "/login", {
 	"/app": { onmatch: async () => (await import("@/mith")).default },
-	"/coutDown/:test": {
+	"/coutDown": {
 		onmatch: async () => (await import("@/lic-countdown")).default,
 	},
 	"/test": {
@@ -20,4 +20,5 @@ m.route(root, "/coutDown/test1", {
 	"/esm": {
 		render: () => m(ESM, { age: 999 }),
 	},
+	"/login": { onmatch: async () => (await import("@/pages/login")).default },
 });

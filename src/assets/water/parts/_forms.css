@@ -11,7 +11,7 @@ input[type='radio'] {
 
 input,
 select {
-  display: block;
+  display: inline-block;
 }
 
 [type='checkbox'],
@@ -27,11 +27,11 @@ select {
   background-color: var(--background);
   font-family: inherit;
   font-size: inherit;
-  margin-right: 6px;
-  margin-bottom: 6px;
-  padding: 4px;
-  border: none;
-  border-radius: 6px;
+  /* margin-right: 6px; */
+  /* margin-bottom: 6px; */
+  padding: 6px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
   outline: none;
 }
 
@@ -49,6 +49,7 @@ input[type='submit']:hover,
 input[type='reset']:hover,
 input[type='button']:hover {
   background: var(--button-hover);
+  color: var(--button-hover-text);
 }
 
 input[type='color'] {

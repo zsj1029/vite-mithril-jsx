@@ -23,11 +23,14 @@ type State = {
 export const HtmlEle = {
 	count: 0,
 	at: { t1: "123123" } as TT,
-	oncreate: (vnode: Vnode<Attrs, State>) => {
+	oncreate: (vnode: VnodeDOM<Attrs, State>) => {
 		console.log(vnode);
+		let x = (vnode.dom.innerHTML = "Get pComp countdown data");
+		console.log(x);
 	},
-	view: ({ attrs, state, children: Children }: Vnode<Attrs, State>) => (
+	view: ({ attrs, state, children }: VnodeDOM<Attrs, State>) => (
 		<>
+			{children}
 			<div class="bg-slate-100">
 				<button
 					id="test"
@@ -42,7 +45,6 @@ export const HtmlEle = {
 				>
 					{attrs.pName},{attrs.age},{state.count}
 					{aa.x}
-					{/* <Children /> */}
 				</button>
 			</div>
 		</>

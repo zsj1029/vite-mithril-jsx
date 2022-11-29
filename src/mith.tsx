@@ -51,14 +51,18 @@ export default (): Component => {
 						>
 							{abc.a}
 						</button>
-						<div class="focus-within:shadow-2xl shadow-black">
-							<input type="text" />
+						<div class="">
+							<input class="" type="text" />
 						</div>
-						{abc.b.map(({ name, age }, index) => (
-							<span class="block">
-								{name},{age},{index}
-							</span>
-						))}
+						<ul>
+							{abc.b.map(({ name, age }, index) => {
+								return (
+									<li class="block" key={index + 1}>
+										{name},{age},{index}
+									</li>
+								);
+							})}
+						</ul>
 					</div>
 				</div>
 			</>
