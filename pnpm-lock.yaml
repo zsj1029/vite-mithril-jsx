@@ -3,12 +3,14 @@ lockfileVersion: 5.4
 specifiers:
   '@babel/core': ^7.20.2
   '@babel/plugin-transform-react-jsx': ^7.19.0
+  '@types/crypto-js': ^4.1.1
   '@types/mithril': ^2.0.11
   '@types/mockjs': ^1.0.7
   '@types/node': ^18.11.9
   '@typescript-eslint/eslint-plugin': ^5.44.0
   '@typescript-eslint/parser': ^5.44.0
   '@vitejs/plugin-basic-ssl': ^0.1.2
+  crypto-js: ^4.1.1
   eslint: ^8.28.0
   konva: ^8.3.14
   mithril: ^2.2.2
@@ -21,12 +23,14 @@ specifiers:
   windicss: ^3.5.6
 
 dependencies:
+  crypto-js: 4.1.1
   konva: 8.3.14
   mithril: 2.2.2
 
 devDependencies:
   '@babel/core': 7.20.2
   '@babel/plugin-transform-react-jsx': 7.19.0_@babel+core@7.20.2
+  '@types/crypto-js': 4.1.1
   '@types/mithril': 2.0.11
   '@types/mockjs': 1.0.7
   '@types/node': 18.11.9
@@ -424,6 +428,10 @@ packages:
       picomatch: 2.3.1
     dev: true
 
+  /@types/crypto-js/4.1.1:
+    resolution: {integrity: sha512-BG7fQKZ689HIoc5h+6D2Dgq1fABRa0RbBWKBd9SP/MVRVXROflpm5fhwyATX5duFmbStzyzyycPB8qUYKDH3NA==}
+    dev: true
+
   /@types/estree/0.0.39:
     resolution: {integrity: sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==}
     dev: true
@@ -806,6 +814,10 @@ packages:
       shebang-command: 2.0.0
       which: 2.0.2
     dev: true
+
+  /crypto-js/4.1.1:
+    resolution: {integrity: sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==}
+    dev: false
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}

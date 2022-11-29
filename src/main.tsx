@@ -6,19 +6,20 @@ import m from "mithril";
 
 import ESM from "./esm";
 import { User } from "@/model";
+import { Profile, Theme } from "./model/profile";
 const root = document.getElementById("root") as HTMLElement;
 // m.mount(document.getElementById("root") as HTMLElement, App);
-
+Profile.setTheme(Theme.dark);
 m.route(root, "/login", {
-	"/app": { onmatch: async () => (await import("@/mith")).default },
-	"/coutDown": {
-		onmatch: async () => (await import("@/lic-countdown")).default,
-	},
-	"/test": {
-		render: () => <ESM age="900" />,
-	},
-	"/esm": {
-		render: () => m(ESM, { age: 999 }),
-	},
-	"/login": { onmatch: async () => (await import("@/pages/login")).default },
+  "/app": { onmatch: async () => (await import("@/mith")).default },
+  "/coutDown": {
+    onmatch: async () => (await import("@/lic-countdown")).default,
+  },
+  "/test": {
+    render: () => <ESM age="900" />,
+  },
+  "/esm": {
+    render: () => m(ESM, { age: 999 }),
+  },
+  "/login": { onmatch: async () => (await import("@/pages/login")).default },
 });

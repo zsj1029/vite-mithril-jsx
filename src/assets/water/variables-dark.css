@@ -1,4 +1,4 @@
-:root {
+:root.dark-mode{
   --background-body: #202b38;
   --background: #161f27;
   --background-alt: #1a242f;
@@ -20,4 +20,4 @@
   --variable: #d941e2;
   --highlight: #efdb43;
   --select-arrow: svg-load('./assets/select-arrow.svg', fill: #efefef);
-}
+} 
