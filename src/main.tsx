@@ -6,10 +6,10 @@ import m from "mithril";
 
 import ESM from "./esm";
 import { User } from "@/model";
-import { Profile, Theme } from "./model/profile";
+import { Profile } from "./model/profile";
 const root = document.getElementById("root") as HTMLElement;
 // m.mount(document.getElementById("root") as HTMLElement, App);
-Profile.setTheme(Theme.dark);
+Profile.autoTheme();
 m.route(root, "/login", {
   "/app": { onmatch: async () => (await import("@/mith")).default },
   "/coutDown": {

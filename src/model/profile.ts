@@ -1,27 +1,29 @@
 export enum Theme {
-  dark,
-  light,
+  dark = "d",
+  light = "l",
 }
 
 export const Profile = {
   theme: Theme.light,
   setTheme(v: Theme) {
     this.theme = v;
-    localStorage.setItem("theme", v.toString());
-    if (v === Theme.dark)
-      document.documentElement.classList.remove("dark-mode");
-    else document.documentElement.classList.add("dark-mode");
+    localStorage.setItem("theme", v);
+    if (v === Theme.dark) document.documentElement.classList.add("dark-mode");
+    else document.documentElement.classList.remove("dark-mode");
   },
-  getTheme(): Theme {
-    const data = localStorage.getItem("theme");
-    if (data === null) {
-      return window.matchMedia("(prefers-color-scheme: dark)").matches
+  getTheme() {
+    const data =
+      localStorage.getItem("theme") ||
+      (window.matchMedia("(prefers-color-scheme: dark)").matches
         ? Theme.dark
-        : Theme.light;
-    } else {
-      return Number(data);
-    }
+        : Theme.light);
+    this.theme = data as Theme;
+    return this.theme;
+  },
+  autoTheme() {
+    const data = this.getTheme();
+    if (data === Theme.dark)
+      document.documentElement.classList.add("dark-mode");
+    else document.documentElement.classList.remove("dark-mode");
   },
 };
-
-// import(Profile.theme ? "@/assets/water/builds/light.css" : "@/assets/water/builds/dark.css");

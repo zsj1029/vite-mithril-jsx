@@ -8,12 +8,14 @@ export default {
     <>
       <div class={attrs.class}>
         <span
-          class="cursor-pointer"
+          class="cursor-pointer select-none"
           onclick={() =>
-            Profile.setTheme(Profile.theme ? Theme.dark : Theme.light)
+            Profile.setTheme(
+              Profile.theme === Theme.light ? Theme.dark : Theme.light
+            )
           }
         >
-          {Profile.getTheme() === Theme.dark ? "🌞" : "🌙"}
+          {Profile.theme === Theme.dark ? "🌞" : "🌙"}
         </span>
       </div>
     </>
