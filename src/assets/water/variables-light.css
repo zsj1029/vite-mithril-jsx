@@ -21,5 +21,6 @@
   --variable: #39a33c;
   --highlight: #ff0;
   --select-arrow: svg-load('./assets/select-arrow.svg', fill: #161f27);
+  --themecolor:var(--background);
 }
 

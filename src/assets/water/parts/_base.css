@@ -9,6 +9,7 @@ body {
   /* max-width: 800px; */
   /* margin: 20px auto; */
   /* padding: 0 10px; */
+  font-size: 14px;
   word-wrap: break-word;
   color: var(--text-main);
   background: var(--background-body);
@@ -24,4 +25,13 @@ textarea {
     color var(--animation-duration) linear,
     box-shadow var(--animation-duration) linear,
     transform var(--animation-duration) ease;
+}
+
+.theme{
+  background: var(--themecolor);
+}
+
+.menu:hover{
+  background: var(--border);
+  color: white;
 }

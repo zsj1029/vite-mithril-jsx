@@ -19,7 +19,7 @@ export default {
         onclick={onclick}
         class={`${
           type === "password" ? "" : "hidden"
-        } absolute right-2 top-3 cursor-pointer `}
+        } absolute right-2 top-2.5 cursor-pointer `}
         data-icon="eye"
         width="1em"
         height="1em"
@@ -35,7 +35,7 @@ export default {
         onclick={onclick}
         class={`${
           type === "password" ? "hidden" : ""
-        } absolute right-2 top-3 cursor-pointer `}
+        } absolute right-2 top-2.5 cursor-pointer `}
         data-icon="eye-invisible"
         width="1em"
         height="1em"
