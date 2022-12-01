@@ -1,12 +1,14 @@
 {
   "name": "vite-project",
   "homepage": "https://github.com/zsj1029/vite-mithril-jsx",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
   "private": false,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": " vite build",
+    "buildp": "parcel build index.html",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -26,6 +28,7 @@
     "@vitejs/plugin-basic-ssl": "^0.1.2",
     "eslint": "^8.28.0",
     "mockjs": "^1.1.0",
+    "parcel": "^2.8.0",
     "prettier": "^2.8.0",
     "typescript": "^4.9.3",
     "vite": "^3.2.4",

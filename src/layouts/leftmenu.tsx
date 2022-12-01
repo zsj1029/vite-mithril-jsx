@@ -4,7 +4,7 @@ export default {
   view() {
     return (
       <>
-        <div class="w-34 min-h-full px-1 select-none">
+        <div class="w-34 min-h-full px-1 select-none ">
           <ul>
             <li>
               <span class="menu flex items-center py-2 px-4 overflow-hidden  rounded transition duration-300 ease-in-out cursor-pointer">

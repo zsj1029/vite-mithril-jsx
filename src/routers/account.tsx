@@ -1,6 +1,8 @@
-import Layouts from "@/layouts";
-const AccountList = (await import("@/pages/account/list")).default;
-const AccountAdd = (await import("@/pages/account/add")).default;
+import Layouts from "@/layouts/layout";
+// const AccountList = (await import("@/pages/account/list")).default;
+// const AccountAdd = (await import("@/pages/account/add")).default;
+import AccountList from "@/pages/account/list";
+import AccountAdd from "@/pages/account/add";
 import m from "mithril";
 export const AccountMenu: Menu = {
   path: "/account",
