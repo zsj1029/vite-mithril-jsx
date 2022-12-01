@@ -1,1 +1,0 @@
-import{m as s}from"./index.83ec0676.js";const a={name:"jayzz",age:30,sex:1},m={oninit:t=>{console.log("esm.ts",t)},view:({attrs:{name:t,age:e,sex:o,s:n}})=>s("main",[s("h1",{class:"text-xl"},`${t},${e},${o}`),s("button",{onclick:()=>{a.age=9999}},`other btn ${e}  ss:${n}`)])};export{m as default};
