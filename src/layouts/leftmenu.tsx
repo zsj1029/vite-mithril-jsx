@@ -1,13 +1,47 @@
 import m from "mithril";
 
 export default {
+  oncreate() {
+    document.querySelectorAll(".menu").forEach((ele) => {
+      ele.addEventListener("click", (e) => {
+        document
+          .querySelector(".active")
+          ?.classList.remove("active", "pointer-events-none");
+        e.target?.classList.add("active", "pointer-events-none");
+      });
+    });
+
+    document.querySelectorAll(".relative").forEach((ele) => {
+      let show = true;
+      ele.addEventListener("click", (e) => {
+        // console.log(e.target.closest(".relative"));
+        if (show) {
+          e.target
+            .closest(".relative")
+            .nextElementSibling.classList.add("hidden");
+          e.target
+            .closest(".relative")
+            .lastElementChild.classList.add("transform", "rotate-180");
+        } else {
+          e.target
+            .closest(".relative")
+            .nextElementSibling.classList.remove("hidden");
+          e.target
+            .closest(".relative")
+            .lastElementChild.classList.remove("transform", "rotate-180");
+        }
+
+        show = !show;
+      });
+    });
+  },
   view() {
     return (
       <>
         <div class="w-34 min-h-full px-1 select-none ">
           <ul>
             <li>
-              <span class="menu flex items-center py-2 px-4 overflow-hidden  rounded transition duration-300 ease-in-out cursor-pointer">
+              <span class="menu flex items-center py-2 px-4 overflow-hidden  rounded transition duration-100 ease-in-out cursor-pointer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -27,8 +61,8 @@ export default {
             </li>
           </ul>
           <ul>
-            <li>
-              <span class="menu flex items-center py-2 px-4  overflow-hidden   rounded transition duration-300 ease-in-out cursor-pointer">
+            <li class="">
+              <span class="flex relative items-center py-2 px-4 overflow-hidden rounded transition duration-100 ease-in-out cursor-pointer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -44,21 +78,35 @@ export default {
                   />
                 </svg>
                 许可证
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-4 h-4 absolute right-3 "
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M4.5 15.75l7.5-7.5 7.5 7.5"
+                  />
+                </svg>
               </span>
-              <ul class=" accordion-collapse collapse">
-                <li class="menu flex items-center pl-10 py-2  cursor-pointer overflow-hidden  rounded  transition duration-300 ease-in-out">
-                  待确认
+              <ul class="">
+                <li class="menu active flex items-center pl-9 py-2 cursor-pointer overflow-hidden  rounded  transition duration-100 ease-in-out">
+                  待发送(3)
                 </li>
-                <li class="menu flex items-center pl-10 py-2  cursor-pointer overflow-hidden  rounded transition duration-300 ease-in-out">
+                <li class="menu flex items-center pl-9 py-2 cursor-pointer overflow-hidden  rounded transition duration-100 ease-in-out">
                   已发送
                 </li>
-                <li class="menu flex items-center pl-10 py-2 cursor-pointer overflow-hidden  rounded  transition duration-300 ease-in-out">
-                  即将到期
+                <li class="menu flex items-center pl-9 py-2 cursor-pointer overflow-hidden  rounded  transition duration-100 ease-in-out">
+                  即将到期(1)
                 </li>
-                <li class="menu flex items-center pl-10 py-2 cursor-pointer overflow-hidden  rounded  transition duration-300 ease-in-out">
+                <li class="menu flex items-center pl-9 py-2 cursor-pointer overflow-hidden  rounded  transition duration-100 ease-in-out">
                   已过期
                 </li>
-                <li class="menu flex items-center pl-10 py-2 cursor-pointer overflow-hidden  rounded  transition duration-300 ease-in-out">
+                <li class="menu flex items-center pl-9 py-2 cursor-pointer overflow-hidden  rounded  transition duration-100 ease-in-out">
                   统计
                 </li>
               </ul>
@@ -66,7 +114,7 @@ export default {
           </ul>
           <ul>
             <li>
-              <span class="menu flex items-center py-2 px-4  overflow-hidden   rounded transition duration-300 ease-in-out cursor-pointer">
+              <span class=" flex relative items-center py-2 px-4  overflow-hidden   rounded transition duration-100 ease-in-out cursor-pointer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -82,12 +130,26 @@ export default {
                   />
                 </svg>
                 邮件记录
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-4 h-4 absolute right-3"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M4.5 15.75l7.5-7.5 7.5 7.5"
+                  />
+                </svg>
               </span>
-              <ul class=" accordion-collapse collapse">
-                <li class="menu flex items-center pl-10 py-2  cursor-pointer overflow-hidden  rounded  transition duration-300 ease-in-out">
+              <ul class="">
+                <li class="menu flex items-center pl-9 py-2 cursor-pointer overflow-hidden  rounded  transition duration-100 ease-in-out">
                   全部
                 </li>
-                <li class="menu flex items-center pl-10 py-2  cursor-pointer overflow-hidden  rounded transition duration-300 ease-in-out">
+                <li class="menu flex items-center pl-9 py-2 cursor-pointer overflow-hidden  rounded transition duration-100 ease-in-out">
                   发送失败
                 </li>
               </ul>
@@ -95,7 +157,7 @@ export default {
           </ul>
           <ul>
             <li>
-              <span class="menu flex items-center py-2 px-4  overflow-hidden   rounded transition duration-300 ease-in-out cursor-pointer">
+              <span class=" flex relative items-center py-2 px-4  overflow-hidden   rounded transition duration-100 ease-in-out cursor-pointer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -111,12 +173,26 @@ export default {
                   />
                 </svg>
                 用户管理
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-4 h-4 absolute right-3"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M4.5 15.75l7.5-7.5 7.5 7.5"
+                  />
+                </svg>
               </span>
-              <ul class=" accordion-collapse collapse">
-                <li class="menu flex items-center pl-10 py-2  cursor-pointer overflow-hidden  rounded  transition duration-300 ease-in-out">
+              <ul class="">
+                <li class="menu flex items-center pl-9 py-2  cursor-pointer overflow-hidden  rounded  transition duration-100 ease-in-out">
                   用户列表
                 </li>
-                <li class="menu flex items-center pl-10 py-2  cursor-pointer overflow-hidden  rounded transition duration-300 ease-in-out">
+                <li class="menu flex items-center pl-9 py-2  cursor-pointer overflow-hidden  rounded transition duration-100 ease-in-out">
                   创建用户
                 </li>
               </ul>
@@ -124,7 +200,7 @@ export default {
           </ul>
           <ul>
             <li>
-              <span class="menu flex items-center py-2 px-4  overflow-hidden   rounded transition duration-300 ease-in-out cursor-pointer">
+              <span class="menu flex items-center py-2 px-4  overflow-hidden   rounded transition duration-100 ease-in-out cursor-pointer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -143,7 +219,6 @@ export default {
               </span>
             </li>
           </ul>
-
           <p class="fixed w-30 text-center bottom-4 ">Ver:1.0.0</p>
         </div>
       </>

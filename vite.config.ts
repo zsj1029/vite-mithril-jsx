@@ -7,21 +7,21 @@ import WindiCSS from "vite-plugin-windicss";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	base: "/vite-mithril-jsx/",
-	esbuild: {
-		jsx: "transform",
-		jsxFactory: "m",
-		jsxFragment: "'['",
-	},
-	build: {
-		target: "ESNext",
-		cssTarget: "chrome80",
-	},
-	resolve: {
-		conditions: ["development", "browser"],
-		alias: {
-			"@": resolve(__dirname, "./src"),
-		},
-	},
-	plugins: [basicSsl(), viteMockServe(), WindiCSS()],
+  base: "/vite-mithril-jsx/",
+  esbuild: {
+    jsx: "transform",
+    jsxFactory: "m",
+    jsxFragment: "'['",
+  },
+  build: {
+    target: "ESNext",
+    cssTarget: "chrome80",
+  },
+  resolve: {
+    conditions: ["development", "browser"],
+    alias: {
+      "@": resolve(__dirname, "./src"),
+    },
+  },
+  plugins: [basicSsl(), WindiCSS(), viteMockServe()],
 });

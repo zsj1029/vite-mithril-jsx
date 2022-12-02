@@ -32,6 +32,18 @@ textarea {
 }
 
 .menu:hover{
+  /* background: var(--background-alt); */
+  color: var(--text-bright);
+  /* font-weight: bold; */
+}
+.active{
   background: var(--border);
   color: white;
+  font-weight: bold;
+  pointer-events: none;
 }
+
+.bright:hover{
+  color: var(--text-bright); 
+}
+

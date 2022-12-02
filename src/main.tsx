@@ -41,13 +41,15 @@ const routes = {
   //     );
   //   },
   // },
+  // "/login": {
+  //   onmatch: async () => (await import("@/pages/login")).default,
+  // },
   "/login": {
     onmatch: async () => (await import("@/pages/login")).default,
   },
-
   ...Account,
 };
 
-console.log(routes);
+// console.log(routes);
 
 m.route(root, "/login", routes);

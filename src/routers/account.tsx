@@ -1,5 +1,5 @@
 import Layouts from "@/layouts/layout";
-// const AccountList = (await import("@/pages/account/list")).default;
+// const AccountLists = (await import("@/pages/account/list")).default;
 // const AccountAdd = (await import("@/pages/account/add")).default;
 import AccountList from "@/pages/account/list";
 import AccountAdd from "@/pages/account/add";
@@ -29,21 +29,16 @@ export const AccountMenu: Menu = {
 
 export const Account = {
   "/account/list": {
-    render() {
-      return (
-        <Layouts>
-          <AccountList />
-        </Layouts>
-      );
+    onmatch: async () => (await import("@/pages/account/list")).default,
+    render: function (vnode) {
+      // console.log(vnode);
+      return m(Layouts, vnode);
     },
   },
   "/account/add": {
-    render() {
-      return (
-        <Layouts>
-          <AccountAdd />
-        </Layouts>
-      );
+    onmatch: async () => (await import("@/pages/account/add")).default,
+    render: function (vnode) {
+      return m(Layouts, vnode);
     },
   },
 };

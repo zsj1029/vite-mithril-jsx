@@ -6,7 +6,7 @@ export default {
     return (
       <>
         <p class="flex justify-between p-2.5 theme select-none border-b-1 border-t-1">
-          <p class="w-1/4 flex items-center cursor-pointer">
+          <p class="w-1/2 flex items-center cursor-pointer">
             <svg
               class="h-5 w-5"
               version="1.1"
@@ -20,11 +20,11 @@ export default {
           </p>
           <p class="w-1/2 flex justify-end">
             <Perferscolor class="w-8" />
-            <p class="w-15 text-center  cursor-pointer">消息(0)</p>
+            <p class="bright w-15 text-center cursor-pointer">消息(0)</p>
             <p class="w-15 text-center font-bold cursor-pointer">admin</p>
             <p
               onclick={() => m.route.set("/login")}
-              class="w-15 text-center  cursor-pointer"
+              class="w-15 bright text-center cursor-pointer"
             >
               注销
             </p>
