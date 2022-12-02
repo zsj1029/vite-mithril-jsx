@@ -18,6 +18,7 @@ const root = document.getElementById("root") as HTMLElement;
 Profile.autoTheme();
 
 import { Account } from "@/routers/account";
+import { License } from "@/routers/license";
 
 const routes = {
   "/app": { onmatch: async () => (await import("@/mith")).default },
@@ -48,6 +49,7 @@ const routes = {
     onmatch: async () => (await import("@/pages/login")).default,
   },
   ...Account,
+  ...License,
 };
 
 // console.log(routes);
