@@ -1,7 +1,7 @@
 import Layouts from "@/layouts/layout";
 // const AccountLists = (await import("@/pages/account/list")).default;
 // const AccountAdd = (await import("@/pages/account/add")).default;
-import AccountList from "@/pages/account/list";
+import AccountList from "@/pages/account/accountlist";
 import AccountAdd from "@/pages/account/add";
 import m from "mithril";
 export const AccountMenu: Menu = {
@@ -29,7 +29,7 @@ export const AccountMenu: Menu = {
 
 export const Account = {
   "/account/list": {
-    onmatch: async () => (await import("@/pages/account/list")).default,
+    onmatch: async () => (await import("@/pages/account/accountlist")).default,
     render: function (vnode) {
       // console.log(vnode);
       return m(Layouts, vnode);

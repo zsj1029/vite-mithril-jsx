@@ -40,7 +40,7 @@ export default {
           class="w-60"
           onclick={() => {
             console.log(MD5(loginData.password).toString());
-            m.route.set("/account/list");
+            m.route.set("/lic/list/all");
             // alert("帐号或密码错误");
           }}
         >
