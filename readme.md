@@ -35,3 +35,5 @@ A very classic countdown example by Mithril & Jsx
 - ...
 
 Thanks for reading!
+
+If you like it, pls star
