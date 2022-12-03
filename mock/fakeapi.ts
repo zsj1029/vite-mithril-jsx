@@ -4,7 +4,7 @@ export default [
   {
     url: "/api/user",
     method: "get",
-    response: (req) => {
+    response: (req: any) => {
       return {
         code: 0,
         data: {
@@ -23,7 +23,7 @@ export default [
   {
     url: "/api/user/login",
     method: "get",
-    response: (req) => {
+    response: (req: any) => {
       return {
         code: 0,
         data: {
@@ -45,7 +45,7 @@ export default [
   {
     url: "/api/user/password",
     method: "get",
-    response: (req) => {
+    response: (req: any) => {
       return {
         code: 0,
         data: {},
@@ -60,7 +60,7 @@ export default [
   {
     url: "/api/user/list",
     method: "get",
-    response: (req) => {
+    response: (req: any) => {
       return {
         code: 0,
         data: Mock.mock({

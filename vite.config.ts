@@ -23,5 +23,5 @@ export default defineConfig({
       "@": resolve(__dirname, "./src"),
     },
   },
-  plugins: [basicSsl(), WindiCSS(), viteMockServe()],
+  plugins: [basicSsl(), WindiCSS(), viteMockServe({ prodEnabled: true })],
 });

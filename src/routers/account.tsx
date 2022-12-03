@@ -3,7 +3,7 @@ import Layouts from "@/layouts/layout";
 // const AccountAdd = (await import("@/pages/account/add")).default;
 import AccountList from "@/pages/account/accountlist";
 import AccountAdd from "@/pages/account/add";
-import m from "mithril";
+import m, { VnodeDOM } from "mithril";
 export const AccountMenu: Menu = {
   path: "/account",
   name: "Account",
@@ -30,14 +30,14 @@ export const AccountMenu: Menu = {
 export const Account = {
   "/account/list": {
     onmatch: async () => (await import("@/pages/account/accountlist")).default,
-    render: function (vnode) {
+    render: function (vnode: VnodeDOM) {
       // console.log(vnode);
       return m(Layouts, vnode);
     },
   },
   "/account/add": {
     onmatch: async () => (await import("@/pages/account/add")).default,
-    render: function (vnode) {
+    render: function (vnode: any) {
       return m(Layouts, vnode);
     },
   },
