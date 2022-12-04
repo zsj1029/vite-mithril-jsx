@@ -27,9 +27,7 @@ export default {
       });
     });
   },
-  onupdate(vnode) {
-    console.log("update...");
-  },
+  onupdate(vnode) {},
   view() {
     return (
       <>
@@ -40,7 +38,7 @@ export default {
                 <ul>
                   <li
                     class={`menu ${
-                      m.route.get() === item.path ? "active" : ""
+                      m.route.get().split("?")[0] === item.path ? "active" : ""
                     } flex items-center py-2 px-4 overflow-hidden rounded transition duration-100 ease-in-out cursor-pointer`}
                     onclick={(e) => m.route.set(item.path, {})}
                   >
@@ -65,7 +63,7 @@ export default {
                           <li
                             onclick={(e) => m.route.set(basePath + v.path, {})}
                             class={`menu ${
-                              m.route.get() === basePath + v.path
+                              m.route.get().split("?")[0] === basePath + v.path
                                 ? "active"
                                 : ""
                             } flex items-center pl-9 py-2 cursor-pointer overflow-hidden rounded transition duration-100 ease-in-out`}

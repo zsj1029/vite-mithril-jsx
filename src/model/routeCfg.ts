@@ -67,7 +67,7 @@ export const Routes: Array<Menu> = [
     ],
   },
   {
-    path: "/lic/list/wait",
+    path: "/alterpassword",
     name: "修改密码",
     icon: Pwd,
   },
