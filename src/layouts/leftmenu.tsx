@@ -27,7 +27,9 @@ export default {
       });
     });
   },
-  onupdate(vnode) {},
+  onupdate(vnode) {
+    console.log("update...");
+  },
   view() {
     return (
       <>
@@ -78,6 +80,7 @@ export default {
               );
             }
           })}
+          <p class="fixed w-30 text-center bottom-4 ">Ver:1.0.0</p>
         </div>
       </>
     );

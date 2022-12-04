@@ -1,9 +1,11 @@
 import m from "mithril";
 // import "@ui5/webcomponents/dist/Dialog";
 import account from "@/model/account";
+import Pagination from "@/coms/pagination";
 
-window.onpopstate = (e) => {
-  console.log(e);
+let num = 0;
+const add = (a = 3) => {
+  num += a;
 };
 export default {
   oninit() {
@@ -12,14 +14,13 @@ export default {
   oncreate() {
     // var dialog = document.getElementById("hello-dialog");
     // dialog.show();
+    console.log(123123);
   },
   view() {
     return (
       <>
-        <h1 onclick={() => (account.data.bbb = 12312)}>All Account</h1>
-        {/* <ui5-dialog id="hello-dialog" header-text="Register Form">
-          <button>123123</button>
-        </ui5-dialog> */}
+        <h1 onclick={() => (account.data.bbb = 12312)}>{num}</h1>
+        <Pagination onchange={add} />
       </>
     );
   },
