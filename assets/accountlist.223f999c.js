@@ -1,1 +1,0 @@
-import{m as o}from"./index.811da74a.js";window.onpopstate=t=>{console.log(t)};const l={oninit(){},oncreate(){},view(){return o("[",null,o("h1",{onclick:()=>12312},"All Account"))}};export{l as default};
