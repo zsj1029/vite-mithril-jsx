@@ -11,6 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ui5/webcomponents": "^1.9.1",
     "crypto-js": "^4.1.1",
     "konva": "^8.3.14",
     "mithril": "^2.2.2"

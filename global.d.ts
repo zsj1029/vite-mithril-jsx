@@ -1,9 +1,5 @@
-export {};
-
-declare global {
-	namespace JSX {
-		interface IntrinsicElements {
-			"ui5-button": unknown;
-		}
-	}
+export namespace JSX {
+  interface IntrinsicElements {
+	ui5-dialog: any;
+  }
 }

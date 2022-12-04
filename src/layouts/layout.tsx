@@ -6,7 +6,7 @@ export default {
     console.log("create...");
   },
   onupdate() {
-    console.log("update...");
+    // console.log("update...");
   },
   view({ attrs, children, state }) {
     return (

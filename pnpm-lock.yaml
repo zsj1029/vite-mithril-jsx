@@ -9,6 +9,7 @@ specifiers:
   '@types/node': ^18.11.10
   '@typescript-eslint/eslint-plugin': ^5.45.0
   '@typescript-eslint/parser': ^5.45.0
+  '@ui5/webcomponents': ^1.9.1
   '@vitejs/plugin-basic-ssl': ^0.1.2
   crypto-js: ^4.1.1
   eslint: ^8.29.0
@@ -23,6 +24,7 @@ specifiers:
   windicss: ^3.5.6
 
 dependencies:
+  '@ui5/webcomponents': 1.9.1
   crypto-js: 4.1.1
   konva: 8.3.14
   mithril: 2.2.2
@@ -428,6 +430,10 @@ packages:
       picomatch: 2.3.1
     dev: true
 
+  /@sap-theming/theming-base-content/11.1.41:
+    resolution: {integrity: sha512-ffxq4uP7I/CowpXvXQxjNSBXEvMlZycoIZZyIbEoJmORYk+eUwMFTVf7DPriMDdsY/kSIEqse2xoPvHqdluPkg==}
+    dev: false
+
   /@types/crypto-js/4.1.1:
     resolution: {integrity: sha512-BG7fQKZ689HIoc5h+6D2Dgq1fABRa0RbBWKBd9SP/MVRVXROflpm5fhwyATX5duFmbStzyzyycPB8qUYKDH3NA==}
     dev: true
@@ -461,6 +467,10 @@ packages:
   /@types/semver/7.3.13:
     resolution: {integrity: sha512-21cFJr9z3g5dW8B0CVI9g2O9beqaThGQ6ZFBqHfwhzLDKUxaqTIy3vnfah/UPkfOiF2pLq+tGz+W8RyCskuslw==}
     dev: true
+
+  /@types/trusted-types/2.0.2:
+    resolution: {integrity: sha512-F5DIZ36YVLE+PN+Zwws4kJogq47hNgX3Nx6WyDJ3kcplxyke3XIzB8uK5n/Lpm1HBsbGzd6nmGehL8cPekP+Tg==}
+    dev: false
 
   /@typescript-eslint/eslint-plugin/5.45.0_c2486374587132cd973265259c9c93c3:
     resolution: {integrity: sha512-CXXHNlf0oL+Yg021cxgOdMHNTXD17rHkq7iW6RFHoybdFgQBjU3yIXhhcPpGwr1CjZlo6ET8C6tzX5juQoXeGA==}
@@ -590,6 +600,40 @@ packages:
       '@typescript-eslint/types': 5.45.0
       eslint-visitor-keys: 3.3.0
     dev: true
+
+  /@ui5/webcomponents-base/1.9.1:
+    resolution: {integrity: sha512-10SjUjGAkjQYaienJaY48wFTgeZoQDDT7xs7cg6nm63bLRVrzwXtJ+xmI3/1IvHkV0Lm8qWrWiI+Tstl/irfDg==}
+    dependencies:
+      lit-html: 2.4.0
+    dev: false
+
+  /@ui5/webcomponents-icons/1.9.1:
+    resolution: {integrity: sha512-tlI3mGUue0LwfJGyzeUjzW51IpzW3jnph/KPQkeq2cDDubR1VOXwGZZiiTD+DV2PJw9BORtjeZct7a5OtngtMA==}
+    dependencies:
+      '@ui5/webcomponents-base': 1.9.1
+    dev: false
+
+  /@ui5/webcomponents-localization/1.9.1:
+    resolution: {integrity: sha512-KGQijLFgdZ2NxIeWe5k2mNAExdDAGirGTxRG2cGJkJraIwPNBwj/ZGKM7nPk1PTxip7+PwdPQeHP6/+eBXceHg==}
+    dependencies:
+      '@ui5/webcomponents-base': 1.9.1
+    dev: false
+
+  /@ui5/webcomponents-theming/1.9.1:
+    resolution: {integrity: sha512-LyuZjM7N8ab0Iez44/FcYRRPC5cYnpIW+NAwA+cwwG/d21oF70nuNgbRuVfS3Cr5bboCcWNoH0oeMhyqMYr2yw==}
+    dependencies:
+      '@sap-theming/theming-base-content': 11.1.41
+      '@ui5/webcomponents-base': 1.9.1
+    dev: false
+
+  /@ui5/webcomponents/1.9.1:
+    resolution: {integrity: sha512-yWUPhMysFp3aaTx+I+ApuXXrX/sD+P4fKisz+cZYu0A/cJkHA+n/LmWm9zLoA+mWPPtkFWuAUX2RYP+1U8/8gg==}
+    dependencies:
+      '@ui5/webcomponents-base': 1.9.1
+      '@ui5/webcomponents-icons': 1.9.1
+      '@ui5/webcomponents-localization': 1.9.1
+      '@ui5/webcomponents-theming': 1.9.1
+    dev: false
 
   /@vitejs/plugin-basic-ssl/0.1.2_vite@3.2.4:
     resolution: {integrity: sha512-EdwCHnbkakR6YPupySZm1WoCDRPaw9c5jObAo2pCRv8Ja2TESFC6Sc8RUOcKuihfjARDfszbBf+YEQwHY9s9wg==}
@@ -1529,6 +1573,12 @@ packages:
       prelude-ls: 1.2.1
       type-check: 0.4.0
     dev: true
+
+  /lit-html/2.4.0:
+    resolution: {integrity: sha512-G6qXu4JNUpY6aaF2VMfaszhO9hlWw0hOTRFDmuMheg/nDYGB+2RztUSOyrzALAbr8Nh0Y7qjhYkReh3rPnplVg==}
+    dependencies:
+      '@types/trusted-types': 2.0.2
+    dev: false
 
   /locate-path/6.0.0:
     resolution: {integrity: sha512-iPZK6eYjbxRu3uB4/WZ3EsEIMJFMqAoopl3R+zuq0UjcAm/MO6KCweDgPfP3elTztoKP3KtnVHxTn2NHBSDVUw==}
