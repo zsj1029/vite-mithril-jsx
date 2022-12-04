@@ -54,4 +54,4 @@ const routes = {
 
 // console.log(routes);
 
-m.route(root, "/lic/list/all", routes);
+m.route(root, "/lic/list/wait", routes);

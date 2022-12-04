@@ -28,8 +28,6 @@ export default defineConfig({
     basicSsl(),
     WindiCSS(),
     viteMockServe({ prodEnabled: true }),
-    legacy({
-      targets: ["defaults", "not IE 11"],
-    }),
+    legacy(),
   ],
 });
