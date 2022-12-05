@@ -73,7 +73,7 @@ export default [
             },
           ],
           count: 100,
-          current: 1,
+          _current: 1,
         }),
         statusInfo: {
           message: "用户列表分页",

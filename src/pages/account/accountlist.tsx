@@ -7,6 +7,20 @@ let num = 0;
 const add = (a = 3) => {
   num += a;
 };
+
+const page = {
+  current: 1,
+  total: 1000,
+  pageSize: 10,
+};
+
+const pageChange = (pageNum: number, pageSize: number) => {
+  // page.total = 1000;
+  page.current = 5;
+  page.pageSize = 20;
+  console.log({ pageNum, pageSize });
+};
+
 export default {
   oninit() {
     // console.log(account);
@@ -14,13 +28,18 @@ export default {
   oncreate() {
     // var dialog = document.getElementById("hello-dialog");
     // dialog.show();
-    console.log(123123);
+    // console.log(123123);
   },
   view() {
     return (
       <>
-        <h1 onclick={() => (account.data.bbb = 12312)}>{num}</h1>
-        <Pagination onchange={add} />
+        <h1 onclick={() => (page.total = 400)}>{num}</h1>
+        <Pagination
+          current={page.current}
+          total={page.total}
+          pageSize={page.pageSize}
+          onChange={pageChange}
+        />
       </>
     );
   },

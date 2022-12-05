@@ -43,6 +43,14 @@ input[type='button'] {
   padding-right: 30px;
   padding-left: 30px;
 }
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number] {
+  -moz-appearance:textfield;
+}
 
 button:hover,
 input[type='submit']:hover,
@@ -140,6 +148,7 @@ button:disabled,
 textarea:disabled {
   cursor: not-allowed;
   opacity: 0.5;
+  transform: none;
 }
 
 ::placeholder {
