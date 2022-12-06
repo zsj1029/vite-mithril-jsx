@@ -20,15 +20,19 @@ export const Routes: Array<Menu> = [
     children: [
       {
         path: "/list/wait",
-        name: "待发送(3)",
+        name: "待生成(3)",
       },
       {
         path: "/list/send",
-        name: "已发送",
+        name: "已生成",
       },
       {
         path: "/list/soon",
         name: "即将到期(1)",
+      },
+      {
+        path: "/list/expired",
+        name: "已到期",
       },
       {
         path: "/report",

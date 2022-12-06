@@ -61,6 +61,7 @@ export default ({ attrs }: Vnode<Attrs>) => {
   return {
     //外部更新重新计算属性
     onbeforeupdate({ attrs }: Vnode<Attrs>, old) {
+      console.log(attrs);
       pagination._total = attrs.total;
       pagination._pageCount =
         Math.ceil(pagination._total / pagination._pageSize) || 1;
@@ -69,7 +70,7 @@ export default ({ attrs }: Vnode<Attrs>) => {
       }
       //外部直接修改current,判断并跳转
       if (old.attrs.current !== attrs.current) {
-        // console.log(attrs.current, old.attrs.current);
+        console.log(attrs.current, old.attrs.current);
         pagination._current = attrs.current;
         attrs.onChange(pagination._current, pagination._pageSize);
       }
@@ -77,7 +78,7 @@ export default ({ attrs }: Vnode<Attrs>) => {
     view({ attrs }: Vnode<{ total: number }>) {
       return (
         <>
-          <div class="flex items-center w-90 justify-around">
+          <div class={`${attrs.class} flex items-center w-90 justify-around `}>
             <span class="">共 {attrs.total ?? 0} 条</span>
             <button
               disabled={pagination.prevBtn}

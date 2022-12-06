@@ -2,6 +2,7 @@
   --background-body: #202b38;
   --background: #161f27;
   --background-alt: #1a242f;
+  --background-deep: #161f27;
   --selection: #1c76c5;
   --text-main: #dbdbdb;
   --text-bright: #fff;
@@ -22,3 +23,7 @@
   --select-arrow: svg-load('./assets/select-arrow.svg', fill: #efefef);
   --themecolor:#161f27;
 } 
+
+.dark-mode input{
+  color-scheme: dark;
+}

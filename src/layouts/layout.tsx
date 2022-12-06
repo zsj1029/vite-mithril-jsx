@@ -10,15 +10,15 @@ export default {
   },
   view({ attrs, children, state }) {
     return (
-      <>
+      <div class="h-full flex flex-col justify-between">
         <Header />
-        <p class="flex min-h-full ">
-          <p class="min-h-full theme border-r-1 pt-2">
+        <p class="flex h-full">
+          <p class="theme border-r-1 pt-2">
             <Leftmenu />
           </p>
-          <p class="min-w-full min-h-full p-4">{children}</p>
+          <p class="w-full h-full p-4 ">{children}</p>
         </p>
-      </>
+      </div>
     );
   },
 };

@@ -67,7 +67,11 @@ export default [
           "list|5": [
             {
               uuid: Mock.Random.string(32, 32),
-              "name|+1": ["admin", "user1", "user2"],
+              "name|+1": [
+                "  admin<br></br>2022/10/11 08:22:23",
+                "user1",
+                "user2",
+              ],
               "role|+1": ["管理员", "操作员"],
               lastLogin: Mock.Random.datetime("2022-MM-dd"),
             },

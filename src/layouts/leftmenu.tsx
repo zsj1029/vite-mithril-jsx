@@ -33,7 +33,7 @@ export default {
   view() {
     return (
       <>
-        <div class="w-34 min-h-full px-1 select-none ">
+        <div class="w-34 px-1 select-none ">
           {Routes.map((item) => {
             if (!item.children) {
               return (
