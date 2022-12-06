@@ -15,7 +15,7 @@ const topBar = [
   },
   {
     path: "/lic/list/send",
-    name: "已生成",
+    name: "已发送",
   },
   {
     path: "/lic/list/soon",

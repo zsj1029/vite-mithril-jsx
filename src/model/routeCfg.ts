@@ -24,7 +24,7 @@ export const Routes: Array<Menu> = [
       },
       {
         path: "/list/send",
-        name: "已生成",
+        name: "已发送",
       },
       {
         path: "/list/soon",
