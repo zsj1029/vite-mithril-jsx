@@ -69,7 +69,7 @@ export default {
         <hr class="my-4"></hr>
 
         {/* <div class="flex w-225 justify-between"> */}
-        <form class="flex w-225 justify-between">
+        <form class="flex  space-x-2">
           <select>
             <option>[产品]</option>
             <option>PPro ver 1231123</option>
@@ -88,7 +88,7 @@ export default {
           <span>
             {/* <label class="pt-2">有效期</label> */}
             <input
-              class="w-30 h-9"
+              class="w-30 h-8.5"
               type={this.input}
               onblur={(e) => {
                 this.input = "text";

@@ -81,7 +81,7 @@ export default {
         <hr class="my-4"></hr>
 
         {/* <div class="flex w-225 justify-between"> */}
-        <form class="flex w-220 justify-between">
+        <form class="flex  space-x-2">
           <select>
             <option>[产品]</option>
             <option>PPro ver 1231123</option>
