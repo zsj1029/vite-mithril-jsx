@@ -1,1 +1,0 @@
-System.register(["./index-legacy.2f222d86.js","./pagination-legacy.b306ab36.js"],(function(e,t){"use strict";var i,l;return{setters:[e=>{i=e.m},e=>{l=e.P}],execute:function(){e("default",{view:()=>i("[",null,i("h1",null,"liclisist"),i(l,null))})}}}));
