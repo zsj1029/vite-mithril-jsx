@@ -2,20 +2,24 @@ import { Lic, Kanban, Mail, Pwd, User } from "@/coms/icon";
 
 export type Menu = {
   path: string;
+  key?: string;
   name: string;
+  hide?: boolean;
+  action?: boolean; //topbar功能按钮
   icon?: object;
   children?: Array<Menu>;
 };
 
 export const Routes: Array<Menu> = [
-  {
-    path: "/kanban",
-    name: "数据看板",
-    icon: Kanban,
-  },
+  // {
+  //   path: "/kanban",
+  //   name: "数据看板",
+  //   icon: Kanban,
+  // },
   {
     path: "/lic",
     name: "许可证",
+    key: "lic",
     icon: Lic,
     children: [
       {
@@ -24,40 +28,39 @@ export const Routes: Array<Menu> = [
       },
       {
         path: "/list/send",
-        name: "已发送",
+        name: "已生成",
       },
       {
         path: "/list/soon",
         name: "即将到期(1)",
       },
       {
-        path: "/list/expired",
-        name: "已到期",
-      },
-      {
-        path: "/report",
-        name: "统计(1)",
+        path: "/add",
+        name: "录入许可证",
+        hide: false,
+        action: true,
       },
     ],
   },
-  {
-    path: "/mail",
-    name: "邮件记录",
-    icon: Mail,
-    children: [
-      {
-        path: "/list/all",
-        name: "全部",
-      },
-      {
-        path: "/list/failed",
-        name: "发送失败",
-      },
-    ],
-  },
+  // {
+  //   path: "/mail",
+  //   name: "邮件记录",
+  //   icon: Mail,
+  //   children: [
+  //     {
+  //       path: "/list/all",
+  //       name: "全部",
+  //     },
+  //     {
+  //       path: "/list/failed",
+  //       name: "发送失败",
+  //     },
+  //   ],
+  // },
   {
     path: "/account",
     name: "用户管理",
+    key: "account",
     icon: User,
     children: [
       {

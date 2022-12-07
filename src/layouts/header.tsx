@@ -22,7 +22,7 @@ export default {
           </p>
           <p class="w-1/2 flex justify-end">
             <Perferscolor class="w-8" />
-            <p class="bright w-15 text-center cursor-pointer">消息(0)</p>
+            {/* <p class="bright w-15 text-center cursor-pointer">消息(0)</p> */}
             <p class="w-15 text-center font-bold cursor-pointer">admin</p>
             <p
               onclick={() => m.route.set("/login")}

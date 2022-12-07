@@ -17,18 +17,20 @@ const data = {
   id: "6666666",
   po: "8888888",
   prod: "play2020 full edition",
+  hostType: "Ethernet Mac",
   use: "Eval",
+  hostid: "4d-5d-23-45-22-45",
   type: "Floating",
-  seat: 20,
   age: "60days",
+  seat: 20,
+  end: "2023-12-12",
   apply: "2022-11-11 02:34:00",
-  source: "OA",
 };
 
 // whitespace-pre overflow-auto
 
 const pageChange = (pageNum: number, pageSize: number) => {
-  page.total = 800;
+  // page.total = 1000;
   page.current = 5;
   page.pageSize = 20;
   console.log({ pageNum, pageSize });
@@ -50,7 +52,7 @@ export default {
     return (
       <>
         <TopBar menus={topBar} />
-        <form class="flex text-xs space-x-1.5 h-8">
+        <form class="flex space-x-1.5 text-xs h-8">
           <select>
             <option>[产品]</option>
             <option>PPro ver 1231123</option>
@@ -66,40 +68,18 @@ export default {
             <option>Node-locked</option>
             <option>Floating</option>
           </select>
-          {/* <select>
-            <option>[许可类型]</option>
-            <option>Node-locked</option>
-            <option>Floating</option>
-          </select> */}
           <select>
-            <option>[有效期]</option>
-            <option>7日</option>
-            <option>30日</option>
-            <option>60日</option>
-            <option>90日</option>
-            <option>180日</option>
-            <option>&gt;=1年</option>
-          </select>
-          {/* <span>
-            <input
-              class="w-30 h-9"
-              type={this.input}
-              onblur={(e) => {
-                this.input = "text";
-              }}
-              onfocus={(e) => {
-                this.input = "date";
-              }}
-              placeholder="有效截止小于"
-            />
-          </span> */}
-          {/* <select>
             <option>[状态]</option>
             <option>Current</option>
             <option>Expired</option>
-          </select> */}
+          </select>
+          <div class="flex justify-between rounded items-center space-x-1 border-t border-b">
+            <input class="w-26" type="date" />
+            <span class="inline-block">&lt; 生成时间 &lt;</span>
+            <input class="w-26" type="date" />
+          </div>
           <input type="input" class="w-34" placeholder="关键字搜索" />
-          <button type="button" class="px-4" onclick={() => pageChange(1, 20)}>
+          <button type="submit" class="px-4">
             搜索
           </button>
           <button type="reset" class="px-4">
@@ -118,13 +98,15 @@ export default {
                 </th>
                 <th>产品/客户</th>
                 <th>许可证号</th>
+                <th>主机类型</th>
+                <th>主机id</th>
                 <th>用途</th>
                 <th>许可类型</th>
                 <th>席位</th>
-                <th>有效期</th>
-                <th>关联单号</th>
-                <th>来源</th>
-                {/* <th class="w-38">申请人</th> */}
+                <th>状态</th>
+                <th>到期日</th>
+                {/* <th>关联单号</th> */}
+                <th class="w-38">生成时间</th>
               </tr>
             </thead>
             <tbody>
@@ -137,24 +119,24 @@ export default {
                     <td>
                       <blockquote class="my-0 not-italic py-1 p-2 ">
                         {data.prod}
+
                         <footer class="border-t-0 pt-0">
                           <cite>Lenovo company </cite>
                         </footer>
                       </blockquote>
                     </td>
-                    <td>{data.id}</td>
 
+                    <td>{data.id}</td>
+                    <td>{data.hostType}</td>
+                    <td>{data.hostid}</td>
                     <td>{data.use}</td>
                     <td>{data.type}</td>
-
                     <td>{data.seat}</td>
-                    <td class="font-bold ">{data.age}</td>
-                    <td>{data.po}</td>
-                    <td>{data.source}</td>
-                    {/* <td class="">
-                      liu xing<br></br>
-                      {data.apply}
-                    </td> */}
+
+                    <td>Current</td>
+                    <td class="font-bold ">{data.end}</td>
+
+                    <td class="">{data.apply}</td>
                   </tr>
                 );
               })}
@@ -178,23 +160,24 @@ export default {
               onclick={() => alert("生成")}
               href="JavaScript:void(0);"
             >
-              [选中生成]
+              [再次推送]
             </a>
             &nbsp;
             <a
               class="pt-2 "
-              onclick={() => alert("生成")}
+              onclick={() => alert("删除")}
               href="JavaScript:void(0);"
             >
-              [全部生成]
+              [批量删除]
             </a>
-            {/* <a
+            &nbsp;
+            <a
               class="pt-2 "
               onclick={() => alert("导出")}
               href="JavaScript:void(0);"
             >
               [数据导出]
-            </a> */}
+            </a>
           </div>
           <Pagination
             class=""

@@ -16,7 +16,7 @@ export default {
           <p class="theme border-r-1 pt-2">
             <Leftmenu />
           </p>
-          <p class="w-full h-full p-4 ">{children}</p>
+          <p class="w-full min-w-300 h-full p-4 ">{children}</p>
         </p>
       </div>
     );

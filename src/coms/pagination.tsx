@@ -5,6 +5,7 @@ type Attrs = {
   total: number;
   current: number;
   pageSize: number;
+  class?: string;
   onChange: any;
 };
 
@@ -14,15 +15,10 @@ export default ({ attrs }: Vnode<Attrs>) => {
     _total: attrs.total ?? 0, //总记录数
     _pageCount: 0, //总页数
     _pageSize: attrs.pageSize ?? 10, //页大小
-    //后退按钮控制
-    get prevBtn(): boolean {
-      return this._current <= 1;
-    },
-    //前进按钮控制
-    get nextBtn(): boolean {
-      return this._current >= this._pageCount;
-    },
   };
+  //前进后退按钮控制
+  const prevEnable = () => pagination._current <= 1;
+  const nextEnable = () => pagination._current >= pagination._pageCount;
 
   pagination._pageCount =
     Math.ceil(pagination._total / pagination._pageSize) || 1;
@@ -61,7 +57,7 @@ export default ({ attrs }: Vnode<Attrs>) => {
   return {
     //外部更新重新计算属性
     onbeforeupdate({ attrs }: Vnode<Attrs>, old) {
-      console.log(attrs);
+      // console.log(attrs);
       pagination._total = attrs.total;
       pagination._pageCount =
         Math.ceil(pagination._total / pagination._pageSize) || 1;
@@ -75,13 +71,13 @@ export default ({ attrs }: Vnode<Attrs>) => {
         attrs.onChange(pagination._current, pagination._pageSize);
       }
     },
-    view({ attrs }: Vnode<{ total: number }>) {
+    view({ attrs }: Vnode<Attrs>) {
       return (
         <>
           <div class={`${attrs.class} flex items-center w-90 justify-around `}>
             <span class="">共 {attrs.total ?? 0} 条</span>
             <button
-              disabled={pagination.prevBtn}
+              disabled={prevEnable()}
               class="px-2"
               onclick={() => PNClick(-1)}
             >
@@ -100,7 +96,7 @@ export default ({ attrs }: Vnode<Attrs>) => {
             <span>/</span>
             <span>{pagination._pageCount}</span>
             <button
-              disabled={pagination.nextBtn}
+              disabled={nextEnable()}
               class="px-2"
               onclick={() => PNClick(1)}
             >

@@ -63,19 +63,23 @@ export default {
                     </span>
                     <ul>
                       {item.children.map((v) => {
-                        return (
-                          <li
-                            onclick={(e) => m.route.set(basePath + v.path, {})}
-                            class={`menu ${
-                              m.parsePathname(m.route.get()).path ===
-                              basePath + v.path
-                                ? "active"
-                                : ""
-                            } flex items-center pl-9 py-2 cursor-pointer overflow-hidden rounded transition duration-100 ease-in-out`}
-                          >
-                            {v.name}
-                          </li>
-                        );
+                        if (!v.hide) {
+                          return (
+                            <li
+                              onclick={(e) =>
+                                m.route.set(basePath + v.path, {})
+                              }
+                              class={`menu ${
+                                m.parsePathname(m.route.get()).path ===
+                                basePath + v.path
+                                  ? "active"
+                                  : ""
+                              } flex items-center pl-9 py-2 cursor-pointer overflow-hidden rounded transition duration-100 ease-in-out`}
+                            >
+                              {v.name}
+                            </li>
+                          );
+                        }
                       })}
                     </ul>
                   </li>
