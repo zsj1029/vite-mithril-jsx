@@ -1,3 +1,0 @@
-import{m as e}from"./index.50b9784f.js";const a=({attrs:s})=>({view({attrs:t}){var o;return e("[",null,e("div",{class:"flex -ml-2"},(o=t.menus.children)==null?void 0:o.map(n=>{const r=t.menus.path;return n.action?e("div",{onclick:()=>e.route.set(r+n.path),class:`px-3 menu select-none border-l font-medium
-                ${e.route.get()===r+n.path?"text-blue-500 cursor-none  pointer-events-none":"cursor-pointer"}`},"[",n.name,"]"):e("div",{onclick:()=>e.route.set(r+n.path),class:`px-2.5 menu select-none
-                    ${e.route.get()===r+n.path?"text-blue-500 cursor-none pointer-events-none":"cursor-pointer"}`},n.name)})),e("hr",{class:"my-4"}))}});export{a as T};
