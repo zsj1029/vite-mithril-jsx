@@ -74,9 +74,9 @@ export default {
             <option>Expired</option>
           </select>
           <div class="flex justify-between rounded items-center space-x-1 border-t border-b">
-            <input class="w-26" type="date" />
+            <input class="w-29" type="date" />
             <span class="inline-block">&lt; 生成时间 &lt;</span>
-            <input class="w-26" type="date" />
+            <input class="w-29" type="date" />
           </div>
           <input type="input" class="w-34" placeholder="关键字搜索" />
           <button type="submit" class="px-4">
