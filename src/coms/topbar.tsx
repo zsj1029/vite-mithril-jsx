@@ -17,10 +17,10 @@ export default ({ attrs }: Vnode<Attrs>) => {
                 return (
                   <div
                     onclick={() => m.route.set(basePath + item.path)}
-                    class={`px-3 select-none border-l font-medium
+                    class={`px-3 menu select-none border-l font-medium
                 ${
                   m.route.get() === basePath + item.path
-                    ? "text-blue-500 cursor-none"
+                    ? "text-blue-500 cursor-none  pointer-events-none"
                     : "cursor-pointer"
                 }`}
                   >
@@ -31,10 +31,10 @@ export default ({ attrs }: Vnode<Attrs>) => {
                 return (
                   <div
                     onclick={() => m.route.set(basePath + item.path)}
-                    class={`px-2.5 select-none
+                    class={`px-2.5 menu select-none
                     ${
                       m.route.get() === basePath + item.path
-                        ? "text-blue-500 cursor-none"
+                        ? "text-blue-500 cursor-none pointer-events-none"
                         : "cursor-pointer"
                     }`}
                   >
