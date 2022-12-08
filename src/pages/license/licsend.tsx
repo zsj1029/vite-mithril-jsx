@@ -135,7 +135,6 @@ export default {
 
                     <td>Current</td>
                     <td class="font-bold ">{data.end}</td>
-
                     <td class="">{data.apply}</td>
                   </tr>
                 );
@@ -168,7 +167,7 @@ export default {
               onclick={() => alert("删除")}
               href="JavaScript:void(0);"
             >
-              [批量删除]
+              [删除许可证]
             </a>
             &nbsp;
             <a
