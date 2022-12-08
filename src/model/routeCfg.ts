@@ -70,11 +70,14 @@ export const Routes: Array<Menu> = [
       {
         path: "/create",
         name: "创建用户",
+        hide: false,
+        action: true,
       },
     ],
   },
   {
     path: "/alterpassword",
+    key: "password",
     name: "修改密码",
     icon: Pwd,
   },

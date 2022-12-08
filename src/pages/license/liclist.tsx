@@ -109,7 +109,7 @@ export default {
 
         {/* </div> */}
         <hr class="my-4"></hr>
-        <div class="min-h-169 blur-sm">
+        <div class="min-h-[675px] ">
           <table class="mb-6 table-auto">
             <thead>
               <tr>
@@ -135,7 +135,7 @@ export default {
                       <input class="ml-2 mt-1" type="checkbox" />
                     </td>
                     <td>
-                      <blockquote class="my-0 not-italic py-1 p-2 ">
+                      <blockquote class="my-0 not-italic py-1 p-2 min-h-[50px]">
                         {data.prod}
                         <footer class="border-t-0 pt-0">
                           <cite>Lenovo company </cite>

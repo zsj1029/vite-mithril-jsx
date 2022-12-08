@@ -2,30 +2,27 @@ import m from "mithril";
 // import "@ui5/webcomponents/dist/Dialog";
 import account from "@/model/account";
 import Pagination from "@/coms/pagination";
+import { Routes } from "@/model/routeCfg";
+import TopBar from "@/coms/topbar";
+
+const topBar = Routes.find((item) => item.key === "account");
+
+const data = {
+  id: "6666666",
+  account: "admin",
+  fullName: "刘星",
+  state: "启用",
+  roler: "主管",
+  create: "2022-11-11",
+  email: "jjjj@s2c.com.cn",
+  phone: "9999999999",
+};
 
 const page = {
   current: 1,
-  total: 1000,
+  total: 20,
   pageSize: 10,
 };
-const topBar = [
-  {
-    path: "/lic/list/wait",
-    name: "待生成(3)",
-  },
-  {
-    path: "/lic/list/send",
-    name: "已发送",
-  },
-  {
-    path: "/lic/list/soon",
-    name: "即将到期(1)",
-  },
-  {
-    path: "/lic/list/expired",
-    name: "已过期",
-  },
-];
 
 const pageChange = (pageNum: number, pageSize: number) => {
   // page.total = 1000;
@@ -49,261 +46,85 @@ export default {
   view({ attrs }) {
     return (
       <>
-        <div class="flex divide-x w-90 -ml-3">
-          {topBar.map((item) => {
-            return (
-              <div
-                onclick={() => m.route.set(item.path)}
-                class={`px-3 select-none
-              ${
-                m.route.get() === item.path
-                  ? "text-blue-500 cursor-none"
-                  : "cursor-pointer"
-              }`}
-              >
-                {item.name}
-              </div>
-            );
-          })}
-        </div>
-        <hr class="my-4"></hr>
+        <TopBar menus={topBar} />
 
-        {/* <div class="flex w-225 justify-between"> */}
-        <form class="flex  space-x-2">
+        <form class="flex text-xs space-x-1.5 h-8">
           <select>
-            <option>[产品]</option>
-            <option>PPro ver 1231123</option>
-            <option>Neuro</option>
+            <option>[账号状态]</option>
+            <option>启用</option>
+            <option>禁用</option>
           </select>
           <select>
-            <option>[用途]</option>
-            <option>Eval</option>
-            <option>Full</option>
-          </select>
-          <select>
-            <option>[许可类型]</option>
-            <option>Node-locked</option>
-            <option>Floating</option>
-          </select>
-          <span>
-            {/* <label class="pt-2">有效期</label> */}
-            <input
-              class="w-30 h-8.5"
-              type={this.input}
-              onblur={(e) => {
-                this.input = "text";
-              }}
-              onfocus={(e) => {
-                this.input = "date";
-              }}
-              placeholder="有效截止小于"
-            />
-          </span>
-          <select>
-            <option>[状态]</option>
-            <option>Current</option>
-            <option>Expired</option>
+            <option>[角色]</option>
+            <option>主管</option>
+            <option>员工</option>
           </select>
           <input type="input" class="w-34" placeholder="关键字搜索" />
-          <button type="submit" class="px-4">
+          <button type="button" class="px-4" onclick={() => pageChange(1, 20)}>
             搜索
           </button>
           <button type="reset" class="px-4">
             重置
           </button>
         </form>
-        {/* <a
-            class="pt-2 "
-            onclick={() => alert("导出")}
-            href="JavaScript:void(0);"
-          >
-            [数据导出]
-          </a> */}
-        {/* </div> */}
         <hr class="my-4"></hr>
-        <div class="min-h-97">
+        <div class="min-h-[675px]">
           <table class="mb-6 table-auto">
             <thead>
               <tr>
                 <th class="w-10 ">
                   <a href="">全选</a>
                 </th>
-                <th>许可证号</th>
-                <th>关联单号</th>
-                <th>客户/产品</th>
-                <th>用途</th>
-                <th>许可类型</th>
-
+                <th>登录名</th>
+                <th>全名</th>
+                <th>角色</th>
+                <th>邮箱</th>
+                <th>电话</th>
                 <th>状态</th>
-                <th>有效截止</th>
-
-                <th class="text-center">生成时间</th>
+                <th>创建时间</th>
+                <th>操作</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td class="">
-                  <input class="ml-2 mt-1" type="checkbox" />
-                </td>
+              {[...Array(10)].map((i) => {
+                return (
+                  <tr>
+                    <td class="">
+                      <input class="ml-2 mt-1" type="checkbox" />
+                    </td>
+                    <td>
+                      <blockquote class="my-0 not-italic py-1 p-2 min-h-[50px] ">
+                        {data.account}
+                      </blockquote>
+                    </td>
+                    <td>{data.fullName}</td>
 
-                <td>02323561</td>
-                <td>02323564</td>
-                <td>
-                  Lenovo company <br></br> play 2022 xxxxx 12313123123123
-                </td>
-                <td>Full</td>
-                <td>Node-Locked</td>
+                    <td>{data.roler}</td>
+                    <td>{data.email}</td>
 
-                <td>Current</td>
-                <td class="font-bold break-keep">2023/01/01</td>
-                <td class="text-center">
-                  admin<br></br>2022/10/11 08:22:23
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <input class="ml-2 mt-1" type="checkbox" />
-                </td>
-                <td>02323561</td>
-                <td>02323564</td>
-                <td>play 2022 xxxxx </td>
-                <td>Eval</td>
-                <td>Floating</td>
-
-                <td>Expired</td>
-                <td class="font-bold break-keep">2022/11/11</td>
-                <td class="text-center">
-                  admin<br></br>2022/10/11 08:22:23
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <input class="ml-2 mt-1" type="checkbox" />
-                </td>
-                <td>02323561</td>
-                <td>02323564</td>
-                <td>play 2022 xxxxx </td>
-                <td>Full</td>
-                <td>Node-Locked</td>
-
-                <td>Current</td>
-                <td class="font-bold break-keep">2023/01/01</td>
-                <td class="text-center">
-                  admin<br></br>2022/10/11 08:22:23
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <input class="ml-2 mt-1" type="checkbox" />
-                </td>
-                <td>02323561</td>
-                <td>02323564</td>
-                <td>play 2022 xxxxx </td>
-                <td>Eval</td>
-                <td>Floating/20</td>
-
-                <td>Expired</td>
-                <td class="font-bold break-keep">2022/11/11</td>
-                <td class="text-center">
-                  admin<br></br>2022/10/11 08:22:23
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <input class="ml-2 mt-1" type="checkbox" />
-                </td>
-                <td>02323561</td>
-                <td>02323564</td>
-                <td>play 2022 xxxxx </td>
-                <td>Full</td>
-                <td>Node-Locked</td>
-
-                <td>Current</td>
-                <td class="font-bold break-keep">2023/01/01</td>
-                <td class="text-center">
-                  admin<br></br>2022/10/11 08:22:23
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <input class="ml-2 mt-1" type="checkbox" />
-                </td>
-                <td>02323561</td>
-                <td>02323564</td>
-                <td>play 2022 xxxxx </td>
-                <td>Eval</td>
-                <td>Floating</td>
-
-                <td>Expired</td>
-                <td class="font-bold break-keep">2022/11/11</td>
-                <td class="text-center">
-                  admin<br></br>2022/10/11 08:22:23
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <input class="ml-2 mt-1" type="checkbox" />
-                </td>
-                <td>02323561</td>
-                <td>02323564</td>
-                <td>play 2022 xxxxx </td>
-                <td>Full</td>
-                <td>Node-Locked</td>
-
-                <td>Current</td>
-                <td class="font-bold break-keep">2023/01/01</td>
-                <td class="text-center">
-                  admin<br></br>2022/10/11 08:22:23
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <input class="ml-2 mt-1" type="checkbox" />
-                </td>
-                <td>02323561</td>
-                <td>02323564</td>
-                <td>play 2022 xxxxx </td>
-                <td>Eval</td>
-                <td>Floating</td>
-
-                <td>Expired</td>
-                <td class="font-bold break-keep">2022/11/11</td>
-                <td class="text-center">
-                  admin<br></br>2022/10/11 08:22:23
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <input class="ml-2 mt-1" type="checkbox" />
-                </td>
-                <td>02323561</td>
-                <td>02323564</td>
-                <td>play 2022 xxxxx </td>
-                <td>Full</td>
-                <td>Node-Locked</td>
-
-                <td>Current</td>
-                <td class="font-bold break-keep">2023/01/01</td>
-                <td class="text-center">
-                  admin<br></br>2022/10/11 08:22:23
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <input class="ml-2 mt-1" type="checkbox" />
-                </td>
-                <td>02323561</td>
-                <td>02323564</td>
-                <td>play 2022 xxxxx </td>
-                <td>Eval</td>
-                <td>Floating</td>
-
-                <td>Expired</td>
-                <td class="font-bold break-keep">2022/11/11</td>
-                <td class="text-center">
-                  admin<br></br>2022/10/11 08:22:23
-                </td>
-              </tr>
+                    <td>{data.phone}</td>
+                    <td class="font-bold ">{data.state}</td>
+                    <td>{data.create}</td>
+                    <td>
+                      <a
+                        class="pt-2 "
+                        onclick={() => alert("修改")}
+                        href="JavaScript:void(0);"
+                      >
+                        [修改]
+                      </a>
+                      &nbsp;
+                      <a
+                        class="pt-2 "
+                        onclick={() => alert("删除")}
+                        href="JavaScript:void(0);"
+                      >
+                        [删除]
+                      </a>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
@@ -324,21 +145,23 @@ export default {
               onclick={() => alert("生成")}
               href="JavaScript:void(0);"
             >
-              [选中生成]
+              [批量启用]
             </a>
+            &nbsp;
             <a
               class="pt-2 "
               onclick={() => alert("生成")}
               href="JavaScript:void(0);"
             >
-              [全部生成]
+              [批量禁用]
             </a>
+            &nbsp;
             <a
               class="pt-2 "
-              onclick={() => alert("导出")}
+              onclick={() => alert("删除")}
               href="JavaScript:void(0);"
             >
-              [数据导出]
+              [批量删除]
             </a>
           </div>
           <Pagination

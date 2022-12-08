@@ -69,8 +69,8 @@ input[type='color'] {
 
 input[type='checkbox'],
 input[type='radio'] {
-  height: 1em;
-  width: 1em;
+  height: 1.1em;
+  width: 1.1em;
 }
 
 input[type='radio'] {
