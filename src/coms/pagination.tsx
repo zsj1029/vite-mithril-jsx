@@ -74,7 +74,9 @@ export default ({ attrs }: Vnode<Attrs>) => {
     view({ attrs }: Vnode<Attrs>) {
       return (
         <>
-          <div class={`${attrs.class} flex items-center w-90 justify-around `}>
+          <div
+            class={`${attrs.class} flex items-center space-x-2 justify-around `}
+          >
             <span class="">共 {attrs.total ?? 0} 条</span>
             <button
               disabled={prevEnable()}

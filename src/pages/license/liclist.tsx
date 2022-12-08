@@ -109,7 +109,7 @@ export default {
 
         {/* </div> */}
         <hr class="my-4"></hr>
-        <div class="min-h-169">
+        <div class="min-h-169 blur-sm">
           <table class="mb-6 table-auto">
             <thead>
               <tr>

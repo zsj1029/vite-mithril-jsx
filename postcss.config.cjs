@@ -1,3 +1,7 @@
 module.exports = {
-  plugins: [require("postcss-inline-svg")()],
+  plugins: [
+    require("tailwindcss"),
+    require("autoprefixer"),
+    require("postcss-inline-svg")(),
+  ],
 };

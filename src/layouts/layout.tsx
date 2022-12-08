@@ -13,10 +13,10 @@ export default {
       <div class="h-full flex flex-col justify-between">
         <Header />
         <p class="flex h-full">
-          <p class="theme border-r-1 pt-2">
+          <p class="theme border-r pt-2">
             <Leftmenu />
           </p>
-          <p class="w-full min-w-300 h-full p-4 ">{children}</p>
+          <p class="grow min-w-[1100px] h-full p-4 ">{children}</p>
         </p>
       </div>
     );

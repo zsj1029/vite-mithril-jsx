@@ -14,7 +14,7 @@ export const License = {
     },
   },
   "/lic/list/soon": {
-    onmatch: async () => (await import("@/pages/license/soon")).default,
+    onmatch: async () => (await import("@/pages/license/licsoon")).default,
     render: function (vnode) {
       return m(Layouts, vnode);
     },

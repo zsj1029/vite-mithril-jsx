@@ -1,6 +1,7 @@
 /* @refresh reload */
 
-import "virtual:windi.css";
+// import "virtual:windi.css";
+import "@/index.css";
 import "@/assets/water/builds/water.css";
 import m from "mithril";
 

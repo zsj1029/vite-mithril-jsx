@@ -52,7 +52,7 @@ export default {
     return (
       <>
         <TopBar menus={topBar} />
-        <form class="flex space-x-1.5 text-xs h-8">
+        <form class="flex space-x-1.5 min-w-fit text-xs h-8">
           <select>
             <option>[产品]</option>
             <option>PPro ver 1231123</option>
@@ -89,7 +89,7 @@ export default {
 
         {/* </div> */}
         <hr class="my-4"></hr>
-        <div class="min-h-169">
+        <div class="min-h-[675px]">
           <table class="mb-6 table-auto">
             <thead>
               <tr>
