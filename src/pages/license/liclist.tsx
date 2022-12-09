@@ -4,6 +4,7 @@ import account from "@/model/account";
 import Pagination from "@/coms/pagination";
 import { Routes } from "@/model/routeCfg";
 import TopBar from "@/coms/topbar";
+import Sort, { SortEnum } from "@/coms/sort";
 
 const topBar = Routes.find((item) => item.key === "lic");
 
@@ -32,6 +33,11 @@ const pageChange = (pageNum: number, pageSize: number) => {
   page.current = 5;
   page.pageSize = 20;
   console.log({ pageNum, pageSize });
+  console.log(SS.instance.attrs.resume());
+};
+
+const sortEvent = (sortField: string, order: string) => {
+  console.log(sortField, order);
 };
 
 export default {
@@ -45,6 +51,9 @@ export default {
     // var dialog = document.getElementById("hello-dialog");
     // dialog.show();
     // console.log(123123);
+  },
+  onremove() {
+    console.log("remove ....");
   },
   view({ attrs }) {
     return (
@@ -66,11 +75,6 @@ export default {
             <option>Node-locked</option>
             <option>Floating</option>
           </select>
-          {/* <select>
-            <option>[许可类型]</option>
-            <option>Node-locked</option>
-            <option>Floating</option>
-          </select> */}
           <select>
             <option>[有效期]</option>
             <option>7日</option>
@@ -80,24 +84,6 @@ export default {
             <option>180日</option>
             <option>&gt;=1年</option>
           </select>
-          {/* <span>
-            <input
-              class="w-30 h-9"
-              type={this.input}
-              onblur={(e) => {
-                this.input = "text";
-              }}
-              onfocus={(e) => {
-                this.input = "date";
-              }}
-              placeholder="有效截止小于"
-            />
-          </span> */}
-          {/* <select>
-            <option>[状态]</option>
-            <option>Current</option>
-            <option>Expired</option>
-          </select> */}
           <input type="input" class="w-34" placeholder="关键字搜索" />
           <button type="button" class="px-4" onclick={() => pageChange(1, 20)}>
             搜索
@@ -111,7 +97,7 @@ export default {
         <hr class="my-4"></hr>
         <div class="min-h-[675px] ">
           <table class="mb-6 table-auto">
-            <thead>
+            <thead class="select-none">
               <tr>
                 <th class="w-10 ">
                   <a href="">全选</a>
@@ -121,8 +107,22 @@ export default {
                 <th>用途</th>
                 <th>许可类型</th>
                 <th>席位</th>
-                <th>有效期</th>
-                <th>关联单号</th>
+                <th class="flex space-x-1 items-center">
+                  <Sort
+                    // key="days"
+                    sort={SortEnum.none}
+                    value={{ name: "有效期", attr: "days" }}
+                    sortEvent={sortEvent}
+                  />
+                </th>
+                <th>
+                  <Sort
+                    // key="po"
+                    sort={SortEnum.none}
+                    value={{ name: "PO单号", attr: "po" }}
+                    sortEvent={sortEvent}
+                  />
+                </th>
                 <th>来源</th>
                 {/* <th class="w-38">申请人</th> */}
               </tr>

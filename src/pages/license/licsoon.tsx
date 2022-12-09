@@ -99,7 +99,7 @@ export default {
                 </th>
                 <th>产品/客户</th>
                 <th>许可证号</th>
-                <th>主机类型</th>
+
                 <th>主机id</th>
                 <th>用途</th>
                 <th>许可类型</th>
@@ -126,7 +126,7 @@ export default {
                     </td>
 
                     <td>{data.id}</td>
-                    <td>{data.hostType}</td>
+
                     <td>{data.hostid}</td>
                     <td>{data.use}</td>
                     <td>{data.type}</td>

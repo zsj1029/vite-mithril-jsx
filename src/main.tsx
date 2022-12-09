@@ -55,4 +55,4 @@ const routes = {
 
 // console.log(routes);
 
-m.route(root, "/lic/list/wait", routes);
+m.route(root, "/login", routes);

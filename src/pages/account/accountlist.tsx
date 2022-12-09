@@ -4,6 +4,7 @@ import account from "@/model/account";
 import Pagination from "@/coms/pagination";
 import { Routes } from "@/model/routeCfg";
 import TopBar from "@/coms/topbar";
+import { accountlist } from "./accdata";
 
 const topBar = Routes.find((item) => item.key === "account");
 
@@ -26,6 +27,7 @@ const page = {
 
 const pageChange = (pageNum: number, pageSize: number) => {
   // page.total = 1000;
+  accountlist.data = 2;
   page.current = 5;
   page.pageSize = 20;
   console.log({ pageNum, pageSize });
@@ -46,6 +48,7 @@ export default {
   view({ attrs }) {
     return (
       <>
+        {/* {accountlist.data} */}
         <TopBar menus={topBar} />
 
         <form class="flex text-xs space-x-1.5 h-8">
@@ -145,7 +148,7 @@ export default {
               onclick={() => alert("生成")}
               href="JavaScript:void(0);"
             >
-              [批量启用]
+              [启用]
             </a>
             &nbsp;
             <a
@@ -153,7 +156,7 @@ export default {
               onclick={() => alert("生成")}
               href="JavaScript:void(0);"
             >
-              [批量禁用]
+              [禁用]
             </a>
             &nbsp;
             <a
@@ -161,7 +164,7 @@ export default {
               onclick={() => alert("删除")}
               href="JavaScript:void(0);"
             >
-              [批量删除]
+              [删除]
             </a>
           </div>
           <Pagination
