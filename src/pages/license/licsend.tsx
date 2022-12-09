@@ -161,14 +161,14 @@ export default {
             >
               [再次推送]
             </a>
-            &nbsp;
+            {/* &nbsp;
             <a
               class="pt-2 "
               onclick={() => alert("删除")}
               href="JavaScript:void(0);"
             >
               [删除许可证]
-            </a>
+            </a> */}
             &nbsp;
             <a
               class="pt-2 "

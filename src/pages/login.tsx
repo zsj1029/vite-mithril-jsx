@@ -13,12 +13,12 @@ export default {
   oncreate({ attrs }) {
     // console.log(m.route.param());
     // console.log(attrs);
-    console.log(m.route.param());
+    // console.log(m.route.param());
   },
   view: ({ children }) => (
-    <>
+    <div class="h-full flex flex-col justify-center">
       <PerfersColor class="w-10 absolute right-2 top-2 text-xl" />
-      <div class="flex mx-auto w-80 h-56 mt-[32vh] border rounded-md shadow-md flex-col justify-evenly items-center">
+      <div class="flex mx-auto w-80 h-56 -mt-20 border rounded-md shadow-md flex-col justify-evenly items-center">
         <div class="w-60 text-left font-bold">用户支持系统（USS）</div>
 
         <input
@@ -53,6 +53,6 @@ export default {
         )}
         {children} */}
       </div>
-    </>
+    </div>
   ),
 };

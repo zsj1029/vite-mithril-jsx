@@ -10,7 +10,7 @@ const sortIcon = [SortNone, SortAsc, SortDesc];
 export default (vnode) => {
   const field = vnode.attrs.value.attr;
   let i = vnode.attrs.sort;
-  console.log(i);
+  // console.log(i);
   const swicthSort = () => {
     vnode.attrs.sortEvent(field, SortEnum[i]);
     i++;

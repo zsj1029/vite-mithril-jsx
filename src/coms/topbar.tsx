@@ -7,8 +7,8 @@ type Attrs = {
 let dialog: HTMLDialogElement | null;
 export default {
   oncreate() {
-    dialog = document.querySelector("dialog");
-    dialogPolyfill.registerDialog(dialog as HTMLDialogElement);
+    // dialog = document.querySelector("dialog");
+    // dialogPolyfill.registerDialog(dialog as HTMLDialogElement);
   },
   view({ attrs }: Vnode<Attrs>) {
     return (
@@ -24,10 +24,16 @@ export default {
           {attrs.menus.children?.map((item) => {
             const basePath = attrs.menus.path;
             if (item.action) {
+              const hidden =
+                (basePath + item.path).indexOf(
+                  m.parsePathname(m.route.get()).path
+                ) == -1
+                  ? "hidden"
+                  : "";
               return (
                 <div
                   onclick={() => m.route.set(basePath + item.path)}
-                  class={`px-3 menu select-none border-l font-medium
+                  class={`px-3 menu ${hidden} select-none border-l font-medium
                 ${
                   m.route.get() === basePath + item.path
                     ? "text-blue-500 cursor-none  pointer-events-none"

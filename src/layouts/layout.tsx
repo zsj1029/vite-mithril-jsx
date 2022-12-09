@@ -10,13 +10,13 @@ export default {
   },
   view({ attrs, children, state }) {
     return (
-      <div class="h-full flex flex-col justify-between">
+      <div class="h-full min-w-[1200px] flex flex-col justify-between">
         <Header />
         <p class="flex h-full">
           <p class="theme border-r pt-2">
             <Leftmenu />
           </p>
-          <p class="grow min-w-[1100px] h-full p-4 ">{children}</p>
+          <p class="grow  h-full p-4 ">{children}</p>
         </p>
       </div>
     );

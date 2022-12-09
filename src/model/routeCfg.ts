@@ -35,9 +35,9 @@ export const Routes: Array<Menu> = [
         name: "即将到期(1)",
       },
       {
-        path: "/add",
+        path: "/list/wait/add",
         name: "录入许可证",
-        hide: false,
+        hide: true,
         action: true,
       },
     ],
@@ -68,7 +68,7 @@ export const Routes: Array<Menu> = [
         name: "用户列表",
       },
       {
-        path: "/create",
+        path: "/list/create",
         name: "创建用户",
         hide: false,
         action: true,

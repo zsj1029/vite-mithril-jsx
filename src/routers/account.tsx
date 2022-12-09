@@ -9,7 +9,7 @@ export const Account = {
       return m(Layouts, vnode);
     },
   },
-  "/account/add": {
+  "/account/list/add": {
     onmatch: async () => (await import("@/pages/account/add")).default,
     render: function (vnode: any) {
       return m(Layouts, vnode);

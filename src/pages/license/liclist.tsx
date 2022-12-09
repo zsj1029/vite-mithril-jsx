@@ -33,7 +33,7 @@ const pageChange = (pageNum: number, pageSize: number) => {
   page.current = 5;
   page.pageSize = 20;
   console.log({ pageNum, pageSize });
-  console.log(SS.instance.attrs.resume());
+  // console.log(SS.instance.attrs.resume());
 };
 
 const sortEvent = (sortField: string, order: string) => {
@@ -178,16 +178,16 @@ export default {
               onclick={() => alert("生成")}
               href="JavaScript:void(0);"
             >
-              [选中生成]
+              [批量生成]
             </a>
-            &nbsp;
+            {/* &nbsp;
             <a
               class="pt-2 "
               onclick={() => alert("生成")}
               href="JavaScript:void(0);"
             >
               [全部生成]
-            </a>
+            </a> */}
             {/* <a
               class="pt-2 "
               onclick={() => alert("导出")}

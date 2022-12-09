@@ -70,8 +70,9 @@ export default {
                                 m.route.set(basePath + v.path, {})
                               }
                               class={`menu ${
-                                m.parsePathname(m.route.get()).path ===
-                                basePath + v.path
+                                m
+                                  .parsePathname(m.route.get())
+                                  .path.indexOf(basePath + v.path) !== -1
                                   ? "active"
                                   : ""
                               } flex items-center pl-9 py-2 cursor-pointer overflow-hidden rounded transition duration-100 ease-in-out`}
