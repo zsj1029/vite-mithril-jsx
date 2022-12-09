@@ -25,6 +25,7 @@ const data = {
   seat: 20,
   end: "2023-12-12",
   apply: "2022-11-11 02:34:00",
+  last: "13天",
 };
 
 // whitespace-pre overflow-auto
@@ -99,12 +100,12 @@ export default {
                 </th>
                 <th>产品/客户</th>
                 <th>许可证号</th>
-
                 <th>主机id</th>
                 <th>用途</th>
                 <th>许可类型</th>
                 <th>席位</th>
                 <th>到期日</th>
+                <th>倒计时</th>
                 <th>已提醒</th>
               </tr>
             </thead>
@@ -131,7 +132,8 @@ export default {
                     <td>{data.use}</td>
                     <td>{data.type}</td>
                     <td>{data.seat}</td>
-                    <td class="font-bold ">{data.end}</td>
+                    <td class="font-medium ">{data.end}</td>
+                    <td class="font-medium ">{data.last}</td>
                     <td>6次</td>
                   </tr>
                 );

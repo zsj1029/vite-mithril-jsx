@@ -18,7 +18,7 @@ const root = document.getElementById("root") as HTMLElement;
 // m.mount(document.getElementById("root") as HTMLElement, App);
 Profile.autoTheme();
 
-import { Account } from "@/routers/account";
+import { Sys } from "@/routers/sys";
 import { License } from "@/routers/license";
 
 const routes = {
@@ -49,7 +49,7 @@ const routes = {
   "/login": {
     onmatch: async () => (await import("@/pages/login")).default,
   },
-  ...Account,
+  ...Sys,
   ...License,
 };
 

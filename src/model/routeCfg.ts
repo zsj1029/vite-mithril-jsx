@@ -58,19 +58,23 @@ export const Routes: Array<Menu> = [
   //   ],
   // },
   {
-    path: "/account",
-    name: "用户管理",
-    key: "account",
+    path: "/sys",
+    name: "系统管理",
+    key: "sys",
     icon: User,
     children: [
       {
-        path: "/list",
+        path: "/account/list",
         name: "用户列表",
       },
       {
-        path: "/list/create",
+        path: "/log/list",
+        name: "系统日志",
+      },
+      {
+        path: "/account/list/add",
         name: "创建用户",
-        hide: false,
+        hide: true,
         action: true,
       },
     ],

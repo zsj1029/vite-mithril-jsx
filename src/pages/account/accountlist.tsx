@@ -6,7 +6,7 @@ import { Routes } from "@/model/routeCfg";
 import TopBar from "@/coms/topbar";
 import { accountlist } from "./accdata";
 
-const topBar = Routes.find((item) => item.key === "account");
+const topBar = Routes.find((item) => item.key === "sys");
 
 const data = {
   id: "6666666",

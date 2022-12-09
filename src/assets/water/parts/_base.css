@@ -47,3 +47,29 @@ textarea {
   color: var(--text-bright); 
 }
 
+.form-table{
+  border-collapse:collapse;
+  margin-bottom: 10px;
+  width: 100%;
+  table-layout: fixed;
+  user-select: none;
+  /* border:1px solid #ccc */
+}
+.form-table td{
+  border:1px solid #ccc;
+
+}
+.form-table span{
+  font-size: 12px;
+  color: gray;
+}
+.form-table tbody tr:nth-child(even) {
+  background-color: var(--background-body);
+}
+
+.form-table tbody tr td:nth-child(odd){
+  width: 125px;
+  font-weight: 500;
+  background-color: var(--background-deep);
+}
+
