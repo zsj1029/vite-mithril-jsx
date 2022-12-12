@@ -1,3 +1,0 @@
-import{m as e}from"./index-d02819f1.js";const c={oncreate(){},view({attrs:r}){var o;return e("[",null,e("div",{class:"flex -ml-2"},(o=r.menus.children)==null?void 0:o.map(n=>{const t=r.menus.path;if(n.action){const s=(t+n.path).indexOf(e.parsePathname(e.route.get()).path)==-1?"hidden":"";return e("div",{onclick:()=>e.route.set(t+n.path),class:`px-3 menu ${s} select-none border-l font-medium
-                ${e.route.get()===t+n.path?"text-blue-500 cursor-none  pointer-events-none":"cursor-pointer"}`},"[",n.name,"]")}else return e("div",{onclick:()=>e.route.set(t+n.path),class:`px-2.5 menu select-none
-                    ${e.route.get()===t+n.path?"text-blue-500 cursor-none pointer-events-none":"cursor-pointer"}`},n.name)})),e("hr",{class:"my-4"}))}};export{c as T};
