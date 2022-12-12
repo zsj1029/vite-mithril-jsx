@@ -1,4 +1,4 @@
-import { Lic, Kanban, Mail, Pwd, User } from "@/coms/icon";
+import { Lic, Kanban, Mail, Pwd, User, SYS } from "@/coms/icon";
 
 export type Menu = {
   path: string;
@@ -61,7 +61,7 @@ export const Routes: Array<Menu> = [
     path: "/sys",
     name: "系统管理",
     key: "sys",
-    icon: User,
+    icon: SYS,
     children: [
       {
         path: "/account/list",
@@ -69,7 +69,7 @@ export const Routes: Array<Menu> = [
       },
       {
         path: "/log/list",
-        name: "系统日志",
+        name: "审计日志",
       },
       {
         path: "/account/list/add",

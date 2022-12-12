@@ -96,7 +96,7 @@ export default {
                       <input class="ml-2 mt-1" type="checkbox" />
                     </td>
                     <td>
-                      <blockquote class="my-0 not-italic py-1 p-2 min-h-[50px] ">
+                      <blockquote class="my-0 not-italic py-1 p-2 min-h-[50px] h-full ">
                         {data.account}
                       </blockquote>
                     </td>

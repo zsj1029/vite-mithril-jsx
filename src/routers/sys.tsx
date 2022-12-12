@@ -17,7 +17,7 @@ export const Sys = {
   },
 
   "/sys/log/list": {
-    onmatch: async () => (await import("@/pages/account/accountadd")).default,
+    onmatch: async () => (await import("@/pages/logs/logslist")).default,
     render: function (vnode: any) {
       return m(Layouts, vnode);
     },

@@ -107,6 +107,7 @@ export default {
                 <th>到期日</th>
                 {/* <th>关联单号</th> */}
                 <th class="w-38">生成人</th>
+                <th>操作</th>
               </tr>
             </thead>
             <tbody>
@@ -139,6 +140,23 @@ export default {
                       admin<br></br>
                       {data.apply}
                     </td>
+                    <td>
+                      <a
+                        class="pt-2 "
+                        onclick={() => alert("预览")}
+                        href="JavaScript:void(0);"
+                      >
+                        [预览]
+                      </a>
+                      &nbsp;
+                      <a
+                        class="pt-2 "
+                        onclick={() => alert("下载")}
+                        href="JavaScript:void(0);"
+                      >
+                        [下载]
+                      </a>
+                    </td>
                   </tr>
                 );
               })}
@@ -162,7 +180,7 @@ export default {
               onclick={() => alert("生成")}
               href="JavaScript:void(0);"
             >
-              [再次推送]
+              [推送]
             </a>
             {/* &nbsp;
             <a
