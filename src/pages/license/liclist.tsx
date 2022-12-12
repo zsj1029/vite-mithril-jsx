@@ -18,7 +18,7 @@ const data = {
   id: "6666666",
   po: "8888888",
   prod: "play2020 full edition",
-  use: "Eval",
+  use: "评估",
   type: "Floating",
   seat: 20,
   age: "60days",
@@ -66,7 +66,7 @@ export default {
             <option>Neuro</option>
           </select>
           <select>
-            <option>[用途]</option>
+            <option>[证书类型]</option>
             <option>Eval</option>
             <option>Full</option>
           </select>
@@ -84,7 +84,7 @@ export default {
             <option>180日</option>
             <option>&gt;=1年</option>
           </select>
-          <input type="input" class="w-34" placeholder="关键字搜索" />
+          <input type="input" class=" w-36" placeholder="关键字搜索" />
           <button type="button" class="px-4" onclick={() => pageChange(1, 20)}>
             搜索
           </button>
@@ -104,9 +104,9 @@ export default {
                 </th>
                 <th>产品/客户</th>
                 <th>许可证号</th>
-                <th>用途</th>
+                <th>证书类型</th>
                 <th>许可类型</th>
-                <th>席位</th>
+                <th>证书类型</th>
                 <th class="flex space-x-1 items-center">
                   <Sort
                     // key="days"

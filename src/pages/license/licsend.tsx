@@ -18,7 +18,7 @@ const data = {
   po: "8888888",
   prod: "play2020 full edition",
   hostType: "Ethernet Mac",
-  use: "Eval",
+  use: "评估",
   hostid: "4d-5d-23-45-22-45",
   type: "Floating",
   age: "60days",
@@ -59,7 +59,7 @@ export default {
             <option>Neuro</option>
           </select>
           <select>
-            <option>[用途]</option>
+            <option>[评估]</option>
             <option>Eval</option>
             <option>Full</option>
           </select>
@@ -78,7 +78,7 @@ export default {
             <span class="inline-block">&lt; 生成时间 &lt;</span>
             <input class="w-29" type="date" />
           </div>
-          <input type="input" class="w-34" placeholder="关键字搜索" />
+          <input type="search" class="w-36" placeholder="关键字搜索" />
           <button type="submit" class="px-4">
             搜索
           </button>
@@ -133,7 +133,7 @@ export default {
                     <td>{data.type}</td>
                     <td>{data.seat}</td>
 
-                    <td>Current</td>
+                    <td>有效</td>
                     <td class="font-bold ">{data.end}</td>
                     <td class="">
                       admin<br></br>

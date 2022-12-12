@@ -62,7 +62,7 @@ export default {
             <option>主管</option>
             <option>员工</option>
           </select>
-          <input type="input" class="w-34" placeholder="关键字搜索" />
+          <input type="input" class="w-36" placeholder="关键字搜索" />
           <button type="button" class="px-4" onclick={() => pageChange(1, 20)}>
             搜索
           </button>

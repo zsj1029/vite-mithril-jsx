@@ -80,7 +80,7 @@ export default {
             <option>&lt; 30日</option>
             <option>&lt; 45日</option>
           </select>
-          <input type="input" class="w-34" placeholder="关键字搜索" />
+          <input type="input" class="w-36" placeholder="关键字搜索" />
           <button type="submit" class="px-4">
             搜索
           </button>
