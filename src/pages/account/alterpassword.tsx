@@ -45,7 +45,7 @@ export default {
                 <td>
                   <div class="flex flex-col w-60">
                     <input type="password" required />
-                    <span class="pt-1">留空表示不修改</span>
+                    <span class="pt-1">留空表示不修改密码</span>
                   </div>
                 </td>
               </tr>

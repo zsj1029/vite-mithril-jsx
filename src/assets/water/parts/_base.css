@@ -73,3 +73,15 @@ textarea {
   background-color: var(--background-deep);
 }
 
+.messagebox{
+  /* min-width: 208px; */
+  left:calc(50% - 104px)
+}
+.message{
+  /* position: absolute;
+  top:16px;
+  left:calc(50%-20px);
+  padding: 8px 24px; */
+  background-color: var(--background-body);
+}
+

@@ -20,7 +20,7 @@ export default {
             </svg> */}
             <p class="ml-2 font-bold ">用户支持系统（USS）</p>
           </p>
-          <p class="w-1/2 flex justify-end">
+          <p class="w-1/2 flex justify-end  z-50">
             <Perferscolor class="w-8" />
             {/* <p class="bright w-15 text-center cursor-pointer">消息(0)</p> */}
             <p class="w-14 text-center font-bold cursor-pointer">admin</p>

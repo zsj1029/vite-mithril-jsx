@@ -95,7 +95,7 @@ export default {
 
         {/* </div> */}
         <hr class="my-4"></hr>
-        <div class="min-h-[675px] ">
+        <div class="min-h-[675px]">
           <table class="mb-6 table-auto  h-1">
             <thead class="select-none">
               <tr>
