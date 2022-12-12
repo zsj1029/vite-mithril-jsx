@@ -1,1 +1,0 @@
-import{m as o,R as t}from"./index.c3edcb5d.js";import{T as a}from"./topbar.6b7466bb.js";const i=t.find(r=>r.key==="lic"),e={view(){return o("[",null,o(a,{menus:i}),o("h1",null,"lic add"))}};export{e as default};

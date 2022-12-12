@@ -1,0 +1,1 @@
+System.register(["./index-legacy-f957f5f8.js","./topbar-legacy-cf6adb2c.js"],(function(e,t){"use strict";var n,s,c;return{setters:[e=>{n=e.m,s=e.R},e=>{c=e.T}],execute:function(){const t=s.find((e=>"lic"===e.key));e("default",{view:()=>n("[",null,n(c,{menus:t}),n("h1",null,"lic add"))})}}}));
