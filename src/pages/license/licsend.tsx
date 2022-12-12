@@ -106,7 +106,7 @@ export default {
                 <th>状态</th>
                 <th>到期日</th>
                 {/* <th>关联单号</th> */}
-                <th class="w-38">生成时间</th>
+                <th class="w-38">生成人</th>
               </tr>
             </thead>
             <tbody>
@@ -135,7 +135,10 @@ export default {
 
                     <td>Current</td>
                     <td class="font-bold ">{data.end}</td>
-                    <td class="">{data.apply}</td>
+                    <td class="">
+                      admin<br></br>
+                      {data.apply}
+                    </td>
                   </tr>
                 );
               })}

@@ -124,7 +124,7 @@ export default {
                   />
                 </th>
                 <th>来源</th>
-                {/* <th class="w-38">申请人</th> */}
+                <th class="w-38">申请人</th>
               </tr>
             </thead>
             <tbody>
@@ -151,10 +151,10 @@ export default {
                     <td class="font-bold ">{data.age}</td>
                     <td>{data.po}</td>
                     <td>{data.source}</td>
-                    {/* <td class="">
+                    <td class="">
                       liu xing<br></br>
                       {data.apply}
-                    </td> */}
+                    </td>
                   </tr>
                 );
               })}

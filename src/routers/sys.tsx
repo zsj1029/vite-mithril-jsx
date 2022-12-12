@@ -22,4 +22,11 @@ export const Sys = {
       return m(Layouts, vnode);
     },
   },
+  "/alterpassword": {
+    onmatch: async () =>
+      (await import("@/pages/account/alterpassword")).default,
+    render: function (vnode: any) {
+      return m(Layouts, vnode);
+    },
+  },
 };
