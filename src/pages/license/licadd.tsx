@@ -150,6 +150,13 @@ export default {
                     </span>
                   </div>
                 </td>
+                <td class="">OA审批单编号</td>
+                <td>
+                  <div class="flex flex-col ">
+                    <input type="text" required />
+                    <span class="pt-1">OA审批单流水编号</span>
+                  </div>
+                </td>
               </tr>
             </tbody>
           </table>

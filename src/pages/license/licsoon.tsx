@@ -60,7 +60,7 @@ export default {
             <option>Neuro</option>
           </select>
           <select>
-            <option>[用途]</option>
+            <option>[证书类型]</option>
             <option>Eval</option>
             <option>Full</option>
           </select>
@@ -75,7 +75,7 @@ export default {
             <option>Expired</option>
           </select> */}
           <select>
-            <option>[剩余天数]</option>
+            <option>[倒计时]</option>
             <option>&lt; 7日</option>
             <option>&lt; 30日</option>
             <option>&lt; 45日</option>
@@ -101,7 +101,7 @@ export default {
                 <th>产品/客户</th>
                 <th>许可证号</th>
                 <th>主机id</th>
-                <th>用途</th>
+                <th>证书类型</th>
                 <th>许可类型</th>
                 <th>席位</th>
                 <th>到期日</th>

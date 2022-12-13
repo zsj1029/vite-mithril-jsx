@@ -5,6 +5,7 @@ import Pagination from "@/coms/pagination";
 import { Routes } from "@/model/routeCfg";
 import TopBar from "@/coms/topbar";
 import { accountlist } from "./accdata";
+import Sort, { SortEnum } from "@/coms/sort";
 
 const topBar = Routes.find((item) => item.key === "sys");
 
@@ -31,6 +32,10 @@ const pageChange = (pageNum: number, pageSize: number) => {
   page.current = 5;
   page.pageSize = 20;
   console.log({ pageNum, pageSize });
+};
+
+const sortEvent = (sortField: string, order: string) => {
+  console.log(sortField, order);
 };
 
 export default {
@@ -84,7 +89,14 @@ export default {
                 <th>邮箱</th>
                 <th>电话</th>
                 <th>状态</th>
-                <th>创建时间</th>
+                <th>
+                  <Sort
+                    // key="days"
+                    sort={SortEnum.none}
+                    value={{ name: "创建时间", attr: "create" }}
+                    sortEvent={sortEvent}
+                  />
+                </th>
                 <th>操作</th>
               </tr>
             </thead>

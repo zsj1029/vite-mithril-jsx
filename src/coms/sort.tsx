@@ -20,7 +20,7 @@ export default (vnode) => {
   return {
     view({ attrs }) {
       return (
-        <div class="menu cursor-pointer" onclick={swicthSort}>
+        <div class="menu cursor-pointer select-none" onclick={swicthSort}>
           {attrs.value.name} {m(sortIcon[i])}
         </div>
       );

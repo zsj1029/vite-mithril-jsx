@@ -14,7 +14,7 @@ export default {
     return (
       <>
         <Message />
-        <button onclick={() => MsgAdd(State.success, "xxxxx")}>add</button>
+        {/* <button onclick={() => MsgAdd(State.success, "xxxxx")}>add</button> */}
         <div class="h-full min-w-[1200px] flex flex-col justify-between ">
           <Header />
           <p class="flex h-full ">

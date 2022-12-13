@@ -59,7 +59,7 @@ export default {
             <option>Neuro</option>
           </select>
           <select>
-            <option>[评估]</option>
+            <option>[证书类型]</option>
             <option>Eval</option>
             <option>Full</option>
           </select>
@@ -100,7 +100,7 @@ export default {
                 <th>许可证号</th>
 
                 <th>主机id</th>
-                <th>用途</th>
+                <th>证书类型</th>
                 <th>许可类型</th>
                 <th>席位</th>
                 <th>状态</th>
