@@ -1,6 +1,6 @@
 import m from "mithril";
 // import "@ui5/webcomponents/dist/Dialog";
-import account from "@/model/account";
+import { AccountState, DropState } from "@/model/account";
 import Pagination from "@/coms/pagination";
 import { Routes } from "@/model/routeCfg";
 import TopBar from "@/coms/topbar";
@@ -59,8 +59,9 @@ export default {
         <form class="flex text-xs space-x-1.5 h-8">
           <select>
             <option>[账号状态]</option>
-            <option>启用</option>
-            <option>禁用</option>
+            {DropState.map((item) => (
+              <option value={item[1]}>{item[0]}</option>
+            ))}
           </select>
           <select>
             <option>[角色]</option>

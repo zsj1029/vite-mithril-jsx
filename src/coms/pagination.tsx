@@ -17,7 +17,7 @@ export default ({ attrs }: Vnode<Attrs>) => {
     _pageSize: attrs.pageSize ?? 10, //页大小
   };
 
-  console.log(132123);
+  // console.log(132123);
   //前进后退按钮控制
   const prevEnable = () => pagination._current <= 1;
   const nextEnable = () => pagination._current >= pagination._pageCount;

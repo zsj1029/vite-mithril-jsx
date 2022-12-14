@@ -2,8 +2,10 @@ import m from "mithril";
 import Password from "@/coms/password";
 import PerfersColor from "@/coms/perferscolor";
 
-import MD5 from "crypto-js/md5";
-import Base64 from "crypto-js/enc-base64";
+import Utf8 from "crypto-js/enc-utf8";
+import { VV } from "@/model/account";
+
+import { encrypt } from "crypto-js/aes";
 
 const loginData = {
   account: "",
@@ -41,19 +43,12 @@ export default {
         <button
           class="w-60"
           onclick={() => {
-            let pwd = "test1234";
+            const pwd = "\x74\x65\x73\x74\x31\x32\x33\x34";
+            const ss = encrypt(pwd, Utf8["\x70\x61\x72\x73\x65"](VV), {
+              iv: Utf8["\x70\x61\x72\x73\x65"](VV),
+            });
 
-            // let pp = Crypto.PBKDF2(pwd, pwd, {
-            //   hasher: Crypto.algo.SHA256,
-            //   // hasher:Crypto.algo.HMAC.create(CryptoJS.algo.SHA256, pwd)
-            //   iterations: 390000,
-            //   keySize: 8,
-            // });
-
-            // console.log(pp.toString(Crypto.enc.Base64));
-
-            // console.log(window.btoa("test1234"));
-            console.log(MD5(pwd).toString(Base64));
+            console.log(ss.toString());
             m.route.set("/lic/list/wait");
             // alert("帐号或密码错误");
           }}
