@@ -153,6 +153,10 @@ textarea:disabled {
   transform: none;
 }
 
+button:disabled{
+  cursor: wait;
+}
+
 ::placeholder {
   color: var(--form-placeholder);
 }

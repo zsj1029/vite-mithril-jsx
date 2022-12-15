@@ -2,9 +2,12 @@ import m from "mithril";
 import Header from "./header";
 import Leftmenu from "./leftmenu";
 import Message, { MsgAdd, State } from "@/coms/message";
+import { GetRoles } from "@/model/common";
 
 export default {
   oncreate(vnode) {
+    //登录后系统初始化获取相关下拉框列表
+    GetRoles();
     console.log("create...");
   },
   onupdate() {

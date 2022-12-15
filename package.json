@@ -1,6 +1,5 @@
 {
   "name": "vite-project",
-  "homepage": "https://github.com/zsj1029/vite-mithril-jsx",
   "browserslist": "> 0.3%, defaults",
   "private": false,
   "version": "1.0.0",

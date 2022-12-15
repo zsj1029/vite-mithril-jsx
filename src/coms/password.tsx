@@ -8,6 +8,7 @@ export default {
   view: ({ attrs }) => (
     <div class="relative select-none">
       <input
+        name={attrs.name}
         oninput={attrs.oninput}
         placeholder={attrs.placeholder}
         value={attrs.value}

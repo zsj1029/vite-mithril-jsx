@@ -1,26 +1,41 @@
+import request, { Api } from "@/utils/request";
+
 export enum AccountState {
-  启用 = "active",
-  禁用 = "disactive",
+  // 启用 = "active",
+  // 禁用 = "disactive",
+  active = "启用",
+  disactive = "禁用",
 }
 
 export type AccountItem = {
-  account?: string;
-  fullName?: string;
-  state?: AccountState;
-  roler?: string;
+  username?: string;
+  full_name?: string;
+  status?: string;
   email?: string;
   phone?: string;
   password?: string;
   rePwd?: string;
-  create?: string;
+  create_time?: string;
+  role_zh?: string;
+  role?: string;
+  role_name?: string;
+  version?: string;
 };
 
 export const DropState = Object.entries(AccountState);
 
-export const Search = {} as AccountItem;
-
+export const Search = {
+  loading: false,
+  page: 0,
+  size: 10,
+} as AccountItem & {
+  keyword: string;
+  page: number;
+  size: number;
+  loading: boolean;
+};
 export const Data = {} as AccountItem;
-export const List = [] as Array<AccountItem>;
+export let List = [] as Array<AccountItem>;
 
 export const Page = {
   current: 1,
@@ -28,8 +43,12 @@ export const Page = {
   total: 0,
 };
 
-export const VV =
-  "\x54\x32\x22\x24\x51\x6d\x32\x7e\x7b\x4a\x63\x63\x7b\x30\x4d\x62";
+export const GetData = async () => {
+  console.log(Search);
+  const resp = await request("get", Api.AccountList, Search);
+  List = resp.list;
+  Page.total = resp.total;
+};
 
 export const PageChange = (pageNum: number, pageSize: number) => {
   /**
@@ -37,6 +56,11 @@ export const PageChange = (pageNum: number, pageSize: number) => {
    * 1.invoke API list
    * 1.change List data & Page.total
    */
+  Page.current = pageNum;
+  Page.pageSize = pageSize;
+  Search.page = pageNum - 1;
+  Search.size = pageSize;
+  GetData();
 };
 
 // const attrsMapping = {

@@ -2,6 +2,7 @@ import m from "mithril";
 import mithril from "@/assets/mithril.svg";
 import Perferscolor from "@/coms/perferscolor";
 import Logo from "@/assets/s2c-logo.png";
+import { Logout, Session } from "@/model/session";
 export default {
   view() {
     return (
@@ -23,11 +24,10 @@ export default {
           <p class="w-1/2 flex justify-end  z-50">
             <Perferscolor class="w-8" />
             {/* <p class="bright w-15 text-center cursor-pointer">消息(0)</p> */}
-            <p class="w-14 text-center font-bold cursor-pointer">admin</p>
-            <p
-              onclick={() => m.route.set("/login")}
-              class="w-14 bright text-center cursor-pointer"
-            >
+            <p class="w-14 text-center font-bold cursor-pointer">
+              {Session().username}
+            </p>
+            <p onclick={Logout} class="w-14 bright text-center cursor-pointer">
               注销
             </p>
           </p>

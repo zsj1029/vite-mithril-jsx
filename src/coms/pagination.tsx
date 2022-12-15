@@ -67,13 +67,13 @@ export default ({ attrs }: Vnode<Attrs>) => {
         pagination._current = pagination._pageCount;
       }
       //外部直接修改current,判断并跳转
-      if (old.attrs.current !== attrs.current) {
-        console.log(attrs.current, old.attrs.current);
-        if (attrs.current > pagination._pageCount) {
-          pagination._current = pagination._pageCount;
-        } else pagination._current = attrs.current;
-        attrs.onChange(pagination._current, pagination._pageSize);
-      }
+      // if (old.attrs.current !== attrs.current) {
+      //   console.log(attrs.current, old.attrs.current);
+      //   if (attrs.current > pagination._pageCount) {
+      //     pagination._current = pagination._pageCount;
+      //   } else pagination._current = attrs.current;
+      //   attrs.onChange(pagination._current, pagination._pageSize);
+      // }
     },
     view({ attrs }: Vnode<Attrs>) {
       return (

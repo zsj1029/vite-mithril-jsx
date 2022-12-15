@@ -1,6 +1,7 @@
 import m from "mithril";
 import { Routes } from "@/model/routeCfg";
 import { Arrow } from "@/coms/icon";
+import { Session } from "@/model/session";
 
 export default {
   oncreate() {
@@ -88,7 +89,9 @@ export default {
               );
             }
           })}
-          <p class="fixed w-32 text-center bottom-4 ">Ver:1.0.0</p>
+          <p class="absolute w-32 text-center bottom-4 ">
+            Ver:{Session().version}
+          </p>
         </div>
       </>
     );

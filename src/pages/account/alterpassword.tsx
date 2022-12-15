@@ -1,7 +1,25 @@
 import m from "mithril";
-import { Routes } from "@/model/routeCfg";
+import { AccountItem } from "@/model/account";
+import { Session, UpdtSession } from "@/model/session";
+import { RoleList } from "@/model/common";
+import Request, { Api } from "@/utils/request";
+import { MsgAdd, State } from "@/coms/message";
+
+const Data: AccountItem & { loading: boolean } = Session();
+Data.loading = false;
+const UpdtPassword = async () => {
+  if (Data.password !== Data.rePwd) {
+    alert("两次输入密码不一致，请确认");
+    return;
+  }
+  await Request("post", Api.Password, Data);
+  MsgAdd(State.success, "修改成功");
+  delete Data.password, delete Data.rePwd;
+  UpdtSession(Data);
+};
 
 export default {
+  oncreate() {},
   view() {
     return (
       <>
@@ -12,14 +30,20 @@ export default {
           [修改密码]
         </div>
         <hr class="my-4"></hr>
-        <form autocomplete="off">
+        <form
+          onsubmit={() => {
+            UpdtPassword();
+            return false;
+          }}
+          autocomplete="off"
+        >
           <table class="mb-6 form-table">
             <tbody>
               <tr>
                 <td class="">登录名</td>
                 <td class="">
                   <div class="flex flex-col">
-                    <input type="text" value="admin" disabled />
+                    <input type="text" value={Data.username} disabled />
                     <span class="pt-1">
                       用户名只能是英文、数字、下划线的组合。
                     </span>
@@ -29,12 +53,12 @@ export default {
               <tr>
                 <td>角色</td>
                 <td>
-                  <div class="flex flex-col w-60">
-                    <select disabled value="root">
+                  <div class="flex flex-col w-72">
+                    <select disabled value={Data.role}>
                       <option>[角色]</option>
-                      <option value="root">管理员</option>
-                      <option value="manager">主管</option>
-                      <option value="member">员工</option>
+                      {RoleList.map((item) => (
+                        <option value={item.name}>{item.name_zh}</option>
+                      ))}
                     </select>
                     <span class="pt-1">用户当前所属角色</span>
                   </div>
@@ -43,17 +67,31 @@ export default {
               <tr>
                 <td>密码</td>
                 <td>
-                  <div class="flex flex-col w-60">
-                    <input type="password" required />
-                    <span class="pt-1">留空表示不修改密码</span>
+                  <div class="flex flex-col w-72">
+                    <input
+                      type="password"
+                      pattern="^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$"
+                      minlength="6"
+                      maxlength="20"
+                      oninput={(e) => (Data.password = e.target?.value)}
+                    />
+                    <span class="pt-1">
+                      6-20位，必须包含数字和英文 (留空表示不修改密码)
+                    </span>
                   </div>
                 </td>
               </tr>
               <tr>
                 <td>确认密码</td>
                 <td>
-                  <div class="flex flex-col w-60">
-                    <input type="password" required />
+                  <div class="flex flex-col w-72">
+                    <input
+                      type="password"
+                      pattern="^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$"
+                      minlength="6"
+                      maxlength="20"
+                      oninput={(e) => (Data.rePwd = e.target?.value)}
+                    />
                     <span class="pt-1"></span>
                   </div>
                 </td>
@@ -62,7 +100,12 @@ export default {
                 <td>全名</td>
                 <td>
                   <div class="flex flex-col">
-                    <input type="text" />
+                    <input
+                      type="text"
+                      value={Data.full_name}
+                      oninput={(e) => (Data.full_name = e.target?.value)}
+                      maxlength="16"
+                    />
                     <span class="pt-1">员工姓名或标志性文本</span>
                   </div>
                 </td>
@@ -71,7 +114,12 @@ export default {
                 <td>邮箱地址</td>
                 <td>
                   <div class="flex flex-col">
-                    <input type="text" />
+                    <input
+                      type="email"
+                      oninput={(e) => (Data.email = e.target?.value)}
+                      value={Data.email}
+                      maxlength="32"
+                    />
                     <span class="pt-1">一个邮箱地址用于接受消息通知</span>
                   </div>
                 </td>
@@ -80,7 +128,13 @@ export default {
                 <td>电话</td>
                 <td>
                   <div class="flex flex-col">
-                    <input type="text" />
+                    <input
+                      type="tel"
+                      oninput={(e) => (Data.phone = e.target?.value)}
+                      value={Data.phone}
+                      minlength="6"
+                      maxlength="16"
+                    />
                     <span class="pt-1">联系电话</span>
                   </div>
                 </td>
@@ -102,7 +156,9 @@ export default {
             </tbody>
           </table>
           <hr class="my-4"></hr>
-          <button type="submit">保存</button>
+          <button type="submit" disabled={Data.loading}>
+            保存
+          </button>
         </form>
       </>
     );

@@ -1,38 +1,21 @@
 import m from "mithril";
 // import "@ui5/webcomponents/dist/Dialog";
-import { AccountState, DropState } from "@/model/account";
+import {
+  AccountState,
+  DropState,
+  GetData,
+  List,
+  Page,
+  PageChange,
+  Search,
+} from "@/model/account";
 import Pagination from "@/coms/pagination";
 import { Routes } from "@/model/routeCfg";
 import TopBar from "@/coms/topbar";
-import { accountlist } from "./accdata";
 import Sort, { SortEnum } from "@/coms/sort";
+import { RoleList } from "@/model/common";
 
 const topBar = Routes.find((item) => item.key === "sys");
-
-const data = {
-  id: "6666666",
-  account: "admin",
-  fullName: "刘星",
-  state: "启用",
-  roler: "主管",
-  create: "2022-11-11",
-  email: "jjjj@s2c.com.cn",
-  phone: "9999999999",
-};
-
-const page = {
-  current: 1,
-  total: 20,
-  pageSize: 10,
-};
-
-const pageChange = (pageNum: number, pageSize: number) => {
-  // page.total = 1000;
-  accountlist.data = 2;
-  page.current = 5;
-  page.pageSize = 20;
-  console.log({ pageNum, pageSize });
-};
 
 const sortEvent = (sortField: string, order: string) => {
   console.log(sortField, order);
@@ -46,6 +29,9 @@ export default {
     console.log(m.route.get());
   },
   oncreate() {
+    if (Page.total === 0) {
+      GetData();
+    }
     // var dialog = document.getElementById("hello-dialog");
     // dialog.show();
     // console.log(123123);
@@ -57,19 +43,32 @@ export default {
         <TopBar menus={topBar} />
 
         <form class="flex text-xs space-x-1.5 h-8">
-          <select>
-            <option>[账号状态]</option>
+          <select
+            value={Search.status ?? ""}
+            onchange={(e) => (Search.status = e.target.value)}
+          >
+            <option value="">[账号状态]</option>
             {DropState.map((item) => (
-              <option value={item[1]}>{item[0]}</option>
+              <option value={item[0]}>{item[1]}</option>
             ))}
           </select>
-          <select>
-            <option>[角色]</option>
-            <option>主管</option>
-            <option>员工</option>
+          <select
+            value={Search.role ?? ""}
+            onchange={(e) => (Search.role = e.target.value)}
+          >
+            <option value="">[角色]</option>
+            {RoleList.map((item) => (
+              <option value={item.name}>{item.name_zh}</option>
+            ))}
           </select>
-          <input type="input" class="w-36" placeholder="关键字搜索" />
-          <button type="button" class="px-4" onclick={() => pageChange(1, 20)}>
+          <input
+            type="input"
+            class="w-36"
+            value={Search.keyword}
+            oninput={(e) => (Search.keyword = e.target.value)}
+            placeholder="关键字搜索"
+          />
+          <button type="button" class="px-4" onclick={GetData}>
             搜索
           </button>
           <button type="reset" class="px-4">
@@ -102,7 +101,7 @@ export default {
               </tr>
             </thead>
             <tbody>
-              {[...Array(10)].map((i) => {
+              {List.map((item) => {
                 return (
                   <tr>
                     <td class="">
@@ -110,17 +109,17 @@ export default {
                     </td>
                     <td>
                       <blockquote class="my-0 not-italic py-1 p-2 min-h-[50px] h-full ">
-                        {data.account}
+                        {item.username}
                       </blockquote>
                     </td>
-                    <td>{data.fullName}</td>
+                    <td>{item.full_name}</td>
 
-                    <td>{data.roler}</td>
-                    <td>{data.email}</td>
+                    <td>{item.role_name}</td>
+                    <td>{item.email}</td>
 
-                    <td>{data.phone}</td>
-                    <td class="font-bold ">{data.state}</td>
-                    <td>{data.create}</td>
+                    <td>{item.phone}</td>
+                    <td class="font-medium">{AccountState[item.status]}</td>
+                    <td>{item.create_time}</td>
                     <td>
                       <a
                         class="pt-2 "
@@ -182,10 +181,10 @@ export default {
           </div>
           <Pagination
             class=""
-            current={page.current}
-            total={page.total}
-            pageSize={page.pageSize}
-            onChange={pageChange}
+            current={Page.current}
+            total={Page.total}
+            pageSize={Page.pageSize}
+            onChange={PageChange}
           />
         </div>
       </>
