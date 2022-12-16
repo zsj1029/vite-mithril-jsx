@@ -13,14 +13,15 @@ export type LoginData = {
 
 export const Data = { loading: false } as LoginData;
 
-const vv = "\x54\x32\x22\x24\x51\x6d\x32\x7e\x7b\x4a\x63\x63\x7b\x30\x4d\x62";
 // const vv = 'T2"$Qm2~{Jcc{0Mb';
+const vv = [84, 50, 34, 36, 81, 109, 50, 126, 123, 74, 99, 99, 123, 48, 77, 98];
 
 export const Login = async () => {
   const random = await Request("get", Api.Random, Data);
   const key = random.key;
+
   Data.password = encrypt(Data.password, Utf8.parse(key), {
-    iv: Utf8.parse(vv),
+    iv: Utf8.parse(new TextDecoder().decode(new Uint8Array(vv))),
   }).toString();
   try {
     const resp = await Request("post", Api.Login, Data);
