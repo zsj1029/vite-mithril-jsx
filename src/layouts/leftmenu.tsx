@@ -5,28 +5,31 @@ import { Session } from "@/model/session";
 
 export default {
   oncreate() {
-    document.querySelectorAll(".relative").forEach((ele) => {
-      let show = true;
-      ele.addEventListener("click", (e) => {
-        // console.log(e.target.closest(".relative"));
-        if (show) {
-          e.target
-            .closest(".relative")
-            .nextElementSibling.classList.add("hidden");
-          e.target
-            .closest(".relative")
-            .lastElementChild.classList.add("transform", "rotate-180");
-        } else {
-          e.target
-            .closest(".relative")
-            .nextElementSibling.classList.remove("hidden");
-          e.target
-            .closest(".relative")
-            .lastElementChild.classList.remove("transform", "rotate-180");
-        }
-        show = !show;
+    document
+      .getElementById("menu")
+      ?.querySelectorAll(".relative")
+      .forEach((ele) => {
+        let show = true;
+        ele.addEventListener("click", (e) => {
+          // console.log(e.target.closest(".relative"));
+          if (show) {
+            e.target
+              .closest(".relative")
+              .nextElementSibling.classList.add("hidden");
+            e.target
+              .closest(".relative")
+              .lastElementChild.classList.add("transform", "rotate-180");
+          } else {
+            e.target
+              .closest(".relative")
+              .nextElementSibling.classList.remove("hidden");
+            e.target
+              .closest(".relative")
+              .lastElementChild.classList.remove("transform", "rotate-180");
+          }
+          show = !show;
+        });
       });
-    });
   },
   onupdate(vnode) {
     console.log("update...");
@@ -34,7 +37,7 @@ export default {
   view() {
     return (
       <>
-        <div class="w-36 px-1 select-none ">
+        <div id="menu" class="w-36 px-1 select-none ">
           {Routes.map((item) => {
             if (!item.children) {
               return (
@@ -89,7 +92,7 @@ export default {
               );
             }
           })}
-          <p class="absolute w-32 text-center bottom-4 ">
+          <p class="absolute w-32 text-center bottom-10 ">
             Ver:{Session().version}
           </p>
         </div>

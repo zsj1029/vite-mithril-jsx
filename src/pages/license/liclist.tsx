@@ -1,6 +1,6 @@
 import m from "mithril";
 // import "@ui5/webcomponents/dist/Dialog";
-import account from "@/model/account";
+import account, { SortEvent } from "@/model/account";
 import Pagination from "@/coms/pagination";
 import { Routes } from "@/model/routeCfg";
 import TopBar from "@/coms/topbar";
@@ -59,7 +59,7 @@ export default {
     return (
       <>
         <TopBar menus={topBar} />
-        <form class="flex text-xs space-x-1.5 h-8">
+        <form class="flex  space-x-1.5 h-8">
           <select>
             <option>[产品]</option>
             <option>PPro ver 1231123</option>
@@ -109,18 +109,16 @@ export default {
                 <th>证书类型</th>
                 <th class="flex space-x-1 items-center">
                   <Sort
-                    // key="days"
-                    sort={SortEnum.none}
+                    order={SortEnum.none}
                     value={{ name: "有效期", attr: "days" }}
-                    sortEvent={sortEvent}
+                    sortEvent={SortEvent}
                   />
                 </th>
                 <th>
                   <Sort
-                    // key="po"
-                    sort={SortEnum.none}
+                    order={SortEnum.none}
                     value={{ name: "PO单号", attr: "po" }}
-                    sortEvent={sortEvent}
+                    sortEvent={SortEvent}
                   />
                 </th>
                 <th>来源</th>

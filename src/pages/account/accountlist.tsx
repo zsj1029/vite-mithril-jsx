@@ -7,7 +7,10 @@ import {
   List,
   Page,
   PageChange,
+  Reset,
   Search,
+  SortAttrs,
+  SortEvent,
 } from "@/model/account";
 import Pagination from "@/coms/pagination";
 import { Routes } from "@/model/routeCfg";
@@ -16,10 +19,6 @@ import Sort, { SortEnum } from "@/coms/sort";
 import { RoleList } from "@/model/common";
 
 const topBar = Routes.find((item) => item.key === "sys");
-
-const sortEvent = (sortField: string, order: string) => {
-  console.log(sortField, order);
-};
 
 export default {
   input: "text",
@@ -42,7 +41,7 @@ export default {
         {/* {accountlist.data} */}
         <TopBar menus={topBar} />
 
-        <form class="flex text-xs space-x-1.5 h-8">
+        <form class="flex space-x-1.5 h-8">
           <select
             value={Search.status ?? ""}
             onchange={(e) => (Search.status = e.target.value)}
@@ -71,7 +70,7 @@ export default {
           <button type="button" class="px-4" onclick={GetData}>
             搜索
           </button>
-          <button type="reset" class="px-4">
+          <button type="reset" onclick={Reset} class="px-4">
             重置
           </button>
         </form>
@@ -88,13 +87,18 @@ export default {
                 <th>角色</th>
                 <th>邮箱</th>
                 <th>电话</th>
-                <th>状态</th>
                 <th>
                   <Sort
-                    // key="days"
-                    sort={SortEnum.none}
-                    value={{ name: "创建时间", attr: "create" }}
-                    sortEvent={sortEvent}
+                    order={SortAttrs.status}
+                    value={{ name: "状态", attr: "status" }}
+                    sortEvent={SortEvent}
+                  />
+                </th>
+                <th>
+                  <Sort
+                    order={SortAttrs.create_time}
+                    value={{ name: "创建时间", attr: "create_time" }}
+                    sortEvent={SortEvent}
                   />
                 </th>
                 <th>操作</th>

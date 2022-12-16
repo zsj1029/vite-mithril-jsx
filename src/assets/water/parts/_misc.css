@@ -28,6 +28,9 @@ th {
   vertical-align: top;
   word-wrap: break-word;
 }
+td{
+  font-size: 14.4px;
+}
 
 thead {
   border-bottom: 1px solid var(--border);

@@ -53,7 +53,7 @@ export default {
     return (
       <>
         <TopBar menus={topBar} />
-        <form class="flex space-x-1.5 text-xs h-8">
+        <form class="flex space-x-1.5  h-8">
           <select>
             <option>[产品]</option>
             <option>PPro ver 1231123</option>

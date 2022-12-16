@@ -4,7 +4,7 @@ import { Session, UpdtSession } from "@/model/session";
 import { RoleList } from "@/model/common";
 import Request, { Api } from "@/utils/request";
 import { MsgAdd, State } from "@/coms/message";
-
+import Password from "@/coms/password";
 const Data: AccountItem & { loading: boolean } = Session();
 Data.loading = false;
 const UpdtPassword = async () => {
@@ -68,13 +68,22 @@ export default {
                 <td>密码</td>
                 <td>
                   <div class="flex flex-col w-72">
-                    <input
+                    <Password
+                      oninput={(e) => (Data.password = e.target?.value)}
+                      class="w-72 pr-5"
+                      pattern="^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$"
+                      minlength="6"
+                      maxlength="20"
+                      autocomplete="false"
+                      placeholder="密码"
+                    />
+                    {/* <input
                       type="password"
                       pattern="^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$"
                       minlength="6"
                       maxlength="20"
                       oninput={(e) => (Data.password = e.target?.value)}
-                    />
+                    /> */}
                     <span class="pt-1">
                       6-20位，必须包含数字和英文 (留空表示不修改密码)
                     </span>
@@ -85,12 +94,14 @@ export default {
                 <td>确认密码</td>
                 <td>
                   <div class="flex flex-col w-72">
-                    <input
-                      type="password"
+                    <Password
+                      oninput={(e) => (Data.rePwd = e.target?.value)}
+                      class="w-72 pr-5"
                       pattern="^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$"
                       minlength="6"
                       maxlength="20"
-                      oninput={(e) => (Data.rePwd = e.target?.value)}
+                      autocomplete="false"
+                      placeholder="确认密码"
                     />
                     <span class="pt-1"></span>
                   </div>

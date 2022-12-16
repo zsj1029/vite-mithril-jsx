@@ -9,6 +9,11 @@ input[type='radio'] {
   cursor: pointer;
 }
 
+input[type='password']::-ms-reveal {
+  display: none;
+}
+
+
 input,
 button,
 select {
@@ -155,6 +160,9 @@ textarea:disabled {
 
 button:disabled{
   cursor: wait;
+}
+.changePage:disabled{
+  cursor: not-allowed;
 }
 
 ::placeholder {

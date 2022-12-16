@@ -34,7 +34,7 @@ export default {
           placeholder="账号"
           autocomplete="false"
         />
-        <input
+        {/* <input
           type="password"
           required
           value={Data.password}
@@ -42,14 +42,14 @@ export default {
           class="w-60"
           placeholder="密码"
           autocomplete="false"
-        />
-        {/* <Password
+        /> */}
+        <Password
           oninput={(e) => (Data.password = e.target?.value)}
           value={Data.password}
           class="w-60 pr-5"
           autocomplete="false"
           placeholder="密码"
-        /> */}
+        />
         <button type="submit" class="w-60" disabled={Data.loading}>
           登录
         </button>

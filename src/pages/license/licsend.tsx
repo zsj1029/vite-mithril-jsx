@@ -52,7 +52,7 @@ export default {
     return (
       <>
         <TopBar menus={topBar} />
-        <form class="flex space-x-1.5 min-w-fit text-xs h-8">
+        <form class="flex space-x-1.5 min-w-fit  h-8">
           <select>
             <option>[产品]</option>
             <option>PPro ver 1231123</option>
@@ -74,9 +74,9 @@ export default {
             <option>Expired</option>
           </select>
           <div class="flex justify-between rounded items-center space-x-1 border-t border-b">
-            <input class="w-29" type="date" />
+            <input class="w-[120px] h-8" type="date" />
             <span class="inline-block">&lt; 生成时间 &lt;</span>
-            <input class="w-29" type="date" />
+            <input class="w-[120px] h-8" type="date" />
           </div>
           <input type="search" class="w-36" placeholder="关键字搜索" />
           <button type="submit" class="px-4">

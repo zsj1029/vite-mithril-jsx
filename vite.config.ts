@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 
 import { resolve } from "path";
 import { viteMockServe } from "vite-plugin-mock";
-// import basicSsl from "@vitejs/plugin-basic-ssl";
+import basicSsl from "@vitejs/plugin-basic-ssl";
 // import WindiCSS from "vite-plugin-windicss";
 import legacy from "@vitejs/plugin-legacy";
 
@@ -28,7 +28,7 @@ export default defineConfig({
     },
   },
   plugins: [
-    // basicSsl(),
+    basicSsl(),
     // WindiCSS(),
     viteMockServe({ prodEnabled: false }),
     legacy(),

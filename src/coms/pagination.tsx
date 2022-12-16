@@ -84,7 +84,7 @@ export default ({ attrs }: Vnode<Attrs>) => {
             <span class="">共 {attrs.total ?? 0} 条</span>
             <button
               disabled={prevEnable()}
-              class="px-2"
+              class="px-2 changePage"
               onclick={() => PNClick(-1)}
             >
               {LeftArrow}
@@ -103,7 +103,7 @@ export default ({ attrs }: Vnode<Attrs>) => {
             <span>{pagination._pageCount}</span>
             <button
               disabled={nextEnable()}
-              class="px-2"
+              class="px-2 changePage"
               onclick={() => PNClick(1)}
             >
               {RightArrow}

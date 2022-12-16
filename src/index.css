@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@font-face {
+    font-family: "carnas";
+    src: url("./assets/fonts/carnas/Carnas-Regular.ttf") ;
+}
+
+
+/* @font-face {
+    font-family: "mona-sans";
+    src: url("./assets/fonts/mona/Mona-Sans.woff2");
+} */
+

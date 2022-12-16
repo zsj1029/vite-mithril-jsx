@@ -1,5 +1,6 @@
 import request, { Api } from "@/utils/request";
-
+import sort, { SortEnum } from "@/coms/sort";
+import { UpdtSession } from "./session";
 export enum AccountState {
   // 启用 = "active",
   // 禁用 = "disactive",
@@ -24,32 +25,57 @@ export type AccountItem = {
 
 export const DropState = Object.entries(AccountState);
 
-export const Search = {
+export let Search = {
   loading: false,
   page: 0,
   size: 10,
+  sort: [],
 } as AccountItem & {
-  keyword: string;
+  keyword?: string;
   page: number;
   size: number;
+  sort: Array<{ attr: string; order: string }>;
   loading: boolean;
 };
+
 export const Data = {} as AccountItem;
 export let List = [] as Array<AccountItem>;
 
-export const Page = {
-  current: 1,
-  pageSize: 10,
-  total: 0,
-};
-
 export const GetData = async () => {
   console.log(Search);
-  const resp = await request("get", Api.AccountList, Search);
+  const data = { ...Search };
+  data.sort = JSON.stringify(Search.sort);
+  const resp = await request("get", Api.AccountList, data);
   List = resp.list;
   Page.total = resp.total;
 };
 
+export let SortAttrs = {
+  create_time: SortEnum.none,
+  status: SortEnum.none,
+};
+
+export const SortEvent = (attr: string, order: SortEnum) => {
+  Object.keys(SortAttrs).forEach((key) => {
+    if (key === attr) {
+      SortAttrs[key] = order;
+    } else {
+      SortAttrs[key] = SortEnum.none;
+    }
+  });
+  if (order === SortEnum.none) {
+    Search.sort = [];
+  } else {
+    Search.sort = [{ attr, order: SortEnum[order] }];
+  }
+  GetData();
+};
+
+export let Page = {
+  current: 1,
+  pageSize: 10,
+  total: 0,
+};
 export const PageChange = (pageNum: number, pageSize: number) => {
   /**
    * TODO
@@ -60,6 +86,25 @@ export const PageChange = (pageNum: number, pageSize: number) => {
   Page.pageSize = pageSize;
   Search.page = pageNum - 1;
   Search.size = pageSize;
+  GetData();
+};
+
+export const Reset = () => {
+  Search = {
+    loading: false,
+    page: 0,
+    size: 10,
+    sort: [],
+  } as any;
+  Page = {
+    current: 1,
+    pageSize: 10,
+    total: 0,
+  };
+  SortAttrs = {
+    create_time: SortEnum.none,
+    status: SortEnum.none,
+  };
   GetData();
 };
 
