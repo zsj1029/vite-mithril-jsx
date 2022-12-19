@@ -66,7 +66,9 @@ export enum Api {
   Random = "/entry/nonce_str2/",
   Login = "/entry/login2/",
   Logout = "/entry/logout/",
-  Roles = "/user_manager/role/list/",
-  Password = "/user_manager/user/my_info/update/",
-  AccountList = "/user_manager/user/list/",
+  Roles = "/user_manage/role/list/",
+  Password = "/user_manage/user/my_info/update/",
+  AccountList = "/user_manage/user/list/",
+  AccountState = "/user_manage/user/status/",
+  AccountDelete = "/user_manage/user/del/",
 }

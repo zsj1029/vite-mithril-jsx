@@ -1,9 +1,8 @@
 import request, { Api } from "@/utils/request";
 import sort, { SortEnum } from "@/coms/sort";
 import { UpdtSession } from "./session";
+import { MsgAdd, State } from "@/coms/message";
 export enum AccountState {
-  // 启用 = "active",
-  // 禁用 = "disactive",
   active = "启用",
   disactive = "禁用",
 }
@@ -21,9 +20,56 @@ export type AccountItem = {
   role?: string;
   role_name?: string;
   version?: string;
+  checked?: "checked" | "";
 };
 
 export const DropState = Object.entries(AccountState);
+
+let CheckFlag = false;
+
+export const CheckAll = () => {
+  CheckFlag = !CheckFlag;
+  List.forEach(
+    (_, index) => (List[index].checked = CheckFlag ? "checked" : "")
+  );
+};
+
+export const Batch = async (operation: "启用" | "禁用" | "删除") => {
+  let data;
+  // if (index !== undefined) {
+  //   data = List.filter((_, i) => i === index).map((item) => item.username);
+  // } else {
+  if (!List.some((item) => item.checked === "checked")) {
+    MsgAdd(State.failed, "请至少选择一条记录");
+    return false;
+  }
+  data = List.filter((item) => item.checked === "checked").map(
+    (item) => item.username
+  );
+  // }
+  switch (operation) {
+    case "启用":
+      await request("post", Api.AccountState, {
+        status: "active",
+        username: JSON.stringify(data),
+      });
+      break;
+    case "禁用":
+      await request("post", Api.AccountState, {
+        status: "disactive",
+        username: JSON.stringify(data),
+      });
+      break;
+    case "删除":
+      await request("post", Api.AccountDelete, {
+        username: data[0],
+      });
+      break;
+  }
+  MsgAdd(State.success, "操作成功");
+  GetData();
+  // }, 50);
+};
 
 export let Search = {
   loading: false,
@@ -48,6 +94,7 @@ export const GetData = async () => {
   const resp = await request("get", Api.AccountList, data);
   List = resp.list;
   Page.total = resp.total;
+  CheckFlag = false;
 };
 
 export let SortAttrs = {

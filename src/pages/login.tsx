@@ -46,6 +46,7 @@ export default {
         <Password
           oninput={(e) => (Data.password = e.target?.value)}
           value={Data.password}
+          required
           class="w-60 pr-5"
           autocomplete="false"
           placeholder="密码"

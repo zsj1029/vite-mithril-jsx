@@ -30,7 +30,7 @@ const MsgFail = (text: string) => (
       viewBox="0 0 24 24"
       stroke-width="1.5"
       stroke="currentColor"
-      class="w-5 h-5 inline-block text-red-600 -ml-2"
+      class="w-5 h-5 inline-block text-yellow-500 -ml-2"
     >
       <path
         stroke-linecap="round"
@@ -66,7 +66,7 @@ export default {
   view() {
     return (
       <>
-        <p class="messagebox fixed flex flex-col space-y-2 top-2 items-center">
+        <p class="messagebox fixed flex flex-col space-y-2 top-2 items-center ">
           {list.map((value) => {
             {
               if (value.state === State.success) {

@@ -47,7 +47,7 @@ export default [
     },
   },
   {
-    url: "/openapi/s2c/user_manager/role/list",
+    url: "/openapi/s2c/user_manage/role/list",
     method: "get",
     response: (req: any) => {
       return {
@@ -65,7 +65,7 @@ export default [
     },
   },
   {
-    url: "/openapi/s2c/user_manager/user/my_info/update/",
+    url: "/openapi/s2c/user_manage/user/my_info/update/",
     method: "post",
     response: (req: any) => {
       return {
@@ -77,7 +77,31 @@ export default [
     },
   },
   {
-    url: "/openapi/s2c/user_manager/user/list",
+    url: "/openapi/s2c/user_manage/user/status/",
+    method: "post",
+    response: (req: any) => {
+      return {
+        code: 200,
+        data: {},
+        msg: "",
+        req,
+      };
+    },
+  },
+  {
+    url: "/openapi/s2c/user_manage/user/del/",
+    method: "post",
+    response: (req: any) => {
+      return {
+        code: 200,
+        data: {},
+        msg: "",
+        req,
+      };
+    },
+  },
+  {
+    url: "/openapi/s2c/user_manage/user/list",
     method: "get",
     response: (req: any) => {
       return {
