@@ -21,6 +21,7 @@ export type AccountItem = {
   role_name?: string;
   version?: string;
   checked?: "checked" | "";
+  loading?: boolean;
 };
 
 export const DropState = Object.entries(AccountState);
@@ -84,7 +85,10 @@ export let Search = {
   loading: boolean;
 };
 
-export const Data = {} as AccountItem;
+export const Data = {
+  status: "active",
+  loading: false,
+} as AccountItem;
 export let List = [] as Array<AccountItem>;
 
 export const GetData = async () => {

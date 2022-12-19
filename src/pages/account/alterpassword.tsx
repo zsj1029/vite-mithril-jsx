@@ -45,7 +45,7 @@ export default {
                   <div class="flex flex-col">
                     <input type="text" value={Data.username} disabled />
                     <span class="pt-1">
-                      用户名只能是英文、数字、下划线的组合。
+                      3-10位，只能由英文、数字、下划线的组成。
                     </span>
                   </div>
                 </td>
@@ -69,6 +69,7 @@ export default {
                 <td>
                   <div class="flex flex-col w-72">
                     <Password
+                      value={Data.password}
                       oninput={(e) => (Data.password = e.target?.value)}
                       class="w-72 pr-5"
                       pattern="^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$"
@@ -95,6 +96,7 @@ export default {
                 <td>
                   <div class="flex flex-col w-72">
                     <Password
+                      value={Data.rePwd}
                       oninput={(e) => (Data.rePwd = e.target?.value)}
                       class="w-72 pr-5"
                       pattern="^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$"

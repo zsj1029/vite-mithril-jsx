@@ -1,23 +1,56 @@
 import m from "mithril";
 import { Routes } from "@/model/routeCfg";
 import TopBar from "@/coms/topbar";
-
+import { Data } from "@/model/account";
+import Password from "@/coms/password";
+import { RoleList } from "@/model/common";
+import request, { Api } from "@/utils/request";
+import { MsgAdd, State } from "@/coms/message";
 const topBar = Routes.find((item) => item.key === "sys");
+
+const CreateUser = async () => {
+  if (Data.password !== Data.rePwd) {
+    alert("两次输入密码不一致，请确认");
+    return;
+  }
+  let data = { ...Data };
+  delete data.rePwd;
+  await request("post", Api.AccountAdd, data);
+  MsgAdd(State.success, "创建成功");
+  delete Data.password, delete Data.rePwd;
+  // UpdtSession(Data);
+};
+
 export default {
   view() {
     return (
       <>
         <TopBar menus={topBar} />
-        <form autocomplete="off">
+        <form
+          onsubmit={() => {
+            CreateUser();
+            console.log(Data);
+            return false;
+          }}
+          autocomplete="off"
+        >
           <table class="mb-6 form-table">
             <tbody>
               <tr>
                 <td class="">登录名*</td>
                 <td class="">
                   <div class="flex flex-col">
-                    <input type="text" required />
+                    <input
+                      value={Data.username}
+                      oninput={(e) => (Data.username = e.target?.value)}
+                      type="text"
+                      required
+                      minlength="3"
+                      maxlength="10"
+                      pattern="^\w{3,10}$"
+                    />
                     <span class="pt-1">
-                      用户名只能是英文、数字、下划线的组合。
+                      3-10位，只能由英文、数字、下划线的组成。
                     </span>
                   </div>
                 </td>
@@ -26,11 +59,15 @@ export default {
                 <td>角色*</td>
                 <td>
                   <div class="flex flex-col w-60">
-                    <select required>
+                    <select
+                      required
+                      value={Data.role ?? ""}
+                      onchange={(e) => (Data.role = e.target.value)}
+                    >
                       <option value="">[角色]</option>
-                      <option value="admin">管理员</option>
-                      <option value="manager">主管</option>
-                      <option value="member">员工</option>
+                      {RoleList.map((item) => (
+                        <option value={item.name}>{item.name_zh}</option>
+                      ))}
                     </select>
                     <span class="pt-1">用户当前所属角色</span>
                   </div>
@@ -39,18 +76,38 @@ export default {
               <tr>
                 <td>密码*</td>
                 <td>
-                  <div class="flex flex-col w-60">
-                    <input type="password" required />
-                    <span class="pt-1">请输入一个6位以上的密码</span>
+                  <div class="flex flex-col w-72">
+                    <Password
+                      value={Data.password}
+                      oninput={(e) => (Data.password = e.target?.value)}
+                      class="w-72 pr-5"
+                      pattern="^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$"
+                      minlength="6"
+                      maxlength="20"
+                      required
+                      autocomplete="false"
+                      placeholder="密码"
+                    />
+                    <span class="pt-1">6-20位，必须包含数字和英文</span>
                   </div>
                 </td>
               </tr>
               <tr>
                 <td>确认密码*</td>
                 <td>
-                  <div class="flex flex-col w-60">
-                    <input type="password" required />
-                    <span class="pt-1">再重新输入一遍</span>
+                  <div class="flex flex-col w-72">
+                    <Password
+                      value={Data.rePwd}
+                      oninput={(e) => (Data.rePwd = e.target?.value)}
+                      class="w-72 pr-5"
+                      required
+                      pattern="^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$"
+                      minlength="6"
+                      maxlength="20"
+                      autocomplete="false"
+                      placeholder="确认密码"
+                    />
+                    <span class="pt-1">再次输入密码</span>
                   </div>
                 </td>
               </tr>
@@ -58,7 +115,12 @@ export default {
                 <td>全名</td>
                 <td>
                   <div class="flex flex-col">
-                    <input type="text" />
+                    <input
+                      type="text"
+                      value={Data.full_name}
+                      oninput={(e) => (Data.full_name = e.target?.value)}
+                      maxlength="16"
+                    />
                     <span class="pt-1">员工姓名或标志性文本</span>
                   </div>
                 </td>
@@ -67,7 +129,12 @@ export default {
                 <td>邮箱地址</td>
                 <td>
                   <div class="flex flex-col">
-                    <input type="text" />
+                    <input
+                      type="email"
+                      oninput={(e) => (Data.email = e.target?.value)}
+                      value={Data.email}
+                      maxlength="32"
+                    />
                     <span class="pt-1">一个邮箱地址用于接受消息通知</span>
                   </div>
                 </td>
@@ -76,7 +143,13 @@ export default {
                 <td>电话</td>
                 <td>
                   <div class="flex flex-col">
-                    <input type="text" />
+                    <input
+                      type="tel"
+                      oninput={(e) => (Data.phone = e.target?.value)}
+                      value={Data.phone}
+                      minlength="6"
+                      maxlength="16"
+                    />
                     <span class="pt-1">联系电话</span>
                   </div>
                 </td>
@@ -87,9 +160,12 @@ export default {
                   <div class="flex flex-col">
                     <input
                       type="checkbox"
+                      defaultChecked="checked"
+                      onchange={(e) => {
+                        Data.status = e.target.checked ? "active" : "disactive";
+                      }}
                       style="width:1.3rem;height:1.3rem"
-                      // class="w-10 h-10"
-                      checked
+                      checked={Data.status === "active" ? "checked" : ""}
                     />
                     <span class="pt-1">如不启用，则无法登录系统</span>
                   </div>
@@ -98,7 +174,11 @@ export default {
             </tbody>
           </table>
           <hr class="my-4"></hr>
-          <button type="submit">保存</button>
+          <button type="submit" class="mr-2" disabled={Data.loading}>
+            保存
+          </button>
+
+          <button type="reset">重置</button>
         </form>
       </>
     );

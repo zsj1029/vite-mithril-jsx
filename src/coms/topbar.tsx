@@ -1,25 +1,14 @@
 import { Menu } from "@/model/routeCfg";
 import m, { Vnode } from "mithril";
-import dialogPolyfill from "dialog-polyfill";
 type Attrs = {
   menus: Menu;
 };
 let dialog: HTMLDialogElement | null;
 export default {
-  oncreate() {
-    // dialog = document.querySelector("dialog");
-    // dialogPolyfill.registerDialog(dialog as HTMLDialogElement);
-  },
+  oncreate() {},
   view({ attrs }: Vnode<Attrs>) {
     return (
       <>
-        {/* <dialog>
-          I'm a dialog!
-          <form method="dialog">
-            <input type="submit" value="Close" />
-          </form>
-        </dialog>
-        <button onclick={() => dialog.showModal()}>open</button> */}
         <div class="flex -ml-2">
           {attrs.menus.children?.map((item) => {
             const basePath = attrs.menus.path;

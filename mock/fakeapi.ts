@@ -101,6 +101,18 @@ export default [
     },
   },
   {
+    url: "/openapi/s2c/user_manage/user/add/",
+    method: "post",
+    response: (req: any) => {
+      return {
+        code: 200,
+        data: {},
+        msg: "",
+        req,
+      };
+    },
+  },
+  {
     url: "/openapi/s2c/user_manage/user/list",
     method: "get",
     response: (req: any) => {

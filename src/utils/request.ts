@@ -71,4 +71,5 @@ export enum Api {
   AccountList = "/user_manage/user/list/",
   AccountState = "/user_manage/user/status/",
   AccountDelete = "/user_manage/user/del/",
+  AccountAdd = "/user_manage/user/add/",
 }
