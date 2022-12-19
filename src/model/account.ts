@@ -26,10 +26,13 @@ export type AccountItem = {
 
 export const DropState = Object.entries(AccountState);
 
-let CheckFlag = false;
-
 export const CheckAll = () => {
+  let CheckFlag = false;
+  if (List.every((item) => item.checked === "checked")) CheckFlag = true;
+  else if (!List.some((item) => item.checked === "checked")) CheckFlag = false;
+
   CheckFlag = !CheckFlag;
+
   List.forEach(
     (_, index) => (List[index].checked = CheckFlag ? "checked" : "")
   );
@@ -76,12 +79,14 @@ export let Search = {
   loading: false,
   page: 0,
   size: 10,
-  sort: [],
+  sort: "",
+  sort2: [],
 } as AccountItem & {
   keyword?: string;
   page: number;
   size: number;
-  sort: Array<{ attr: string; order: string }>;
+  sort: string;
+  sort2: Array<{ attr: string; order: string }>;
   loading: boolean;
 };
 
@@ -93,12 +98,12 @@ export let List = [] as Array<AccountItem>;
 
 export const GetData = async () => {
   console.log(Search);
-  const data = { ...Search };
-  data.sort = JSON.stringify(Search.sort);
-  const resp = await request("get", Api.AccountList, data);
+  // const data = { ...Search };
+  Search.sort = JSON.stringify(Search.sort2);
+  const resp = await request("get", Api.AccountList, Search);
   List = resp.list;
   Page.total = resp.total;
-  CheckFlag = false;
+  // CheckFlag = false;
 };
 
 export let SortAttrs = {
@@ -115,9 +120,9 @@ export const SortEvent = (attr: string, order: SortEnum) => {
     }
   });
   if (order === SortEnum.none) {
-    Search.sort = [];
+    Search.sort2 = [];
   } else {
-    Search.sort = [{ attr, order: SortEnum[order] }];
+    Search.sort2 = [{ attr, order: SortEnum[order] }];
   }
   GetData();
 };
@@ -145,7 +150,7 @@ export const Reset = () => {
     loading: false,
     page: 0,
     size: 10,
-    sort: [],
+    sort2: [],
   } as any;
   Page = {
     current: 1,

@@ -28,7 +28,7 @@ export default async (
   if (data && "loading" in data) {
     data.loading = true;
   }
-  // await Sleep(3);
+  await Sleep(0.4);
   try {
     resp = await m.request(options);
     if (resp.code === 4005) {

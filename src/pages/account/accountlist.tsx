@@ -5,6 +5,7 @@ import {
   AccountState,
   Batch,
   CheckAll,
+  CheckFlag,
   DropState,
   GetData,
   List,
@@ -80,7 +81,8 @@ export default {
         </form>
         <hr class="my-4"></hr>
         <div class="min-h-[675px]">
-          <table class="mb-6 table-auto">
+          {console.log(Search.loading)}
+          <table class={`mb-6 table-auto `}>
             <thead>
               <tr>
                 <th class="w-10 ">
@@ -110,7 +112,7 @@ export default {
                 <th>操作</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody class={`${Search.loading ? "blur-[2px]" : ""}`}>
               {List.map((item, index) => {
                 return (
                   <tr>
@@ -122,6 +124,8 @@ export default {
                         onchange={(e) => {
                           List[index].checked =
                             item.checked === "checked" ? "" : "checked";
+                          // if (List.every((item) => item.checked === "checked"))
+                          //   CheckFlag = true;
                         }}
                       />
                     </td>
@@ -179,6 +183,10 @@ export default {
             <a
               class="pt-2 "
               onclick={() => {
+                if (!List.some((item) => item.checked === "checked")) {
+                  MsgAdd(State.failed, "请至少选择一条记录");
+                  return false;
+                }
                 this.dialogText = "启用";
                 document.getElementById("dialog")?.showModal();
               }}
@@ -190,6 +198,10 @@ export default {
             <a
               class="pt-2 "
               onclick={() => {
+                if (!List.some((item) => item.checked === "checked")) {
+                  MsgAdd(State.failed, "请至少选择一条记录");
+                  return false;
+                }
                 this.dialogText = "禁用";
                 document.getElementById("dialog")?.showModal();
               }}
