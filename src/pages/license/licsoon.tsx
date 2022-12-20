@@ -5,7 +5,7 @@ import Pagination from "@/coms/pagination";
 import { Routes } from "@/model/routeCfg";
 import TopBar from "@/coms/topbar";
 
-const topBar = Routes.find((item) => item.key === "lic");
+const topBar = Routes.find((item) => item.key === "authorization");
 
 const page = {
   current: 1,

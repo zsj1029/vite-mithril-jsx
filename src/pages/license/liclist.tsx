@@ -1,12 +1,12 @@
 import m from "mithril";
-// import "@ui5/webcomponents/dist/Dialog";
+import LicInfo from "@/pages/license/licinfo";
 import account, { SortEvent } from "@/model/account";
 import Pagination from "@/coms/pagination";
 import { Routes } from "@/model/routeCfg";
 import TopBar from "@/coms/topbar";
 import Sort, { SortEnum } from "@/coms/sort";
 
-const topBar = Routes.find((item) => item.key === "lic");
+const topBar = Routes.find((item) => item.key === "authorization");
 
 const page = {
   current: 1,
@@ -58,6 +58,7 @@ export default {
   view({ attrs }) {
     return (
       <>
+        <LicInfo />
         <TopBar menus={topBar} />
         <form class="flex  space-x-1.5 h-8">
           <select>
@@ -140,7 +141,19 @@ export default {
                         </footer>
                       </blockquote>
                     </td>
-                    <td>{data.id}</td>
+                    <td class="cursor-pointer">
+                      <a
+                        class="pt-2 "
+                        onclick={() => {
+                          // SetData(item);
+                          // m.route.set("/sys/account/list/edit");
+                          document.getElementById("dialog")?.showModal();
+                        }}
+                        href="JavaScript:void(0);"
+                      >
+                        {data.id}
+                      </a>
+                    </td>
 
                     <td>{data.use}</td>
                     <td>{data.type}</td>

@@ -15,7 +15,12 @@ export const Sys = {
       return m(Layouts, vnode);
     },
   },
-
+  "/sys/account/list/edit": {
+    onmatch: async () => (await import("@/pages/account/accountedit")).default,
+    render: function (vnode: any) {
+      return m(Layouts, vnode);
+    },
+  },
   "/sys/log/list": {
     onmatch: async () => (await import("@/pages/logs/logslist")).default,
     render: function (vnode: any) {

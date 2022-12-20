@@ -1,39 +1,34 @@
 import m from "mithril";
 import { Routes } from "@/model/routeCfg";
 import TopBar from "@/coms/topbar";
-import { Data, SetData } from "@/model/account";
+import { Data } from "@/model/account";
 import Password from "@/coms/password";
 import { RoleList } from "@/model/common";
 import request, { Api } from "@/utils/request";
 import { MsgAdd, State } from "@/coms/message";
 const topBar = Routes.find((item) => item.key === "system");
 
-const CreateUser = async () => {
-  console.log(Data);
+const ModifyUser = async () => {
   if (Data.password !== Data.rePwd) {
     alert("两次输入密码不一致，请确认");
     return;
   }
   const data = { ...Data };
   delete data.rePwd;
-  await request("post", Api.AccountAdd, data);
-  MsgAdd(State.success, "创建成功");
+  await request("post", Api.AccountUpdate, data);
+  MsgAdd(State.success, "修改成功");
   delete Data.password, delete Data.rePwd;
-  // UpdtSession(Data);
 };
 
 export default {
-  oninit() {
-    SetData();
-  },
+  oncreate() {},
   view() {
     return (
       <>
         <TopBar menus={topBar} />
         <form
           onsubmit={() => {
-            CreateUser();
-            // console.log(Data);
+            ModifyUser();
             return false;
           }}
           autocomplete="off"
@@ -45,6 +40,7 @@ export default {
                 <td class="">
                   <div class="flex flex-col">
                     <input
+                      disabled
                       value={Data.username}
                       oninput={(e) => (Data.username = e.target?.value)}
                       type="text"
@@ -89,7 +85,6 @@ export default {
                       pattern="^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$"
                       minlength="6"
                       maxlength="20"
-                      required
                       autocomplete="false"
                       placeholder="密码"
                     />
@@ -108,7 +103,6 @@ export default {
                       value={Data.rePwd}
                       oninput={(e) => (Data.rePwd = e.target?.value)}
                       class="w-72 pr-5"
-                      required
                       pattern="^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$"
                       minlength="6"
                       maxlength="20"
@@ -185,8 +179,6 @@ export default {
           <button type="submit" class="mr-2" disabled={Data.loading}>
             保存
           </button>
-
-          <button type="reset">重置</button>
         </form>
       </>
     );

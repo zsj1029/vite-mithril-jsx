@@ -19,7 +19,7 @@ export const Routes: Array<Menu> = [
   {
     path: "/lic",
     name: "许可证",
-    key: "lic",
+    key: "authorization",
     icon: Lic,
     children: [
       {
@@ -60,7 +60,7 @@ export const Routes: Array<Menu> = [
   {
     path: "/sys",
     name: "系统管理",
-    key: "sys",
+    key: "system",
     icon: SYS,
     children: [
       {

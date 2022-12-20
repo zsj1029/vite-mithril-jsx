@@ -65,6 +65,25 @@ export default [
     },
   },
   {
+    url: "/openapi/s2c/user_manage/role/hierarchy/",
+    method: "get",
+    response: (req: any) => {
+      return {
+        code: 200,
+        data: {
+          list: [
+            { codename: "authorization", name: "授权管理" },
+            { codename: "system", name: "系统管理" },
+            // { codename: "member_role", scope: "" },
+          ],
+        },
+        msg: "",
+        req,
+      };
+    },
+  },
+
+  {
     url: "/openapi/s2c/user_manage/user/my_info/update/",
     method: "post",
     response: (req: any) => {
@@ -113,6 +132,18 @@ export default [
     },
   },
   {
+    url: "/openapi/s2c/user_manage/user/update/",
+    method: "post",
+    response: (req: any) => {
+      return {
+        code: 200,
+        data: {},
+        msg: "",
+        req,
+      };
+    },
+  },
+  {
     url: "/openapi/s2c/user_manage/user/list",
     method: "get",
     response: (req: any) => {
@@ -124,6 +155,7 @@ export default [
             {
               username: "admin",
               role_name: "管理员",
+              role: "manager_role",
               create_time: "2022-11-11",
               phone: "11111111",
               email: "xxx@sss.com",
@@ -133,6 +165,7 @@ export default [
             {
               username: "xx1",
               role_name: "主管",
+              role: "manager_role",
               create_time: "2022-11-11",
               phone: "11111111",
               email: "xxx@sss.com",
@@ -142,6 +175,7 @@ export default [
             {
               username: "xx2",
               role_name: "员工",
+              role: "manager_role",
               create_time: "2022-11-11",
               phone: "11111111",
               email: "xxx@sss.com",

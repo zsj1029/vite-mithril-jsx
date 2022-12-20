@@ -1,30 +1,30 @@
 import request, { Api } from "@/utils/request";
 import sort, { SortEnum } from "@/coms/sort";
-import { UpdtSession } from "./session";
+
 import { MsgAdd, State } from "@/coms/message";
-export enum AccountState {
-  active = "启用",
-  disactive = "禁用",
+export enum LicState {
+  有效 = "valid",
+  无效 = "invalid",
 }
 
-export type AccountItem = {
-  username?: string;
-  full_name?: string;
-  status?: string;
-  email?: string;
-  phone?: string;
+export type LicItem = {
+  customer?: string;
+  prod?: string;
+  lic_num?: string;
+  cert_type?: string;
+  valid_age?: string;
   password?: string;
-  rePwd?: string;
-  create_time?: string;
-  role_zh?: string;
-  role?: string;
-  role_name?: string;
+  po_code?: string;
+  source?: string;
+  apply?: string;
+  create?: string;
+  lic_type?: string;
   version?: string;
   checked?: "checked" | "";
   loading?: boolean;
 };
 
-export const DropState = Object.entries(AccountState);
+export const DropState = Object.entries(LicState);
 
 export const CheckAll = () => {
   let CheckFlag = false;

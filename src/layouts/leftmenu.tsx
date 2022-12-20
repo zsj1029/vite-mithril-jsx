@@ -2,9 +2,22 @@ import m from "mithril";
 import { Routes } from "@/model/routeCfg";
 import { Arrow } from "@/coms/icon";
 import { Session } from "@/model/session";
+import request, { Api, Sleep } from "@/utils/request";
 
 export default {
-  oncreate() {
+  routes: [],
+  async oninit() {
+    this.routes = [];
+    const module = await request("get", Api.Modules);
+    Routes.forEach((item) => {
+      if (module.list.some((v) => v.codename === item.key))
+        this.routes.push(item);
+
+      if (item.key === "password") this.routes.push(item);
+    });
+  },
+  async oncreate() {
+    await Sleep(1);
     document
       .getElementById("menu")
       ?.querySelectorAll(".relative")
@@ -31,14 +44,11 @@ export default {
         });
       });
   },
-  onupdate(vnode) {
-    console.log("update...");
-  },
   view() {
     return (
       <>
         <div id="menu" class="w-36 px-1 select-none ">
-          {Routes.map((item) => {
+          {this.routes.map((item) => {
             if (!item.children) {
               return (
                 <ul>

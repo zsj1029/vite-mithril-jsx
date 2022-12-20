@@ -3,8 +3,12 @@ import Header from "./header";
 import Leftmenu from "./leftmenu";
 import Message, { MsgAdd, State } from "@/coms/message";
 import { GetRoles } from "@/model/common";
+import { Session } from "@/model/session";
 
 export default {
+  oninit() {
+    if (!Session().username) m.route.set("/login", null, { replace: true });
+  },
   oncreate(vnode) {
     //登录后系统初始化获取相关下拉框列表
     GetRoles();

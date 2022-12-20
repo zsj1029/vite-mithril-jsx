@@ -56,21 +56,21 @@ textarea {
   /* border:1px solid #ccc */
 }
 .form-table td{
-  border:1px solid #ccc;
+  border:1px solid var(--border);
 
 }
 .form-table span{
   font-size: 12px;
-  color: gray;
+  /* color: gray; */
 }
-.form-table tbody tr:nth-child(even) {
-  background-color: var(--background-body);
+.form-table tbody tr {
+  background-color: var(--background-body) !important;
 }
 
 .form-table tbody tr td:nth-child(odd){
   width: 125px;
   font-weight: 500;
-  background-color: var(--background-deep);
+  background-color: var(--background-deep) !important;
 }
 
 .messagebox{

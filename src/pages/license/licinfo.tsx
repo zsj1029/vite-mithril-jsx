@@ -1,14 +1,17 @@
 import m from "mithril";
-import { Routes } from "@/model/routeCfg";
-import TopBar from "@/coms/topbar";
-
-const topBar = Routes.find((item) => item.key === "authorization");
+import dialogPolyfill from "dialog-polyfill";
 export default {
+  oncreate({ attrs }) {
+    dialogPolyfill.registerDialog(
+      document.getElementById("dialog") as HTMLDialogElement
+    );
+  },
   view() {
     return (
-      <>
-        <TopBar menus={topBar} />
-        <form autocomplete="off">
+      <dialog id="dialog" class="w-2/3">
+        <header>许可证号：88888888</header>
+
+        <form class="pt-2" method="dialog">
           <table class="mb-6 form-table">
             <tbody>
               <tr>
@@ -160,10 +163,14 @@ export default {
               </tr>
             </tbody>
           </table>
-          <hr class="my-4"></hr>
-          <button type="submit">保存</button>
+          <button
+            class="pt-2"
+            onclick={() => document.getElementById("dialog").close()}
+          >
+            关闭
+          </button>
         </form>
-      </>
+      </dialog>
     );
   },
 };

@@ -3,7 +3,6 @@ import m, { Vnode } from "mithril";
 type Attrs = {
   menus: Menu;
 };
-let dialog: HTMLDialogElement | null;
 export default {
   oncreate() {},
   view({ attrs }: Vnode<Attrs>) {

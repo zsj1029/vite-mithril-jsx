@@ -67,9 +67,11 @@ export enum Api {
   Login = "/entry/login2/",
   Logout = "/entry/logout/",
   Roles = "/user_manage/role/list/",
+  Modules = "/user_manage/role/hierarchy/",
   Password = "/user_manage/user/my_info/update/",
   AccountList = "/user_manage/user/list/",
   AccountState = "/user_manage/user/status/",
   AccountDelete = "/user_manage/user/del/",
   AccountAdd = "/user_manage/user/add/",
+  AccountUpdate = "/user_manage/user/update/",
 }

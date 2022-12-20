@@ -1,11 +1,9 @@
 import m from "mithril";
-// import "@ui5/webcomponents/dist/Dialog";
 import dialogPolyfill from "dialog-polyfill";
 import {
   AccountState,
   Batch,
   CheckAll,
-  CheckFlag,
   DropState,
   GetData,
   List,
@@ -13,6 +11,7 @@ import {
   PageChange,
   Reset,
   Search,
+  SetData,
   SortAttrs,
   SortEvent,
 } from "@/model/account";
@@ -23,15 +22,12 @@ import Sort, { SortEnum } from "@/coms/sort";
 import { RoleList } from "@/model/common";
 import { MsgAdd, State } from "@/coms/message";
 
-const topBar = Routes.find((item) => item.key === "sys");
+const topBar = Routes.find((item) => item.key === "system");
 
 export default {
   dialogText: "删除",
 
-  oninit() {
-    // console.log(account);
-    console.log(m.route.get());
-  },
+  oninit() {},
   oncreate({ attrs }) {
     if (Page.total === 0) {
       GetData();
@@ -81,7 +77,6 @@ export default {
         </form>
         <hr class="my-4"></hr>
         <div class="min-h-[675px]">
-          {console.log(Search.loading)}
           <table class={`mb-6 table-auto `}>
             <thead>
               <tr>
@@ -124,8 +119,6 @@ export default {
                         onchange={(e) => {
                           List[index].checked =
                             item.checked === "checked" ? "" : "checked";
-                          // if (List.every((item) => item.checked === "checked"))
-                          //   CheckFlag = true;
                         }}
                       />
                     </td>
@@ -143,7 +136,14 @@ export default {
                     <td class="font-medium">{AccountState[item.status]}</td>
                     <td>{item.create_time}</td>
                     <td>
-                      <a class="pt-2 " href="JavaScript:void(0);">
+                      <a
+                        class="pt-2 "
+                        onclick={() => {
+                          SetData(item);
+                          m.route.set("/sys/account/list/edit");
+                        }}
+                        href="JavaScript:void(0);"
+                      >
                         [修改]
                       </a>
                       &nbsp;
@@ -152,6 +152,9 @@ export default {
                         onclick={(e) => {
                           this.dialogText = "删除";
                           document.getElementById("dialog")?.showModal();
+                          List.forEach(
+                            (_, index) => (List[index].checked = "")
+                          );
                           e.target
                             .closest("tr")
                             .querySelector("input[type='checkbox']")
@@ -174,7 +177,13 @@ export default {
           <p class="pt-2 pb-4">即将 [{this.dialogText}] 相关记录，是否继续?</p>
           <form method="dialog" class="space-x-2">
             <button onclick={() => Batch(this.dialogText)}>继续</button>
-            <button>取消</button>
+            <button
+              onclick={() => {
+                List.forEach((_, index) => (List[index].checked = ""));
+              }}
+            >
+              取消
+            </button>
           </form>
         </dialog>
         <hr></hr>
@@ -210,13 +219,6 @@ export default {
               [禁用]
             </a>
             &nbsp;
-            {/* <a
-              class="pt-2 "
-              onclick={() => Batch("删除")}
-              href="JavaScript:void(0);"
-            >
-              [删除]
-            </a> */}
           </div>
           <Pagination
             class=""

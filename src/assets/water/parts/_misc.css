@@ -128,9 +128,9 @@ summary::-webkit-details-marker {
 dialog {
   background-color: var(--background-alt);
   color: var(--text-main);
-  border: none;
+  border: 1px solid var(--border);
   border-radius: 6px;
-  border-color: var(--border);
+  /* border-color: var(--border); */
   padding: 10px 30px;
 }
 
