@@ -28,7 +28,7 @@ export default async (
   if (data && "loading" in data) {
     data.loading = true;
   }
-  await Sleep(0.4);
+  // await Sleep(1);
   try {
     resp = await m.request(options);
     if (resp.code === 4005) {
@@ -78,6 +78,7 @@ export enum Api {
   AccountUpdate = "/user_manage/user/update/",
   LicenseList = "/license/list/",
   LicenseGenerate = "/license/license_create/",
+  LicenseCreate = "/license/input_license_info/",
 }
 
 export function DeepClone(obj, hash = new WeakMap()) {

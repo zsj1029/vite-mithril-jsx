@@ -1,5 +1,7 @@
 import m from "mithril";
 import LicInfo from "@/pages/license/licinfo";
+
+import dialogPolyfill from "dialog-polyfill";
 import {
   SortEvent,
   Search,
@@ -34,6 +36,9 @@ export default {
     if (Page.total === 0) {
       GetData();
     }
+    dialogPolyfill.registerDialog(
+      document.getElementById("confirm") as HTMLDialogElement
+    );
   },
 
   view({ attrs }) {
@@ -127,6 +132,7 @@ export default {
                     sortEvent={SortEvent}
                   />
                 </th>
+                <th>操作</th>
               </tr>
             </thead>
             <tbody>
@@ -178,6 +184,28 @@ export default {
                       <br></br>
                       {item.created_time}
                     </td>
+                    <td>
+                      <a
+                        class={`pt-2 ${
+                          LicSource.OA === item.info_from ? "hidden" : ""
+                        }`}
+                        onclick={(e) => {
+                          this.dialogText = "删除";
+                          document.getElementById("confirm")?.showModal();
+                          List.forEach(
+                            (_, index) => (List[index].checked = "")
+                          );
+                          e.target
+                            .closest("tr")
+                            .querySelector("input[type='checkbox']")
+                            .setAttribute("checked", "checked");
+                          List[index].checked = "checked";
+                        }}
+                        href="JavaScript:void(0);"
+                      >
+                        [删除]
+                      </a>
+                    </td>
                   </tr>
                 );
               })}
@@ -191,7 +219,7 @@ export default {
           <form method="dialog" class="space-x-2 flex justify-center">
             <button
               onclick={() => {
-                Batch("生成");
+                Batch(this.dialogText);
               }}
             >
               继续

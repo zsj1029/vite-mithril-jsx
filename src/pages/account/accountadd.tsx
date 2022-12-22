@@ -32,8 +32,8 @@ export default {
         <TopBar menus={topBar} />
         <form
           onsubmit={() => {
+            e.preventDefault();
             CreateUser();
-            // console.log(Data);
             return false;
           }}
           autocomplete="off"

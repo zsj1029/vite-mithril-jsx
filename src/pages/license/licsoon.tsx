@@ -166,7 +166,7 @@ export default {
               onclick={() => alert("导出")}
               href="JavaScript:void(0);"
             >
-              [数据导出]
+              [提醒策略]
             </a>
           </div>
           <Pagination

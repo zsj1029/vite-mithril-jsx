@@ -190,7 +190,7 @@ export const Reset = () => {
   GetData();
 };
 
-export const Batch = async (operation: "生成" | "推送" | "提醒") => {
+export const Batch = async (operation: "生成" | "推送" | "提醒" | "删除") => {
   if (!List.some((item) => item.checked === "checked")) {
     MsgAdd(State.failed, "请至少选择一条记录");
     return false;
@@ -199,7 +199,7 @@ export const Batch = async (operation: "生成" | "推送" | "提醒") => {
     (item) => item.order_id
   );
   switch (operation) {
-    case "生成":
+    case "批量生成":
       try {
         await request("post", Api.LicenseGenerate, {
           order_ids: JSON.stringify(data),
@@ -220,6 +220,9 @@ export const Batch = async (operation: "生成" | "推送" | "提醒") => {
       await request("post", Api.AccountDelete, {
         username: data[0],
       });
+      MsgAdd(State.success, "操作成功");
+      break;
+    case "删除":
       MsgAdd(State.success, "操作成功");
       break;
   }

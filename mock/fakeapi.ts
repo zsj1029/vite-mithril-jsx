@@ -111,6 +111,18 @@ export default [
     },
   },
   {
+    url: "/openapi/s2c/license/input_license_info/",
+    method: "post",
+    response: (req: any) => {
+      return {
+        code: 200,
+        data: {},
+        msg: "license 生成失败",
+        req,
+      };
+    },
+  },
+  {
     url: "/openapi/s2c/license/list/",
     method: "get",
     response: (req: any) => {

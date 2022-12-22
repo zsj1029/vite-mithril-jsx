@@ -5,7 +5,7 @@ import PerfersColor from "@/coms/perferscolor";
 import { Login, Data } from "@/model/session";
 
 window.addEventListener("keyup", (e) => {
-  if (e.key === "Enter") document.querySelector("#loginBtn")?.click();
+  if (e.key === "Enter") document.querySelector("form")?.submit();
 });
 // e.preventDefault()
 export default {
@@ -18,7 +18,8 @@ export default {
     <div class="h-full flex flex-col justify-center">
       <PerfersColor class="w-10 absolute right-2 top-2 text-xl" />
       <form
-        onsubmit={() => {
+        onsubmit={(e) => {
+          e.preventDefault();
           Login();
           return false;
         }}
@@ -47,7 +48,7 @@ export default {
           oninput={(e) => (Data.password = e.target?.value)}
           value={Data.password}
           required
-          class="w-60 pr-5"
+          class="w-60 pr-5 password"
           autocomplete="false"
           placeholder="密码"
         />

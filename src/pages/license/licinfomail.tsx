@@ -164,6 +164,7 @@ export default {
               </tr>
             </tbody>
           </table>
+          <hr class="my-4"></hr>
           <button
             class="pt-2 mr-2"
             onclick={() => {
