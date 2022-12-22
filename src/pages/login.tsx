@@ -4,8 +4,8 @@ import PerfersColor from "@/coms/perferscolor";
 
 import { Login, Data } from "@/model/session";
 
-window.addEventListener("keyup", async (e) => {
-  if (e.key === "Enter") document.querySelector("form")?.submit();
+window.addEventListener("keyup", (e) => {
+  if (e.key === "Enter") document.querySelector("#loginBtn")?.click();
 });
 // e.preventDefault()
 export default {
@@ -18,8 +18,8 @@ export default {
     <div class="h-full flex flex-col justify-center">
       <PerfersColor class="w-10 absolute right-2 top-2 text-xl" />
       <form
-        onsubmit={async () => {
-          await Login();
+        onsubmit={() => {
+          Login();
           return false;
         }}
         class="flex mx-auto w-80 h-56 -mt-20 border rounded-md shadow-md flex-col justify-evenly items-center"
@@ -51,7 +51,7 @@ export default {
           autocomplete="false"
           placeholder="密码"
         />
-        <button type="submit" class="w-60" disabled={Data.loading}>
+        <button id="loginBtn" class="w-60" disabled={Data.loading}>
           登录
         </button>
         {/* {m(

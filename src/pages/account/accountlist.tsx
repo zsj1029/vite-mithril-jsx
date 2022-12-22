@@ -44,8 +44,8 @@ export default {
 
         <form class="flex space-x-1.5 h-8">
           <select
-            value={Search.status ?? ""}
-            onchange={(e) => (Search.status = e.target.value)}
+            value={Search.filters.status ?? ""}
+            onchange={(e) => (Search.filters.status = e.target.value)}
           >
             <option value="">[账号状态]</option>
             {DropState.map((item) => (
@@ -53,8 +53,8 @@ export default {
             ))}
           </select>
           <select
-            value={Search.role ?? ""}
-            onchange={(e) => (Search.role = e.target.value)}
+            value={Search.filters.role ?? ""}
+            onchange={(e) => (Search.filters.role = e.target.value)}
           >
             <option value="">[角色]</option>
             {RoleList.map((item) => (
@@ -64,8 +64,8 @@ export default {
           <input
             type="input"
             class="w-36"
-            value={Search.keyword}
-            oninput={(e) => (Search.keyword = e.target.value)}
+            value={Search.filters.keyword}
+            oninput={(e) => (Search.filters.keyword = e.target.value)}
             placeholder="关键字搜索"
           />
           <button type="button" class="px-4" onclick={GetData}>
@@ -171,11 +171,12 @@ export default {
               })}
             </tbody>
           </table>
+          {List.length === 0 ? <p class="text-center">暂无内容</p> : ""}
         </div>
         <dialog id="dialog">
           <header>请确认</header>
           <p class="pt-2 pb-4">即将 [{this.dialogText}] 相关记录，是否继续?</p>
-          <form method="dialog" class="space-x-2">
+          <form method="dialog" class="space-x-2 flex justify-center">
             <button onclick={() => Batch(this.dialogText)}>继续</button>
             <button
               onclick={() => {
@@ -221,7 +222,6 @@ export default {
             &nbsp;
           </div>
           <Pagination
-            class=""
             current={Page.current}
             total={Page.total}
             pageSize={Page.pageSize}

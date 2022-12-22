@@ -47,17 +47,14 @@ export default [
     },
   },
   {
-    url: "/openapi/s2c/user_manage/role/list",
+    url: "/openapi/s2c/entry/my_perms/",
     method: "get",
     response: (req: any) => {
       return {
         code: 200,
         data: {
-          list: [
-            { name: "admin_role", scope: "", name_zh: "管理员" },
-            { name: "manager_role", scope: "", name_zh: "主管" },
-            { name: "member_role", scope: "", name_zh: "员工" },
-          ],
+          menu: ["authorization", "system"],
+          permission: ["authorization", "system"],
         },
         msg: "",
         req,
@@ -74,7 +71,126 @@ export default [
           list: [
             { codename: "authorization", name: "授权管理" },
             { codename: "system", name: "系统管理" },
-            // { codename: "member_role", scope: "" },
+          ],
+        },
+        msg: "",
+        req,
+      };
+    },
+  },
+  {
+    url: "/openapi/s2c/product/list/",
+    method: "get",
+    response: (req: any) => {
+      return {
+        code: 200,
+        data: {
+          list: [
+            { product: "产品1", product_classify: "大类", product_code: "xx" },
+            { product: "产品2", product_classify: "大类", product_code: "yy" },
+          ],
+        },
+        msg: "",
+        req,
+      };
+    },
+  },
+  {
+    url: "/openapi/s2c/license/license_create/",
+    method: "post",
+    response: (req: any) => {
+      return {
+        code: 201,
+        data: {
+          error_msg: "sssss错误",
+          error_list: ["88888888", "9999999"],
+        },
+        msg: "license 生成失败",
+        req,
+      };
+    },
+  },
+  {
+    url: "/openapi/s2c/license/list/",
+    method: "get",
+    response: (req: any) => {
+      return {
+        code: 200,
+        data: {
+          total: 200,
+          list: [
+            {
+              order_id: "88888888888888",
+              license_id: "123",
+              license_status: 0, //（0无效1有效）
+              product: "xxxx 产品",
+              product_code: "xx",
+              po_order_id: "345346435",
+              oa_order_id: "123123123",
+              host_id: "70b4e84aca3e",
+              purpose: 0, //证书类型
+              type: "Floating", //许可证类型
+              place: 10, //席位
+              user: "admin", //制单人
+              proposer: "销售张三", //申请人
+              user_roler: "001",
+              status: 0, //状态（0未生成1已生成）
+              end_time: "2022-12-12", //到期日
+              validity_periods: "60天", //有效天数
+              created_time: "2022-11-11 08:12:12",
+              info_from: 1, //（0：oa 1：录入）
+              customer: "华为信息科技华为信",
+              name: "刘星",
+              phone: "17821111111",
+              email: "xxx@xxx.com",
+              countdown: 22, //倒计时
+              remind_time: 2, //已提醒次数 },
+            },
+            {
+              order_id: "88888888888888",
+              license_id: "123",
+              license_status: 0, //（0无效1有效）
+              product: "xxxx 产品",
+              product_code: "xx",
+              po_order_id: "345346435",
+              oa_order_id: "123123123",
+              host_id: "70b4e84aca3e",
+              purpose: 0, //证书类型
+              type: "Node-Locked", //许可证类型
+              place: "", //席位
+              user: "admin", //制单人
+              proposer: "销售张三", //申请人
+              user_roler: "001",
+              status: 0, //状态（0未生成1已生成）
+              end_time: "2022-12-12", //到期日
+              validity_periods: "60天", //有效天数
+              created_time: "2022-11-11 08:12:12",
+              info_from: 0, //（0：oa 1：录入）
+              customer: "华为信息科技",
+              name: "刘星",
+              phone: "17821111111",
+              email: "ssss@xxx.com",
+              countdown: 22, //倒计时
+              remind_time: 2, //已提醒次数 },
+            },
+          ],
+        },
+        msg: "",
+        req,
+      };
+    },
+  },
+  {
+    url: "/openapi/s2c/user_manage/role/list",
+    method: "get",
+    response: (req: any) => {
+      return {
+        code: 200,
+        data: {
+          list: [
+            { name: "admin_role", scope: "", name_zh: "管理员" },
+            { name: "manager_role", scope: "", name_zh: "主管" },
+            { name: "member_role", scope: "", name_zh: "员工" },
           ],
         },
         msg: "",
@@ -247,7 +363,7 @@ export default [
             },
           ],
         },
-        msg: "",
+        msg: "124234234",
         req,
       };
     },

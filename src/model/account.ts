@@ -79,14 +79,17 @@ export let Search = {
   loading: false,
   page: 0,
   size: 10,
-  sort: "",
-  sort2: [],
-} as AccountItem & {
-  keyword?: string;
+  sort: [],
+  filters: {},
+} as {
+  filters: AccountItem & {
+    keyword?: string;
+    start_time?: string;
+    end_time?: string;
+  };
   page: number;
   size: number;
-  sort: string;
-  sort2: Array<{ attr: string; order: string }>;
+  sort: Array<{ attr: string; order: string }> | string;
   loading: boolean;
 };
 
@@ -108,8 +111,11 @@ export const SetData = (data?: AccountItem) => {
 export const GetData = async () => {
   console.log(Search);
   // const data = { ...Search };
-  Search.sort = JSON.stringify(Search.sort2);
+  Search.sort = JSON.stringify(Search.sort);
+  Search.filters = JSON.stringify(Search.filters);
   const resp = await request("get", Api.AccountList, Search);
+  Search.sort = JSON.parse(Search.sort);
+  Search.filters = JSON.parse(Search.filters);
   List = resp.list;
   Page.total = resp.total;
   // CheckFlag = false;
@@ -129,9 +135,9 @@ export const SortEvent = (attr: string, order: SortEnum) => {
     }
   });
   if (order === SortEnum.none) {
-    Search.sort2 = [];
+    Search.sort = [];
   } else {
-    Search.sort2 = [{ attr, order: SortEnum[order] }];
+    Search.sort = [{ attr, order: SortEnum[order] }];
   }
   GetData();
 };
@@ -159,7 +165,8 @@ export const Reset = () => {
     loading: false,
     page: 0,
     size: 10,
-    sort2: [],
+    filter: {},
+    sort: [],
   } as any;
   Page = {
     current: 1,

@@ -1,30 +1,83 @@
 import request, { Api } from "@/utils/request";
-import sort, { SortEnum } from "@/coms/sort";
-
+import { SortEnum } from "@/coms/sort";
+import m from "mithril";
 import { MsgAdd, State } from "@/coms/message";
-export enum LicState {
-  有效 = "valid",
-  无效 = "invalid",
-}
-
-export type LicItem = {
-  customer?: string;
-  prod?: string;
-  lic_num?: string;
-  cert_type?: string;
-  valid_age?: string;
-  password?: string;
-  po_code?: string;
-  source?: string;
-  apply?: string;
-  create?: string;
-  lic_type?: string;
-  version?: string;
-  checked?: "checked" | "";
-  loading?: boolean;
+export const LicState = {
+  过期: 0,
+  有效: 1,
 };
 
-export const DropState = Object.entries(LicState);
+export const LicStatus = {
+  未生成: 0,
+  已生成: 1,
+};
+
+export const LicCountDown = {
+  "< 15天": 15,
+  "< 30天": 30,
+  "< 45天": 45,
+};
+
+export enum LicSource {
+  OA,
+  录入,
+}
+
+export enum LicCertType {
+  评估,
+  售出,
+}
+
+export const LicValidtime = [
+  "30天",
+  "60天",
+  "90天",
+  "180天",
+  "1年",
+  "2年",
+  "3年",
+  "永久",
+];
+export const SearchValidtime = {
+  "30天": '["30天"]',
+  "60天": '["60天"]',
+  "90天": '["90天"]',
+  "180天": '["180天"]',
+  ">=1年": '["1年","2年","3年","永久"]',
+};
+
+export const LicType = ["Node-Locked", "Floating"];
+
+export type LicItem = {
+  order_id?: string;
+  license_id?: string;
+  license_status?: number; //（0无效1有效）
+  product?: string;
+  product_code?: string;
+  po_order_id?: string;
+  oa_order_id?: string;
+  host_id?: string;
+  purpose?: number; //证书类型
+  type?: string; //许可证类型
+  place?: string; //席位
+  user?: string; //制单人
+  proposer?: string; //申请人
+  user_roler?: number;
+  status?: number; //状态（0未生成1已生成）
+  end_time?: string; //到期日
+  validity_periods?: string; //有效天数
+  created_time?: string;
+  info_from?: number; //（0：oa 1：录入）
+  customer?: string;
+  name?: string;
+  phone?: string;
+  email?: string;
+  countdown?: number; //倒计时
+  remind_time?: number; //已提醒次数
+  loading?: boolean;
+  checked?: string;
+  newEmail?: string;
+};
 
 export const CheckAll = () => {
   let CheckFlag = false;
@@ -32,92 +85,59 @@ export const CheckAll = () => {
   else if (!List.some((item) => item.checked === "checked")) CheckFlag = false;
 
   CheckFlag = !CheckFlag;
-
   List.forEach(
     (_, index) => (List[index].checked = CheckFlag ? "checked" : "")
   );
-};
-
-export const Batch = async (operation: "启用" | "禁用" | "删除") => {
-  let data;
-  // if (index !== undefined) {
-  //   data = List.filter((_, i) => i === index).map((item) => item.username);
-  // } else {
-  if (!List.some((item) => item.checked === "checked")) {
-    MsgAdd(State.failed, "请至少选择一条记录");
-    return false;
-  }
-  data = List.filter((item) => item.checked === "checked").map(
-    (item) => item.username
-  );
-  // }
-  switch (operation) {
-    case "启用":
-      await request("post", Api.AccountState, {
-        status: "active",
-        username: JSON.stringify(data),
-      });
-      break;
-    case "禁用":
-      await request("post", Api.AccountState, {
-        status: "disactive",
-        username: JSON.stringify(data),
-      });
-      break;
-    case "删除":
-      await request("post", Api.AccountDelete, {
-        username: data[0],
-      });
-      break;
-  }
-  MsgAdd(State.success, "操作成功");
-  GetData();
-  // }, 50);
 };
 
 export let Search = {
   loading: false,
   page: 0,
   size: 10,
-  sort: "",
-  sort2: [],
-} as AccountItem & {
-  keyword?: string;
+  sort: [],
+  filters: {},
+} as {
+  filters: LicItem & {
+    keyword?: string;
+    start_time?: string;
+    end_time?: string;
+  };
+
   page: number;
   size: number;
-  sort: string;
-  sort2: Array<{ attr: string; order: string }>;
+  sort: Array<{ attr: string; order: string }> | string;
   loading: boolean;
 };
 
 export let Data = {
-  status: "active",
   loading: false,
-} as AccountItem;
-export let List = [] as Array<AccountItem>;
+} as LicItem;
 
-export const SetData = (data?: AccountItem) => {
+export let List = [] as Array<LicItem>;
+
+export const SetData = (data?: LicItem) => {
   if (data === undefined)
     Data = {
-      status: "active",
       loading: false,
     };
   else Data = data;
 };
 
 export const GetData = async () => {
+  Search.sort = JSON.stringify(Search.sort);
+  Search.filters = JSON.stringify(Search.filters);
   console.log(Search);
-  // const data = { ...Search };
-  Search.sort = JSON.stringify(Search.sort2);
-  const resp = await request("get", Api.AccountList, Search);
-  List = resp.list;
-  Page.total = resp.total;
-  // CheckFlag = false;
+  request("get", Api.LicenseList, Search).then((resp) => {
+    List = resp.list;
+    Page.total = resp.total;
+  });
+  Search.sort = JSON.parse(Search.sort);
+  Search.filters = JSON.parse(Search.filters);
 };
 
 export let SortAttrs = {
   create_time: SortEnum.none,
-  status: SortEnum.none,
+  validity_periods: SortEnum.none,
 };
 
 export const SortEvent = (attr: string, order: SortEnum) => {
@@ -129,9 +149,9 @@ export const SortEvent = (attr: string, order: SortEnum) => {
     }
   });
   if (order === SortEnum.none) {
-    Search.sort2 = [];
+    Search.sort = [];
   } else {
-    Search.sort2 = [{ attr, order: SortEnum[order] }];
+    Search.sort = [{ attr, order: SortEnum[order] }];
   }
   GetData();
 };
@@ -141,12 +161,8 @@ export let Page = {
   pageSize: 10,
   total: 0,
 };
+
 export const PageChange = (pageNum: number, pageSize: number) => {
-  /**
-   * TODO
-   * 1.invoke API list
-   * 1.change List data & Page.total
-   */
   Page.current = pageNum;
   Page.pageSize = pageSize;
   Search.page = pageNum - 1;
@@ -159,7 +175,8 @@ export const Reset = () => {
     loading: false,
     page: 0,
     size: 10,
-    sort2: [],
+    filters: {},
+    sort: [],
   } as any;
   Page = {
     current: 1,
@@ -168,22 +185,44 @@ export const Reset = () => {
   };
   SortAttrs = {
     create_time: SortEnum.none,
-    status: SortEnum.none,
+    validity_periods: SortEnum.none,
   };
   GetData();
 };
 
-// const attrsMapping = {
-//   account: "username",
-//   fullName: "full_name",
-//   state: "status",
-//   roler: "role",
-//   email: "email",
-//   phone: "phone",
-//   password: "password",
-//   rePwd: "rePwd",
-//   create: "create_time",
-// };
-// const invertMapping = Object.fromEntries(
-//   Object.entries(attrsMapping).map((item) => [item[1], item[0]])
-// );
+export const Batch = async (operation: "生成" | "推送" | "提醒") => {
+  if (!List.some((item) => item.checked === "checked")) {
+    MsgAdd(State.failed, "请至少选择一条记录");
+    return false;
+  }
+  const data = List.filter((item) => item.checked === "checked").map(
+    (item) => item.order_id
+  );
+  switch (operation) {
+    case "生成":
+      try {
+        await request("post", Api.LicenseGenerate, {
+          order_ids: JSON.stringify(data),
+        });
+      } catch (e) {
+        alert(`以下许可证生成失败\n\n${e.error_list}`);
+      }
+
+      break;
+    case "推送":
+      await request("post", Api.AccountState, {
+        status: "disactive",
+        username: JSON.stringify(data),
+      });
+      MsgAdd(State.success, "操作成功");
+      break;
+    case "提醒":
+      await request("post", Api.AccountDelete, {
+        username: data[0],
+      });
+      MsgAdd(State.success, "操作成功");
+      break;
+  }
+
+  GetData();
+};

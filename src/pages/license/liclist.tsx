@@ -1,218 +1,233 @@
 import m from "mithril";
 import LicInfo from "@/pages/license/licinfo";
-import account, { SortEvent } from "@/model/account";
+import {
+  SortEvent,
+  Search,
+  LicType,
+  SearchValidtime,
+  Reset,
+  GetData,
+  Page,
+  List,
+  SetData,
+  LicCertType,
+  LicSource,
+  CheckAll,
+  SortAttrs,
+  PageChange,
+  Batch,
+} from "@/model/license";
 import Pagination from "@/coms/pagination";
 import { Routes } from "@/model/routeCfg";
 import TopBar from "@/coms/topbar";
-import Sort, { SortEnum } from "@/coms/sort";
+import Sort from "@/coms/sort";
+import { ProductList } from "@/model/common";
+import { MsgAdd, State } from "@/coms/message";
 
 const topBar = Routes.find((item) => item.key === "authorization");
 
-const page = {
-  current: 1,
-  total: 1000,
-  pageSize: 10,
-};
-
-const data = {
-  id: "6666666",
-  po: "8888888",
-  prod: "play2020 full edition",
-  use: "评估",
-  type: "Floating",
-  seat: 20,
-  age: "60days",
-  apply: "2022-11-11 02:34:00",
-  source: "OA",
-};
-
 // whitespace-pre overflow-auto
 
-const pageChange = (pageNum: number, pageSize: number) => {
-  page.total = 800;
-  page.current = 5;
-  page.pageSize = 20;
-  console.log({ pageNum, pageSize });
-  // console.log(SS.instance.attrs.resume());
-};
-
-const sortEvent = (sortField: string, order: string) => {
-  console.log(sortField, order);
-};
-
 export default {
-  input: "text",
-
-  oninit() {
-    // console.log(account);
-    console.log(m.route.get());
-  },
+  dialogText: "",
   oncreate() {
-    // var dialog = document.getElementById("hello-dialog");
-    // dialog.show();
-    // console.log(123123);
+    if (Page.total === 0) {
+      GetData();
+    }
   },
-  onremove() {
-    console.log("remove ....");
-  },
+
   view({ attrs }) {
     return (
       <>
         <LicInfo />
         <TopBar menus={topBar} />
-        <form class="flex  space-x-1.5 h-8">
-          <select>
-            <option>[产品]</option>
-            <option>PPro ver 1231123</option>
-            <option>Neuro</option>
+        <form class="flex space-x-1.5 h-8">
+          <select
+            class="min-w-[120px]"
+            value={Search.filters.product_code ?? ""}
+            onchange={(e) => (Search.filters.product_code = e.target.value)}
+          >
+            <option value="">[产品]</option>
+            {ProductList.map((item) => (
+              <option value={item.product_code}>{item.product}</option>
+            ))}
           </select>
-          <select>
-            <option>[证书类型]</option>
-            <option>Eval</option>
-            <option>Full</option>
+          <select
+            value={Search.filters.purpose ?? ""}
+            onchange={(e) => (Search.filters.purpose = e.target.value)}
+          >
+            <option value="">[证书类型]</option>
+            {Object.values(LicCertType)
+              .filter((item) => typeof item !== "number")
+              .map((item, index) => (
+                <option value={index}>{item}</option>
+              ))}
           </select>
-          <select>
-            <option>[许可类型]</option>
-            <option>Node-locked</option>
-            <option>Floating</option>
+          <select
+            value={Search.filters.type ?? ""}
+            onchange={(e) => (Search.filters.type = e.target.value)}
+          >
+            <option value="">[许可类型]</option>
+            {LicType.map((item) => (
+              <option value={item}>{item}</option>
+            ))}
           </select>
-          <select>
-            <option>[有效期]</option>
-            <option>7日</option>
-            <option>30日</option>
-            <option>60日</option>
-            <option>90日</option>
-            <option>180日</option>
-            <option>&gt;=1年</option>
+          <select
+            value={Search.filters.validity_periods ?? ""}
+            onchange={(e) => (Search.filters.validity_periods = e.target.value)}
+          >
+            <option value="">[有效期]</option>
+            {Object.entries(SearchValidtime).map((item) => (
+              <option value={item[1]}>{item[0]}</option>
+            ))}
           </select>
-          <input type="input" class=" w-36" placeholder="关键字搜索" />
-          <button type="button" class="px-4" onclick={() => pageChange(1, 20)}>
+          <input
+            type="input"
+            value={Search.filters.keyword}
+            oninput={(e) => (Search.filters.keyword = e.target.value)}
+            class=" w-36"
+            placeholder="关键字搜索"
+          />
+          <button type="button" class="px-4" onclick={GetData}>
             搜索
           </button>
-          <button type="reset" class="px-4">
+          <button type="reset" onclick={Reset} class="px-4">
             重置
           </button>
         </form>
 
-        {/* </div> */}
         <hr class="my-4"></hr>
         <div class="min-h-[675px]">
           <table class="mb-6 table-auto  h-1">
             <thead class="select-none">
               <tr>
                 <th class="w-10 ">
-                  <a href="">全选</a>
+                  <a href="JavaScript:void(0);" onclick={CheckAll}>
+                    全选
+                  </a>
                 </th>
                 <th>产品/客户</th>
                 <th>许可证号</th>
                 <th>证书类型</th>
                 <th>许可类型</th>
-                <th>证书类型</th>
+                <th>席位</th>
                 <th class="flex space-x-1 items-center">
                   <Sort
-                    order={SortEnum.none}
-                    value={{ name: "有效期", attr: "days" }}
+                    order={SortAttrs.validity_periods}
+                    value={{ name: "有效期", attr: "validity_periods" }}
                     sortEvent={SortEvent}
                   />
                 </th>
-                <th>
-                  <Sort
-                    order={SortEnum.none}
-                    value={{ name: "PO单号", attr: "po" }}
-                    sortEvent={SortEvent}
-                  />
-                </th>
+                <th>PO单号</th>
                 <th>来源</th>
-                <th class="w-38">申请人</th>
+                <th class="w-38">
+                  <Sort
+                    order={SortAttrs.create_time}
+                    value={{ name: "申请时间", attr: "create_time" }}
+                    sortEvent={SortEvent}
+                  />
+                </th>
               </tr>
             </thead>
             <tbody>
-              {[...Array(10)].map((i) => {
+              {List.map((item, index) => {
                 return (
                   <tr>
                     <td class="">
-                      <input class="ml-2 mt-1" type="checkbox" />
+                      <input
+                        class="ml-2 mt-1"
+                        type="checkbox"
+                        checked={item.checked}
+                        onchange={(e) => {
+                          List[index].checked =
+                            item.checked === "checked" ? "" : "checked";
+                        }}
+                      />
                     </td>
                     <td>
                       <blockquote class="my-0 not-italic py-1 p-2 min-h-[50px]">
-                        {data.prod}
+                        {item.product}
                         <footer class="border-t-0 pt-0">
-                          <cite>Lenovo company </cite>
+                          <cite>{item.customer}</cite>
                         </footer>
                       </blockquote>
                     </td>
-                    <td class="cursor-pointer">
+                    <td class="cursor-pointer ">
                       <a
                         class="pt-2 "
                         onclick={() => {
-                          // SetData(item);
-                          // m.route.set("/sys/account/list/edit");
+                          item.newEmail = item.email;
+                          SetData(item);
                           document.getElementById("dialog")?.showModal();
                         }}
                         href="JavaScript:void(0);"
                       >
-                        {data.id}
+                        {item.order_id}
                       </a>
                     </td>
 
-                    <td>{data.use}</td>
-                    <td>{data.type}</td>
+                    <td>{LicCertType[item.purpose]}</td>
+                    <td>{item.type}</td>
 
-                    <td>{data.seat}</td>
-                    <td class="font-bold ">{data.age}</td>
-                    <td>{data.po}</td>
-                    <td>{data.source}</td>
+                    <td>{item.place ? item.place : "N/A"}</td>
+                    <td class="font-bold ">{item.validity_periods}</td>
+                    <td>{item.po_order_id}</td>
+                    <td>{LicSource[item.info_from]}</td>
                     <td class="">
-                      liu xing<br></br>
-                      {data.apply}
+                      {item.proposer}
+                      <br></br>
+                      {item.created_time}
                     </td>
                   </tr>
                 );
               })}
             </tbody>
           </table>
+          {List.length === 0 ? <p class="text-center">暂无内容</p> : ""}
         </div>
-        <dialog id="dialog">
-          <header>This is a sample dialog</header>
-          <p>What is your favorite pet animal?</p>
-          <menu>
-            <button value="feline">Cats</button>
-            <button value="canine">Dogs</button>
-            <button value="other">Others</button>
-          </menu>
+        <dialog id="confirm">
+          <header>请确认</header>
+          <p class="pt-2 pb-4">即将 [{this.dialogText}] 相关记录，是否继续?</p>
+          <form method="dialog" class="space-x-2 flex justify-center">
+            <button
+              onclick={() => {
+                Batch("生成");
+              }}
+            >
+              继续
+            </button>
+            <button
+              onclick={() => {
+                List.forEach((_, index) => (List[index].checked = ""));
+              }}
+            >
+              取消
+            </button>
+          </form>
         </dialog>
         <hr></hr>
         <div class="flex justify-between mt-4">
           <div>
             <a
               class="pt-2 "
-              onclick={() => alert("生成")}
+              onclick={() => {
+                if (!List.some((item) => item.checked === "checked")) {
+                  MsgAdd(State.failed, "请至少选择一条记录");
+                  return false;
+                }
+                this.dialogText = "批量生成";
+                document.getElementById("confirm")?.showModal();
+              }}
               href="JavaScript:void(0);"
             >
               [批量生成]
             </a>
-            {/* &nbsp;
-            <a
-              class="pt-2 "
-              onclick={() => alert("生成")}
-              href="JavaScript:void(0);"
-            >
-              [全部生成]
-            </a> */}
-            {/* <a
-              class="pt-2 "
-              onclick={() => alert("导出")}
-              href="JavaScript:void(0);"
-            >
-              [数据导出]
-            </a> */}
           </div>
           <Pagination
-            class=""
-            current={page.current}
-            total={page.total}
-            pageSize={page.pageSize}
-            onChange={pageChange}
+            current={Page.current}
+            total={Page.total}
+            pageSize={Page.pageSize}
+            onChange={PageChange}
           />
         </div>
       </>

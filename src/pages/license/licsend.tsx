@@ -1,9 +1,10 @@
 import m from "mithril";
-// import "@ui5/webcomponents/dist/Dialog";
-import account from "@/model/account";
+import LicInfo from "@/pages/license/licinfo";
+
 import Pagination from "@/coms/pagination";
 import { Routes } from "@/model/routeCfg";
 import TopBar from "@/coms/topbar";
+import { GetData, List, Page, Reset } from "@/model/licsend";
 
 const topBar = Routes.find((item) => item.key === "authorization");
 
@@ -37,20 +38,15 @@ const pageChange = (pageNum: number, pageSize: number) => {
 };
 
 export default {
-  input: "text",
-
-  oninit() {
-    // console.log(account);
-    console.log(m.route.get());
-  },
   oncreate() {
-    // var dialog = document.getElementById("hello-dialog");
-    // dialog.show();
-    // console.log(123123);
+    if (Page.total === 0) {
+      GetData();
+    }
   },
   view({ attrs }) {
     return (
       <>
+        <LicInfo />
         <TopBar menus={topBar} />
         <form class="flex space-x-1.5 min-w-fit  h-8">
           <select>
@@ -79,10 +75,10 @@ export default {
             <input class="w-[125px] h-8" type="date" />
           </div>
           <input type="search" class="w-36" placeholder="关键字搜索" />
-          <button type="submit" class="px-4">
+          <button type="button" class="px-4" onclick={GetData}>
             搜索
           </button>
-          <button type="reset" class="px-4">
+          <button type="reset" onclick={Reset} class="px-4">
             重置
           </button>
         </form>
@@ -106,16 +102,28 @@ export default {
                 <th>状态</th>
                 <th>到期日</th>
                 {/* <th>关联单号</th> */}
-                <th class="w-38">生成人</th>
+                <th class="w-38">生成时间</th>
                 <th>操作</th>
               </tr>
             </thead>
             <tbody>
-              {[...Array(10)].map((i) => {
+              {List.map((item, index) => {
                 return (
                   <tr>
                     <td class="">
-                      <input class="ml-2 mt-1" type="checkbox" />
+                      <input
+                        class="ml-2 mt-1"
+                        type="checkbox"
+                        checked={item.checked}
+                        onchange={(e) => {
+                          List.forEach((item, i) => {
+                            if (i === index)
+                              item.checked =
+                                item.checked === "checked" ? "" : "checked";
+                            else item.checked = "";
+                          });
+                        }}
+                      />
                     </td>
                     <td>
                       <blockquote class="my-0 not-italic py-1 p-2 ">
@@ -200,7 +208,6 @@ export default {
             </a>
           </div>
           <Pagination
-            class=""
             current={page.current}
             total={page.total}
             pageSize={page.pageSize}

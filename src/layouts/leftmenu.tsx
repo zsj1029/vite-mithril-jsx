@@ -10,8 +10,7 @@ export default {
     this.routes = [];
     const module = await request("get", Api.Modules);
     Routes.forEach((item) => {
-      if (module.list.some((v) => v.codename === item.key))
-        this.routes.push(item);
+      if (module.menu.includes(item.key)) this.routes.push(item);
 
       if (item.key === "password") this.routes.push(item);
     });
