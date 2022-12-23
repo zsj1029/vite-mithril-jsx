@@ -22,10 +22,10 @@ import { Sys } from "@/routers/sys";
 import { License } from "@/routers/license";
 
 const routes = {
-  "/app": { onmatch: async () => (await import("@/mith")).default },
-  "/coutDown": {
-    onmatch: async () => (await import("@/lic-countdown")).default,
-  },
+  // "/app": { onmatch: async () => (await import("@/mith")).default },
+  // "/countDown": {
+  //   onmatch: async () => (await import("@/lic-countdown")).default,
+  // },
   // "/test": {
   //   render: () => <ESM age="900" />,
   // },

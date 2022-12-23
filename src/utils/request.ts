@@ -3,11 +3,13 @@ import m from "mithril";
 export default async (
   method = "POST",
   url: string,
-  data?: any
+  data?: any,
+  responseType = "json"
 ): Promise<any> => {
   let options = {
     method,
     url: "/openapi/s2c" + url,
+    responseType,
   };
   const body = { ...data };
   delete body.loading;
@@ -31,6 +33,10 @@ export default async (
   // await Sleep(1);
   try {
     resp = await m.request(options);
+    if (options.responseType === "blob") {
+      console.log(options);
+      return resp;
+    }
     if (resp.code === 4005) {
       alert(resp.msg);
       m.route.set("/login", null, {
@@ -43,7 +49,8 @@ export default async (
       window.document.querySelector(".messagebox")
         ? MsgAdd(State.failed, resp.msg)
         : alert(resp.msg);
-      throw resp.data;
+      delete resp.code;
+      throw resp;
     }
     return resp.data;
   } catch (e) {
@@ -79,6 +86,9 @@ export enum Api {
   LicenseList = "/license/list/",
   LicenseGenerate = "/license/license_create/",
   LicenseCreate = "/license/input_license_info/",
+  LicensePush = "/license/push/",
+  LicenseDownload = "/license/info/",
+  LicenseExport = "/license/data_export/",
 }
 
 export function DeepClone(obj, hash = new WeakMap()) {

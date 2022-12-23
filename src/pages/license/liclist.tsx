@@ -18,6 +18,7 @@ import {
   SortAttrs,
   PageChange,
   Batch,
+  Data,
 } from "@/model/license";
 import Pagination from "@/coms/pagination";
 import { Routes } from "@/model/routeCfg";
@@ -44,7 +45,7 @@ export default {
   view({ attrs }) {
     return (
       <>
-        <LicInfo />
+        <LicInfo Data={Data} />
         <TopBar menus={topBar} />
         <form class="flex space-x-1.5 h-8">
           <select

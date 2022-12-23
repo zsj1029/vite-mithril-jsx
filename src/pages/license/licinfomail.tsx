@@ -1,25 +1,27 @@
 import m from "mithril";
 import dialogPolyfill from "dialog-polyfill";
-import { Data, LicCertType } from "@/model/license";
-
-const data = {
-  email: "",
-  order_id: "",
-};
+import { LicCertType } from "@/model/license";
+import request, { Api } from "@/utils/request";
+import { MsgAdd, State } from "@/coms/message";
 
 export default {
+  data: {
+    order_id: "",
+    email: "",
+    loading: false,
+  },
   oncreate({ attrs }) {
     dialogPolyfill.registerDialog(
       document.getElementById("dialog") as HTMLDialogElement
     );
   },
   onbeforeupdate() {},
-  view() {
+  view({ attrs }) {
     return (
-      <dialog id="dialog" class="w-2/3">
+      <dialog id="mailPush" class="w-2/3 z-10">
         <header>许可证号：88888888</header>
 
-        <form class="pt-2" method="dialog">
+        <form class="pt-2">
           <table class="mb-6 form-table form-info">
             <tbody>
               <tr>
@@ -27,14 +29,14 @@ export default {
                 <td class="">
                   <div class="flex flex-col">
                     {/* <input type="text" required /> */}
-                    <span class="pt-1">{Data.customer}</span>
+                    <span class="pt-1">{attrs.Data.customer}</span>
                   </div>
                 </td>
                 <td>PO单号</td>
                 <td>
                   <div class="flex flex-col">
                     {/* <input type="text" /> */}
-                    <span class="pt-1">{Data.po_order_id}</span>
+                    <span class="pt-1">{attrs.Data.po_order_id}</span>
                   </div>
                 </td>
               </tr>
@@ -43,7 +45,7 @@ export default {
                 <td colSpan="3">
                   <div class="flex flex-col">
                     {/* <input type="text" required /> */}
-                    <span class="pt-1">{Data.name}</span>
+                    <span class="pt-1">{attrs.Data.name}</span>
                   </div>
                 </td>
               </tr>
@@ -52,14 +54,14 @@ export default {
                 <td>
                   <div class="flex flex-col ">
                     {/* <input type="email" required /> */}
-                    <span class="pt-1">{Data.email}</span>
+                    <span class="pt-1">{attrs.Data.email}</span>
                   </div>
                 </td>
                 <td>电话*</td>
                 <td>
                   <div class="flex flex-col ">
                     {/* <input type="tel" required /> */}
-                    <span class="pt-1">{Data.phone}</span>
+                    <span class="pt-1">{attrs.Data.phone}</span>
                   </div>
                 </td>
               </tr>
@@ -80,7 +82,7 @@ export default {
                       <option value="root">PPro xxxx</option>
                       <option value="manager">Neuro xxxx</option>
                     </select> */}
-                    <span class="pt-1">{Data.product}</span>
+                    <span class="pt-1">{attrs.Data.product}</span>
                   </div>
                 </td>
                 <td>证书类型*</td>
@@ -91,7 +93,7 @@ export default {
                       <option>评估证书</option>
                       <option>售出证书</option>
                     </select> */}
-                    <span class="pt-1">{LicCertType[Data.purpose]}</span>
+                    <span class="pt-1">{LicCertType[attrs.Data.purpose]}</span>
                   </div>
                 </td>
               </tr>
@@ -104,14 +106,14 @@ export default {
                       <option>Node-Locked</option>
                       <option>Floating</option>
                     </select> */}
-                    <span class="pt-1">{Data.type}</span>
+                    <span class="pt-1">{attrs.Data.type}</span>
                   </div>
                 </td>
                 <td>可用席位</td>
                 <td>
                   <div class="flex flex-col ">
                     {/* <input type="number" /> */}
-                    <span class="pt-1">{Data.place}</span>
+                    <span class="pt-1">{attrs.Data.place}</span>
                   </div>
                 </td>
               </tr>
@@ -120,24 +122,13 @@ export default {
                 <td>
                   <div class="flex flex-col ">
                     {/* <input type="text" required /> */}
-                    <span class="pt-1">{Data.host_id}</span>
+                    <span class="pt-1">{attrs.Data.host_id}</span>
                   </div>
                 </td>
                 <td>有效期*</td>
                 <td>
                   <div class="flex flex-col ">
-                    {/* <select>
-                      <option>[有效期]</option>
-                      <option>30天</option>
-                      <option>60天</option>
-                      <option>90天</option>
-                      <option>180天</option>
-                      <option>1年</option>
-                      <option>2年</option>
-                      <option>3年</option>
-                      <option>永久</option>
-                    </select> */}
-                    <span class="pt-1">{Data.validity_periods}</span>
+                    <span class="pt-1">{attrs.Data.validity_periods}</span>
                   </div>
                 </td>
               </tr>
@@ -154,8 +145,8 @@ export default {
                   <div class="flex flex-col ">
                     <input
                       type="email"
-                      value={Data.newEmail}
-                      oninput={(e) => (Data.newEmail = e.target.value)}
+                      value={attrs.Data.newEmail}
+                      oninput={(e) => (attrs.Data.newEmail = e.target.value)}
                       required
                     />
                     <p class="pt-1 text-xs">用于接收许可证书的邮件地址</p>
@@ -167,16 +158,24 @@ export default {
           <hr class="my-4"></hr>
           <button
             class="pt-2 mr-2"
-            onclick={() => {
-              console.log(Data);
-              return false;
+            disabled={this.data.loading}
+            onclick={async () => {
+              this.data.order_id = attrs.Data.order_id;
+              this.data.email = attrs.Data.newEmail;
+              try {
+                await request("post", Api.LicensePush, this.data);
+                document.getElementById("mailPush").close();
+                MsgAdd(State.success, "推送成功");
+              } catch (e) {
+                alert(e.msg);
+              }
             }}
           >
             推送
           </button>
           <button
             class="pt-2 "
-            onclick={() => document.getElementById("dialog").close()}
+            onclick={() => document.getElementById("mailPush").close()}
           >
             关闭
           </button>

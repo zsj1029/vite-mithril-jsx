@@ -2,15 +2,15 @@ import request, { Api } from "@/utils/request";
 import { SortEnum } from "@/coms/sort";
 import m from "mithril";
 import { MsgAdd, State } from "@/coms/message";
-export const LicState = {
-  过期: 0,
-  有效: 1,
-};
+export enum LicState {
+  过期,
+  有效,
+}
 
-export const LicStatus = {
-  未生成: 0,
-  已生成: 1,
-};
+export enum LicStatus {
+  未生成,
+  已生成,
+}
 
 export const LicCountDown = {
   "< 15天": 15,
@@ -77,6 +77,8 @@ export type LicItem = {
   loading?: boolean;
   checked?: string;
   newEmail?: string;
+  generate_time?: string; //生成时间
+  licContent?: string; //许可证书内容
 };
 
 export const CheckAll = () => {
@@ -190,7 +192,33 @@ export const Reset = () => {
   GetData();
 };
 
-export const Batch = async (operation: "生成" | "推送" | "提醒" | "删除") => {
+export const Export = async () => {
+  Search.sort = JSON.stringify(Search.sort);
+  Search.filters = JSON.stringify(Search.filters);
+  const tmp = {
+    page: Search.page,
+    size: Search.size,
+  };
+  Search.page = 0;
+  Search.size = 9999999999;
+  console.log(Search);
+  const resp = await request("get", Api.LicenseExport, Search, "blob");
+  Search.sort = JSON.parse(Search.sort);
+  Search.filters = JSON.parse(Search.filters);
+  Search.page = tmp.page;
+  Search.size = tmp.size;
+
+  const blob = new Blob([resp], {
+    type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  });
+  const link = document.createElement("a");
+  link.download = `导出数据.xlsx`;
+  link.href = URL.createObjectURL(blob);
+  link.click();
+  URL.revokeObjectURL(link.href);
+};
+
+export const Batch = async (operation: "批量生成" | "提醒" | "删除") => {
   if (!List.some((item) => item.checked === "checked")) {
     MsgAdd(State.failed, "请至少选择一条记录");
     return false;
@@ -205,16 +233,8 @@ export const Batch = async (operation: "生成" | "推送" | "提醒" | "删除"
           order_ids: JSON.stringify(data),
         });
       } catch (e) {
-        alert(`以下许可证生成失败\n\n${e.error_list}`);
+        alert(`以下许可证生成失败\n${e.data.error_list}`);
       }
-
-      break;
-    case "推送":
-      await request("post", Api.AccountState, {
-        status: "disactive",
-        username: JSON.stringify(data),
-      });
-      MsgAdd(State.success, "操作成功");
       break;
     case "提醒":
       await request("post", Api.AccountDelete, {

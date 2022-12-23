@@ -96,6 +96,31 @@ export default [
     },
   },
   {
+    url: "/openapi/s2c/license/info/",
+    method: "get",
+    response: (req: any) => {
+      return {
+        code: 200,
+        data: {
+          license_info:
+            "S2C Limited Softwar e and/or Intellectual Property License File \n Issued 2022.1 2.21 \n HOST LIC-Server 0 01234567890 5053\nISV s2c \n \n#USE_SERVER \n \n VE NDOR s2c Limitedn# n# Lic ensed to lenovo \n Expiratio of 2023.03.31 nLICENS E s2c neuro 1.0 2023-03-311 0 hostid=ANY issuer=s2c\n customer=lenovo_ck=a84efc 6e96 sig=60P045398W2WK 935WICQEGWWISXCR4WY \n TKUVMXR22H5D1BTA3GASTPSXPMU3W9GWKRGEWXRΤΤΟ \n",
+        },
+        msg: "license download",
+        req,
+      };
+    },
+  },
+  {
+    url: "/openapi/s2c/license/data_export/",
+    method: "get",
+
+    response: (req: any) => {
+      return new Blob(["S2C Limited Softwar e and/or Intellectual Property"], {
+        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      });
+    },
+  },
+  {
     url: "/openapi/s2c/license/license_create/",
     method: "post",
     response: (req: any) => {
@@ -117,7 +142,19 @@ export default [
       return {
         code: 200,
         data: {},
-        msg: "license 生成失败",
+        msg: "license create",
+        req,
+      };
+    },
+  },
+  {
+    url: "/openapi/s2c/license/push/",
+    method: "post",
+    response: (req: any) => {
+      return {
+        code: 200,
+        data: {},
+        msg: "license push",
         req,
       };
     },
@@ -129,12 +166,12 @@ export default [
       return {
         code: 200,
         data: {
-          total: 200,
+          total: 100,
           list: [
             {
               order_id: "88888888888888",
               license_id: "123",
-              license_status: 0, //（0无效1有效）
+              license_status: 1, //（0无效1有效）
               product: "xxxx 产品",
               product_code: "xx",
               po_order_id: "345346435",
@@ -147,7 +184,7 @@ export default [
               proposer: "销售张三", //申请人
               user_roler: "001",
               status: 0, //状态（0未生成1已生成）
-              end_time: "2022-12-12", //到期日
+              end_time: "2022-12-30", //到期日
               validity_periods: "60天", //有效天数
               created_time: "2022-11-11 08:12:12",
               info_from: 1, //（0：oa 1：录入）
@@ -156,7 +193,8 @@ export default [
               phone: "17821111111",
               email: "xxx@xxx.com",
               countdown: 22, //倒计时
-              remind_time: 2, //已提醒次数 },
+              remind_time: 2, //已提醒次数
+              generate_time: "2022-11-11 08:12:12", //生成时间
             },
             {
               order_id: "88888888888888",
@@ -183,7 +221,8 @@ export default [
               phone: "17821111111",
               email: "ssss@xxx.com",
               countdown: 22, //倒计时
-              remind_time: 2, //已提醒次数 },
+              remind_time: 2, //已提醒次数
+              generate_time: "2022-11-11 08:12:12", //生成时间
             },
           ],
         },

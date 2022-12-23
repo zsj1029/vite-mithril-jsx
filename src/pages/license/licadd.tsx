@@ -16,6 +16,7 @@ const topBar = Routes.find((item) => item.key === "authorization");
 
 const CreateLic = async () => {
   // console.log(Data);
+  Data.host_id = Data.host_id?.replaceAll(/:|-/g, "").toLocaleUpperCase();
   await request("post", Api.LicenseCreate, Data);
   MsgAdd(State.success, "创建成功");
   Data.product_code = "";
@@ -210,7 +211,9 @@ export default {
                     <input
                       type="text"
                       value={Data.host_id ?? ""}
-                      oninput={(e) => (Data.host_id = e.target.value)}
+                      oninput={(e) =>
+                        (Data.host_id = e.target.value.toLocaleUpperCase())
+                      }
                       minlength="12"
                       pattern="((([a-f0-9]{2}:){5})|(([a-f0-9]{2}-){5})|(([a-f0-9]{2}){5}))[a-f0-9]{2}$"
                       maxlength="17"

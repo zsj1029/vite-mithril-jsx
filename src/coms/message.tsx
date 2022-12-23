@@ -66,7 +66,7 @@ export default {
   view() {
     return (
       <>
-        <p class="messagebox fixed flex flex-col space-y-2 top-2 items-center ">
+        <p class="messagebox fixed flex flex-col space-y-2 top-2 items-center z-[9999]">
           {list.map((value) => {
             {
               if (value.state === State.success) {

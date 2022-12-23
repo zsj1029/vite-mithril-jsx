@@ -1,13 +1,13 @@
 import m from "mithril";
 import dialogPolyfill from "dialog-polyfill";
-import { Data, LicCertType } from "@/model/license";
+import { LicCertType } from "@/model/license";
 export default {
   oncreate({ attrs }) {
     dialogPolyfill.registerDialog(
       document.getElementById("dialog") as HTMLDialogElement
     );
   },
-  view() {
+  view({ attrs }) {
     return (
       <dialog id="dialog" class="w-2/3">
         <header>许可证号：88888888</header>
@@ -20,14 +20,14 @@ export default {
                 <td class="">
                   <div class="flex flex-col">
                     {/* <input type="text" required /> */}
-                    <span class="pt-1">{Data.customer}</span>
+                    <span class="pt-1">{attrs.Data.customer}</span>
                   </div>
                 </td>
                 <td>PO单号</td>
                 <td>
                   <div class="flex flex-col">
                     {/* <input type="text" /> */}
-                    <span class="pt-1">{Data.po_order_id}</span>
+                    <span class="pt-1">{attrs.po_order_id}</span>
                   </div>
                 </td>
               </tr>
@@ -36,7 +36,7 @@ export default {
                 <td colSpan="3">
                   <div class="flex flex-col">
                     {/* <input type="text" required /> */}
-                    <span class="pt-1">{Data.name}</span>
+                    <span class="pt-1">{attrs.Data.name}</span>
                   </div>
                 </td>
               </tr>
@@ -45,14 +45,14 @@ export default {
                 <td>
                   <div class="flex flex-col ">
                     {/* <input type="email" required /> */}
-                    <span class="pt-1">{Data.email}</span>
+                    <span class="pt-1">{attrs.Data.email}</span>
                   </div>
                 </td>
                 <td>电话*</td>
                 <td>
                   <div class="flex flex-col ">
                     {/* <input type="tel" required /> */}
-                    <span class="pt-1">{Data.phone}</span>
+                    <span class="pt-1">{attrs.Data.phone}</span>
                   </div>
                 </td>
               </tr>
@@ -73,7 +73,7 @@ export default {
                       <option value="root">PPro xxxx</option>
                       <option value="manager">Neuro xxxx</option>
                     </select> */}
-                    <span class="pt-1">{Data.product}</span>
+                    <span class="pt-1">{attrs.Data.product}</span>
                   </div>
                 </td>
                 <td>证书类型*</td>
@@ -84,7 +84,7 @@ export default {
                       <option>评估证书</option>
                       <option>售出证书</option>
                     </select> */}
-                    <span class="pt-1">{LicCertType[Data.purpose]}</span>
+                    <span class="pt-1">{LicCertType[attrs.Data.purpose]}</span>
                   </div>
                 </td>
               </tr>
@@ -97,14 +97,14 @@ export default {
                       <option>Node-Locked</option>
                       <option>Floating</option>
                     </select> */}
-                    <span class="pt-1">{Data.type}</span>
+                    <span class="pt-1">{attrs.Data.type}</span>
                   </div>
                 </td>
                 <td>可用席位</td>
                 <td>
                   <div class="flex flex-col ">
                     {/* <input type="number" /> */}
-                    <span class="pt-1">{Data.place}</span>
+                    <span class="pt-1">{attrs.Data.place}</span>
                   </div>
                 </td>
               </tr>
@@ -113,7 +113,7 @@ export default {
                 <td>
                   <div class="flex flex-col ">
                     {/* <input type="text" required /> */}
-                    <span class="pt-1">{Data.host_id}</span>
+                    <span class="pt-1">{attrs.Data.host_id}</span>
                   </div>
                 </td>
                 <td>有效期*</td>
@@ -130,7 +130,7 @@ export default {
                       <option>3年</option>
                       <option>永久</option>
                     </select> */}
-                    <span class="pt-1">{Data.validity_periods}</span>
+                    <span class="pt-1">{attrs.Data.validity_periods}</span>
                   </div>
                 </td>
               </tr>
@@ -146,14 +146,14 @@ export default {
                 <td>
                   <div class="flex flex-col ">
                     {/* <input type="text" required /> */}
-                    <span class="pt-1">{Data.proposer}</span>
+                    <span class="pt-1">{attrs.Data.proposer}</span>
                   </div>
                 </td>
                 <td class="">OA审批单编号</td>
                 <td>
                   <div class="flex flex-col ">
                     {/* <input type="text" required /> */}
-                    <span class="pt-1">{Data.oa_order_id}</span>
+                    <span class="pt-1">{attrs.Data.oa_order_id}</span>
                   </div>
                 </td>
               </tr>
