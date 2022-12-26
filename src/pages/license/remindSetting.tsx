@@ -17,10 +17,14 @@ const data = {
 export const SetRemind = async () => {
   const v = document.querySelector("#remindInput")?.value;
   data.remind = v;
-  await request("post", Api.RemindSet, data);
-  MsgAdd(State.success, "操作成功");
-  RemindDays = v;
-  document.querySelector("#remind")?.close();
+  try {
+    await request("post", Api.RemindSet, data);
+    MsgAdd(State.success, "操作成功");
+    RemindDays = v;
+    document.querySelector("#remind")?.close();
+  } catch (e) {
+    alert(e.msg);
+  }
 };
 
 export default {
@@ -59,7 +63,10 @@ export default {
             <button type="submit" disabled={data.loading}>
               修改
             </button>
-            <button onclick={() => document.querySelector("#remind")?.close()}>
+            <button
+              type="button"
+              onclick={() => document.querySelector("#remind")?.close()}
+            >
               取消
             </button>
           </p>
