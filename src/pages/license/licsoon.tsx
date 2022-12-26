@@ -1,90 +1,90 @@
 import m from "mithril";
-// import "@ui5/webcomponents/dist/Dialog";
-import account from "@/model/account";
 import Pagination from "@/coms/pagination";
 import { Routes } from "@/model/routeCfg";
 import TopBar from "@/coms/topbar";
-
+import Sort from "@/coms/sort";
+import {
+  CheckAll,
+  GetData,
+  List,
+  Page,
+  PageChange,
+  Reset,
+  Search,
+  SortAttrs,
+  SortEvent,
+  Batch,
+  SetData,
+  Data,
+} from "@/model/licsoon";
+import Confirm from "@/coms/confirm";
+import { LicCertType, LicCountDown, LicType, LicTypes } from "@/model/license";
+import { ProductList } from "@/model/common";
+import { MsgAdd, State } from "@/coms/message";
+import Licinfo from "./licinfo";
+import Remind, { RemindDays } from "./remindSetting";
 const topBar = Routes.find((item) => item.key === "authorization");
 
-const page = {
-  current: 1,
-  total: 1000,
-  pageSize: 10,
-};
-
-const data = {
-  id: "6666666",
-  po: "8888888",
-  prod: "play2020 full edition",
-  hostType: "Ethernet Mac",
-  use: "Eval",
-  hostid: "4d-5d-23-45-22-45",
-  type: "Floating",
-  age: "60days",
-  seat: 20,
-  end: "2023-12-12",
-  apply: "2022-11-11 02:34:00",
-  last: "13天",
-};
-
-// whitespace-pre overflow-auto
-
-const pageChange = (pageNum: number, pageSize: number) => {
-  // page.total = 1000;
-  page.current = 5;
-  page.pageSize = 20;
-  console.log({ pageNum, pageSize });
-};
-
 export default {
-  input: "text",
-
-  oninit() {
-    // console.log(account);
-    console.log(m.route.get());
-  },
+  dialogText: "",
   oncreate() {
-    // var dialog = document.getElementById("hello-dialog");
-    // dialog.show();
-    // console.log(123123);
+    if (Page.total === 0) {
+      GetData();
+    }
   },
   view({ attrs }) {
     return (
       <>
+        <Remind />
+        <Licinfo Data={Data} />
+        <Confirm actionText={this.dialogText} YES={Batch} List={List} />
         <TopBar menus={topBar} />
         <form class="flex space-x-1.5  h-8">
-          <select>
-            <option>[产品]</option>
-            <option>PPro ver 1231123</option>
-            <option>Neuro</option>
+          <select
+            class="min-w-[120px]"
+            value={Search.filters.product_code ?? ""}
+            onchange={(e) => (Search.filters.product_code = e.target.value)}
+          >
+            <option value="">[产品]</option>
+            {ProductList.map((item) => (
+              <option value={item.product_code}>{item.product}</option>
+            ))}
           </select>
-          <select>
-            <option>[证书类型]</option>
-            <option>Eval</option>
-            <option>Full</option>
+          <select
+            value={Search.filters.purpose ?? ""}
+            onchange={(e) => (Search.filters.purpose = e.target.value)}
+          >
+            <option value="">[证书类型]</option>
+            {Object.values(LicCertType)
+              .filter((item) => typeof item !== "number")
+              .map((item, index) => (
+                <option value={index}>{item}</option>
+              ))}
           </select>
-          <select>
-            <option>[许可类型]</option>
-            <option>Node-locked</option>
-            <option>Floating</option>
+          <select
+            value={Search.filters.type ?? ""}
+            onchange={(e) => (Search.filters.type = e.target.value)}
+          >
+            <option value="">[许可类型]</option>
+            {LicType.map((item) => (
+              <option value={item}>{item}</option>
+            ))}
           </select>
-          {/* <select>
-            <option>[状态]</option>
-            <option>Current</option>
-            <option>Expired</option>
-          </select> */}
-          <select>
-            <option>[倒计时]</option>
-            <option>&lt; 7日</option>
-            <option>&lt; 30日</option>
-            <option>&lt; 45日</option>
+
+          <select
+            value={Search.filters.countdown ?? ""}
+            onchange={(e) => (Search.filters.countdown = e.target.value)}
+          >
+            <option value="">[倒计时]</option>
+            {Object.entries(LicCountDown).map((item) => (
+              <option value={item[1]}>{item[0]}</option>
+            ))}
           </select>
           <input type="input" class="w-36" placeholder="关键字搜索" />
-          <button type="submit" class="px-4">
+          <button type="button" class="px-4" onclick={GetData}>
             搜索
           </button>
-          <button type="reset" class="px-4">
+          <button type="reset" onclick={Reset} class="px-4">
             重置
           </button>
         </form>
@@ -96,7 +96,9 @@ export default {
             <thead>
               <tr>
                 <th class="w-10 ">
-                  <a href="">全选</a>
+                  <a href="JavaScript:void(0);" onclick={CheckAll}>
+                    全选
+                  </a>
                 </th>
                 <th>产品/客户</th>
                 <th>许可证号</th>
@@ -104,77 +106,106 @@ export default {
                 <th>证书类型</th>
                 <th>许可类型</th>
                 <th>席位</th>
-                <th>到期日</th>
-                <th>倒计时</th>
+                <th>
+                  <Sort
+                    order={SortAttrs.end_time}
+                    value={{ name: "到期日", attr: "end_time" }}
+                    sortEvent={SortEvent}
+                  />
+                </th>
+                <th>
+                  <Sort
+                    order={SortAttrs.countdown}
+                    value={{ name: "倒计时", attr: "countdown" }}
+                    sortEvent={SortEvent}
+                  />
+                </th>
                 <th>已提醒</th>
               </tr>
             </thead>
             <tbody>
-              {[...Array(10)].map((i) => {
+              {List.map((item, index) => {
                 return (
                   <tr>
                     <td class="">
-                      <input class="ml-2 mt-1" type="checkbox" />
+                      <input
+                        class="ml-2 mt-1"
+                        type="checkbox"
+                        checked={item.checked}
+                        onchange={(e) => {
+                          List[index].checked =
+                            item.checked === "checked" ? "" : "checked";
+                        }}
+                      />
                     </td>
                     <td>
                       <blockquote class="my-0 not-italic py-1 p-2 ">
-                        {data.prod}
-
+                        {item.product}
                         <footer class="border-t-0 pt-0">
-                          <cite>Lenovo company </cite>
+                          <cite> {item.customer} </cite>
                         </footer>
                       </blockquote>
                     </td>
 
-                    <td>{data.id}</td>
+                    <td>
+                      {" "}
+                      <a
+                        class="pt-2 "
+                        onclick={() => {
+                          SetData(item);
+                          document.getElementById("dialog")?.showModal();
+                        }}
+                        href="JavaScript:void(0);"
+                      >
+                        {item.order_id}
+                      </a>
+                    </td>
 
-                    <td>{data.hostid}</td>
-                    <td>{data.use}</td>
-                    <td>{data.type}</td>
-                    <td>{data.seat}</td>
-                    <td class="font-medium ">{data.end}</td>
-                    <td class="font-medium ">{data.last}</td>
-                    <td>6次</td>
+                    <td>{item.host_id}</td>
+                    <td>{LicCertType[item.purpose]}</td>
+                    <td>{LicTypes[item.type?.toLocaleLowerCase()]}</td>
+                    <td>{item.place ? item.place : "N/A"}</td>
+                    <td class="font-medium ">{item.end_time}</td>
+                    <td class="font-bold ">{item.countdown}天</td>
+                    <td>{item.remind_time}次</td>
                   </tr>
                 );
               })}
             </tbody>
           </table>
         </div>
-        <dialog id="dialog">
-          <header>This is a sample dialog</header>
-          <p>What is your favorite pet animal?</p>
-          <menu>
-            <button value="feline">Cats</button>
-            <button value="canine">Dogs</button>
-            <button value="other">Others</button>
-          </menu>
-        </dialog>
+
         <hr></hr>
         <div class="flex justify-between mt-4">
           <div>
             <a
               class="pt-2 "
-              onclick={() => alert("生成")}
+              onclick={() => {
+                if (!List.some((item) => item.checked === "checked")) {
+                  MsgAdd(State.failed, "请至少选择一条记录");
+                  return false;
+                }
+                this.dialogText = "再次提醒";
+                document.getElementById("confirm")?.showModal();
+              }}
               href="JavaScript:void(0);"
             >
-              [到期提醒]
+              [再次提醒]
             </a>
             &nbsp;
             <a
               class="pt-2 "
-              onclick={() => alert("导出")}
+              onclick={() => document.querySelector("#remind")?.showModal()}
               href="JavaScript:void(0);"
             >
-              [提醒策略(60天)]
+              [提醒策略({RemindDays}天)]
             </a>
           </div>
           <Pagination
-            class=""
-            current={page.current}
-            total={page.total}
-            pageSize={page.pageSize}
-            onChange={pageChange}
+            current={Page.current}
+            total={Page.total}
+            pageSize={Page.pageSize}
+            onChange={PageChange}
           />
         </div>
       </>

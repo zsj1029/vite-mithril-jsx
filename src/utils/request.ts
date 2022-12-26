@@ -30,7 +30,7 @@ export default async (
   if (data && "loading" in data) {
     data.loading = true;
   }
-  // await Sleep(1);
+  // await Sleep(3);
   try {
     resp = await m.request(options);
     if (options.responseType === "blob") {
@@ -90,6 +90,8 @@ export enum Api {
   LicenseDownload = "/license/info/",
   LicenseExport = "/license/data_export/",
   LicenseDelete = "/license/delete/",
+  RemindGet = "/license/get_remind/",
+  RemindSet = "/license/set_remind/",
 }
 
 export function DeepClone(obj, hash = new WeakMap()) {

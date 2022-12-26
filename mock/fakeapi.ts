@@ -171,6 +171,32 @@ export default [
     },
   },
   {
+    url: "/openapi/s2c/license/set_remind/",
+    method: "post",
+    response: (req: any) => {
+      return {
+        code: 200,
+        data: {},
+        msg: "license set remind",
+        req,
+      };
+    },
+  },
+  {
+    url: "/openapi/s2c/license/get_remind/",
+    method: "get",
+    response: (req: any) => {
+      return {
+        code: 200,
+        data: {
+          remind: 60,
+        },
+        msg: "license get remind",
+        req,
+      };
+    },
+  },
+  {
     url: "/openapi/s2c/license/list/",
     method: "get",
     response: (req: any) => {

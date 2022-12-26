@@ -1,5 +1,5 @@
 import m from "mithril";
-import dialogPolyfill from "dialog-polyfill";
+
 import {
   AccountState,
   Batch,
@@ -18,28 +18,25 @@ import {
 import Pagination from "@/coms/pagination";
 import { Routes } from "@/model/routeCfg";
 import TopBar from "@/coms/topbar";
-import Sort, { SortEnum } from "@/coms/sort";
+import Sort from "@/coms/sort";
 import { RoleList } from "@/model/common";
 import { MsgAdd, State } from "@/coms/message";
+import Confirm from "@/coms/confirm";
 
 const topBar = Routes.find((item) => item.key === "system");
 
 export default {
-  dialogText: "删除",
+  dialogText: "",
 
-  oninit() {},
   oncreate({ attrs }) {
     if (Page.total === 0) {
       GetData();
     }
-    dialogPolyfill.registerDialog(
-      document.getElementById("dialog") as HTMLDialogElement
-    );
   },
   view({ attrs }) {
     return (
       <>
-        {/* {accountlist.data} */}
+        <Confirm actionText={this.dialogText} YES={Batch} List={List} />
         <TopBar menus={topBar} />
 
         <form class="flex space-x-1.5 h-8">
@@ -151,7 +148,7 @@ export default {
                         class="pt-2 "
                         onclick={(e) => {
                           this.dialogText = "删除";
-                          document.getElementById("dialog")?.showModal();
+                          document.getElementById("confirm")?.showModal();
                           List.forEach(
                             (_, index) => (List[index].checked = "")
                           );
@@ -173,20 +170,7 @@ export default {
           </table>
           {List.length === 0 ? <p class="text-center">暂无内容</p> : ""}
         </div>
-        <dialog id="dialog">
-          <header>请确认</header>
-          <p class="pt-2 pb-4">即将 [{this.dialogText}] 相关记录，是否继续?</p>
-          <form method="dialog" class="space-x-2 flex justify-center">
-            <button onclick={() => Batch(this.dialogText)}>继续</button>
-            <button
-              onclick={() => {
-                List.forEach((_, index) => (List[index].checked = ""));
-              }}
-            >
-              取消
-            </button>
-          </form>
-        </dialog>
+
         <hr></hr>
         <div class="flex justify-between mt-4">
           <div>
@@ -198,7 +182,7 @@ export default {
                   return false;
                 }
                 this.dialogText = "启用";
-                document.getElementById("dialog")?.showModal();
+                document.getElementById("confirm")?.showModal();
               }}
               href="JavaScript:void(0);"
             >
@@ -213,7 +197,7 @@ export default {
                   return false;
                 }
                 this.dialogText = "禁用";
-                document.getElementById("dialog")?.showModal();
+                document.getElementById("confirm")?.showModal();
               }}
               href="JavaScript:void(0);"
             >

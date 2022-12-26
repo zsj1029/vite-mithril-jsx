@@ -27,7 +27,7 @@ export default {
                 <td>
                   <div class="flex flex-col">
                     {/* <input type="text" /> */}
-                    <span class="pt-1">{attrs.po_order_id}</span>
+                    <span class="pt-1">{attrs.Data.po_order_id}</span>
                   </div>
                 </td>
               </tr>

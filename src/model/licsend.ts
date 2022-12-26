@@ -60,8 +60,8 @@ export const GetData = async () => {
 };
 
 export let SortAttrs = {
-  create_time: SortEnum.none,
-  validity_periods: SortEnum.none,
+  generate_time: SortEnum.none,
+  end_time: SortEnum.none,
 };
 
 export const SortEvent = (attr: string, order: SortEnum) => {
@@ -108,8 +108,8 @@ export const Reset = () => {
     total: 0,
   };
   SortAttrs = {
-    create_time: SortEnum.none,
-    validity_periods: SortEnum.none,
+    end_time: SortEnum.none,
+    generate_time: SortEnum.none,
   };
   GetData();
 };

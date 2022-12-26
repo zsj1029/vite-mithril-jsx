@@ -2,7 +2,6 @@ import m from "mithril";
 import LicInfo from "@/pages/license/licinfo";
 import LicInfoMail from "@/pages/license/licinfomail";
 import LicFile, { CountDown } from "@/pages/license/licfile";
-import dialogPolyfill from "dialog-polyfill";
 import {
   SortEvent,
   Search,
@@ -17,13 +16,7 @@ import {
   Export,
 } from "@/model/licsend";
 
-import {
-  LicType,
-  LicCertType,
-  Batch,
-  LicState,
-  LicTypes,
-} from "@/model/license";
+import { LicType, LicCertType, LicState, LicTypes } from "@/model/license";
 
 import Pagination from "@/coms/pagination";
 import { Routes } from "@/model/routeCfg";
@@ -43,9 +36,6 @@ export default {
     if (Page.total === 0) {
       GetData();
     }
-    dialogPolyfill.registerDialog(
-      document.getElementById("confirm") as HTMLDialogElement
-    );
   },
 
   view({ attrs }) {
@@ -146,16 +136,16 @@ export default {
                 <th>状态</th>
                 <th>
                   <Sort
-                    order={SortAttrs.validity_periods}
-                    value={{ name: "到期日", attr: "validity_periods" }}
+                    order={SortAttrs.end_time}
+                    value={{ name: "到期日", attr: "end_time" }}
                     sortEvent={SortEvent}
                   />
                 </th>
                 {/* <th>关联单号</th> */}
                 <th class="w-38">
                   <Sort
-                    order={SortAttrs.create_time}
-                    value={{ name: "生成时间", attr: "create_time" }}
+                    order={SortAttrs.generate_time}
+                    value={{ name: "生成时间", attr: "generate_time" }}
                     sortEvent={SortEvent}
                   />
                 </th>
@@ -240,26 +230,7 @@ export default {
           </table>
           {List.length === 0 ? <p class="text-center">暂无内容</p> : ""}
         </div>
-        <dialog id="confirm">
-          <header>请确认</header>
-          <p class="pt-2 pb-4">即将 [{this.dialogText}] 相关记录，是否继续?</p>
-          <form method="dialog" class="space-x-2 flex justify-center">
-            <button
-              onclick={() => {
-                Batch(this.dialogText);
-              }}
-            >
-              继续
-            </button>
-            <button
-              onclick={() => {
-                List.forEach((_, index) => (List[index].checked = ""));
-              }}
-            >
-              取消
-            </button>
-          </form>
-        </dialog>
+
         <hr></hr>
         <div class="flex justify-between mt-4">
           <div>

@@ -197,7 +197,7 @@ export const Reset = () => {
   GetData();
 };
 
-export const Batch = async (operation: "批量生成" | "提醒" | "删除") => {
+export const Batch = async (operation: "批量生成" | "删除") => {
   if (!List.some((item) => item.checked === "checked")) {
     MsgAdd(State.failed, "请至少选择一条记录");
     return false;
@@ -215,12 +215,6 @@ export const Batch = async (operation: "批量生成" | "提醒" | "删除") => 
       } catch (e) {
         alert(`以下许可证生成失败\n${e.data.error_list}`);
       }
-      break;
-    case "提醒":
-      await request("post", Api.AccountDelete, {
-        username: data[0],
-      });
-      MsgAdd(State.success, "操作成功");
       break;
     case "删除":
       await request("post", Api.LicenseDelete, {

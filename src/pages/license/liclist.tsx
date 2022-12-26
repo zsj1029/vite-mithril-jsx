@@ -1,7 +1,6 @@
 import m from "mithril";
 import LicInfo from "@/pages/license/licinfo";
 
-import dialogPolyfill from "dialog-polyfill";
 import {
   SortEvent,
   Search,
@@ -27,6 +26,7 @@ import TopBar from "@/coms/topbar";
 import Sort from "@/coms/sort";
 import { ProductList } from "@/model/common";
 import { MsgAdd, State } from "@/coms/message";
+import Confirm from "@/coms/confirm";
 
 const topBar = Routes.find((item) => item.key === "authorization");
 
@@ -38,14 +38,12 @@ export default {
     if (Page.total === 0) {
       GetData();
     }
-    dialogPolyfill.registerDialog(
-      document.getElementById("confirm") as HTMLDialogElement
-    );
   },
 
   view({ attrs }) {
     return (
       <>
+        <Confirm actionText={this.dialogText} YES={Batch} List={List} />
         <LicInfo Data={Data} />
         <TopBar menus={topBar} />
         <form class="flex space-x-1.5 h-8">
@@ -215,26 +213,7 @@ export default {
           </table>
           {List.length === 0 ? <p class="text-center">暂无内容</p> : ""}
         </div>
-        <dialog id="confirm">
-          <header>请确认</header>
-          <p class="pt-2 pb-4">即将 [{this.dialogText}] 相关记录，是否继续?</p>
-          <form method="dialog" class="space-x-2 flex justify-center">
-            <button
-              onclick={() => {
-                Batch(this.dialogText);
-              }}
-            >
-              继续
-            </button>
-            <button
-              onclick={() => {
-                List.forEach((_, index) => (List[index].checked = ""));
-              }}
-            >
-              取消
-            </button>
-          </form>
-        </dialog>
+
         <hr></hr>
         <div class="flex justify-between mt-4">
           <div>

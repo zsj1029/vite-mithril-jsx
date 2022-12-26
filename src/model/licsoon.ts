@@ -1,6 +1,7 @@
+import { MsgAdd, State } from "@/coms/message";
 import { SortEnum } from "@/coms/sort";
 import request, { Api } from "@/utils/request";
-import { LicItem } from "./license";
+import { LicItem, LicStatus } from "./license";
 
 export const CheckAll = () => {
   let CheckFlag = false;
@@ -48,19 +49,27 @@ export const SetData = (data?: LicItem) => {
 
 export const GetData = async () => {
   Search.sort = JSON.stringify(Search.sort);
+  Search.filters["license_status"] = LicStatus.已生成;
+  Search.filters["countdown"] = Search.filters["countdown"]
+    ? Search.filters["countdown"]
+    : 60;
   Search.filters = JSON.stringify(Search.filters);
   console.log(Search);
   request("get", Api.LicenseList, Search).then((resp) => {
     List = resp.list;
     Page.total = resp.total;
   });
+
   Search.sort = JSON.parse(Search.sort);
   Search.filters = JSON.parse(Search.filters);
+  if (Search.filters["countdown"] === 60) {
+    delete Search.filters.countdown;
+  }
 };
 
 export let SortAttrs = {
-  create_time: SortEnum.none,
-  validity_periods: SortEnum.none,
+  end_time: SortEnum.none,
+  countdown: SortEnum.none,
 };
 
 export const SortEvent = (attr: string, order: SortEnum) => {
@@ -107,8 +116,24 @@ export const Reset = () => {
     total: 0,
   };
   SortAttrs = {
-    create_time: SortEnum.none,
-    validity_periods: SortEnum.none,
+    end_time: SortEnum.none,
+    countdown: SortEnum.none,
   };
+  GetData();
+};
+
+export const Batch = async (operation: "再次提醒") => {
+  const data = List.filter((item) => item.checked === "checked").map(
+    (item) => item.order_id
+  );
+  switch (operation) {
+    case "再次提醒":
+      await request("post", Api.AccountDelete, {
+        username: data[0],
+      });
+      MsgAdd(State.success, "操作成功");
+      break;
+  }
+
   GetData();
 };
