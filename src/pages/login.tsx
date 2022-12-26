@@ -4,16 +4,13 @@ import PerfersColor from "@/coms/perferscolor";
 
 import { Login, Data } from "@/model/session";
 
-window.addEventListener("keyup", (e) => {
-  if (e.key === "Enter") document.querySelector("form")?.submit();
-});
+// window.addEventListener("keyup", (e) => {
+//   if (e.key === "Enter") document.querySelector("form")?.submit();
+//   e.preventDefault();
+// });
 // e.preventDefault()
 export default {
-  oncreate({ attrs }) {
-    // console.log(m.route.param());
-    // console.log(attrs);
-    // console.log(m.route.param());
-  },
+  oncreate({ attrs }) {},
   view: ({ children }) => (
     <div class="h-full flex flex-col justify-center">
       <PerfersColor class="w-10 absolute right-2 top-2 text-xl" />
@@ -52,7 +49,12 @@ export default {
           autocomplete="false"
           placeholder="密码"
         />
-        <button id="loginBtn" class="w-60" disabled={Data.loading}>
+        <button
+          id="loginBtn"
+          class="w-60"
+          type="submit"
+          disabled={Data.loading}
+        >
           登录
         </button>
         {/* {m(
