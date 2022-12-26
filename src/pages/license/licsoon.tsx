@@ -161,7 +161,7 @@ export default {
                       </a>
                     </td>
 
-                    <td>{item.host_id}</td>
+                    <td>{item.host_id?.toLocaleUpperCase()}</td>
                     <td>{LicCertType[item.purpose]}</td>
                     <td>{LicTypes[item.type?.toLocaleLowerCase()]}</td>
                     <td>{item.place ? item.place : "N/A"}</td>
