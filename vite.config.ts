@@ -7,37 +7,40 @@ import basicSsl from "@vitejs/plugin-basic-ssl";
 import legacy from "@vitejs/plugin-legacy";
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  base: "/vite-mithril-jsx/",
-  server: {
-    host: "0.0.0.0",
-    proxy: {
-      // "/data_export/": {
-      //   target: "https://www.w3school.com.cn",
-      //   changeOrigin: true,
-      //   rewrite: (path) => "/example/html5/mov_bbb.mp4",
-      // },
+export default defineConfig(({ command, mode, ssrBuild }) => {
+  return {
+    base: "/vite-mithril-jsx/",
+    server: {
+      host: "0.0.0.0",
+      proxy: {
+        // "/data_export/": {
+        //   target: "https://www.w3school.com.cn",
+        //   changeOrigin: true,
+        //   rewrite: (path) => "/example/html5/mov_bbb.mp4",
+        // },
+      },
     },
-  },
-  esbuild: {
-    jsx: "transform",
-    jsxFactory: "m",
-    jsxFragment: "'['",
-  },
-  build: {
-    target: "ESNext",
-    cssTarget: "chrome80",
-  },
-  resolve: {
-    conditions: ["development", "browser"],
-    alias: {
-      "@": resolve(__dirname, "./src"),
+    esbuild: {
+      jsx: "transform",
+      jsxFactory: "m",
+      jsxFragment: "'['",
+      drop: command === "build" ? ["console", "debugger"] : [],
     },
-  },
-  plugins: [
-    basicSsl(),
-    // WindiCSS(),
-    viteMockServe({ prodEnabled: false }),
-    // legacy(),
-  ],
+    build: {
+      target: "ESNext",
+      cssTarget: "chrome80",
+    },
+    resolve: {
+      conditions: ["development", "browser"],
+      alias: {
+        "@": resolve(__dirname, "./src"),
+      },
+    },
+    plugins: [
+      basicSsl(),
+      // WindiCSS(),
+      viteMockServe({ prodEnabled: false }),
+      // legacy(),
+    ],
+  };
 });

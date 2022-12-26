@@ -17,6 +17,7 @@ export const Data = { loading: false } as LoginData;
 const vv = [84, 50, 34, 36, 81, 109, 50, 126, 123, 74, 99, 99, 123, 48, 77, 98];
 
 export const Login = async () => {
+  // console.log(111111111111);
   const random = await Request("get", Api.Random, Data);
   const key = random.key;
 
