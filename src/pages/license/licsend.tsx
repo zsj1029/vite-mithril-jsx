@@ -14,9 +14,16 @@ import {
   SortAttrs,
   PageChange,
   Data,
+  Export,
 } from "@/model/licsend";
 
-import { LicType, LicCertType, Batch, LicState, Export } from "@/model/license";
+import {
+  LicType,
+  LicCertType,
+  Batch,
+  LicState,
+  LicTypes,
+} from "@/model/license";
 
 import Pagination from "@/coms/pagination";
 import { Routes } from "@/model/routeCfg";
@@ -196,7 +203,7 @@ export default {
                     </td>
                     <td>{item.host_id?.toLocaleUpperCase()}</td>
                     <td>{LicCertType[item.purpose]}</td>
-                    <td>{item.type}</td>
+                    <td>{LicTypes[item.type?.toLocaleLowerCase()]}</td>
 
                     <td>{item.place ? item.place : "N/A"}</td>
                     <td class="font-bold ">{LicState[item.license_status]}</td>

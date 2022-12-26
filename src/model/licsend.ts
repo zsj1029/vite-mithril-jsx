@@ -1,6 +1,6 @@
 import { SortEnum } from "@/coms/sort";
-import request, { Api } from "@/utils/request";
-import { LicItem } from "./license";
+import request, { Api, Download } from "@/utils/request";
+import { LicItem, LicStatus } from "./license";
 
 export const CheckAll = () => {
   let CheckFlag = false;
@@ -48,6 +48,7 @@ export const SetData = (data?: LicItem) => {
 
 export const GetData = async () => {
   Search.sort = JSON.stringify(Search.sort);
+  Search.filters["license_status"] = LicStatus.已生成;
   Search.filters = JSON.stringify(Search.filters);
   console.log(Search);
   request("get", Api.LicenseList, Search).then((resp) => {
@@ -111,4 +112,28 @@ export const Reset = () => {
     validity_periods: SortEnum.none,
   };
   GetData();
+};
+
+export const Export = async () => {
+  Search.sort = JSON.stringify(Search.sort);
+  Search.filters["license_status"] = LicStatus.已生成;
+  Search.filters = JSON.stringify(Search.filters);
+  const tmp = {
+    page: Search.page,
+    size: Search.size,
+  };
+  Search.page = 0;
+  Search.size = 9999999999;
+  console.log(Search);
+  const resp = await request("get", Api.LicenseExport, Search, "blob");
+  Search.sort = JSON.parse(Search.sort);
+  Search.filters = JSON.parse(Search.filters);
+  Search.page = tmp.page;
+  Search.size = tmp.size;
+
+  Download(
+    resp,
+    "导出License.xlsx",
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+  );
 };

@@ -19,6 +19,7 @@ import {
   PageChange,
   Batch,
   Data,
+  LicTypes,
 } from "@/model/license";
 import Pagination from "@/coms/pagination";
 import { Routes } from "@/model/routeCfg";
@@ -174,7 +175,7 @@ export default {
                     </td>
 
                     <td>{LicCertType[item.purpose]}</td>
-                    <td>{item.type}</td>
+                    <td>{LicTypes[item.type?.toLocaleLowerCase()]}</td>
 
                     <td>{item.place ? item.place : "N/A"}</td>
                     <td class="font-bold ">{item.validity_periods}</td>

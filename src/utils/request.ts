@@ -89,6 +89,7 @@ export enum Api {
   LicensePush = "/license/push/",
   LicenseDownload = "/license/info/",
   LicenseExport = "/license/data_export/",
+  LicenseDelete = "/license/delete/",
 }
 
 export function DeepClone(obj, hash = new WeakMap()) {
@@ -110,3 +111,14 @@ export function DeepClone(obj, hash = new WeakMap()) {
   }
   return cloneObj;
 }
+
+export const Download = (blob: Blob, fileName: string, mime: string) => {
+  const blobs = new Blob([blob], {
+    type: mime,
+  });
+  const link = document.createElement("a");
+  link.download = `${fileName}`;
+  link.href = URL.createObjectURL(blobs);
+  link.click();
+  URL.revokeObjectURL(link.href);
+};

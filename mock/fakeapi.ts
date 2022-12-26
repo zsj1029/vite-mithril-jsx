@@ -111,9 +111,20 @@ export default [
     },
   },
   {
+    url: "/openapi/s2c/license/delete/",
+    method: "post",
+    response: (req: any) => {
+      return {
+        code: 200,
+        data: {},
+        msg: "license delete",
+        req,
+      };
+    },
+  },
+  {
     url: "/openapi/s2c/license/data_export/",
     method: "get",
-
     response: (req: any) => {
       return new Blob(["S2C Limited Softwar e and/or Intellectual Property"], {
         type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",

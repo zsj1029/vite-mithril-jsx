@@ -12,11 +12,11 @@ export default defineConfig({
   server: {
     host: "0.0.0.0",
     proxy: {
-      "/data_export/": {
-        target: "https://www.w3school.com.cn",
-        changeOrigin: true,
-        rewrite: (path) => "/example/html5/mov_bbb.mp4",
-      },
+      // "/data_export/": {
+      //   target: "https://www.w3school.com.cn",
+      //   changeOrigin: true,
+      //   rewrite: (path) => "/example/html5/mov_bbb.mp4",
+      // },
     },
   },
   esbuild: {

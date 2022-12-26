@@ -166,7 +166,7 @@ export default {
               onclick={() => alert("导出")}
               href="JavaScript:void(0);"
             >
-              [提醒策略]
+              [提醒策略(60天)]
             </a>
           </div>
           <Pagination

@@ -1,6 +1,6 @@
 import m from "mithril";
 import dialogPolyfill from "dialog-polyfill";
-import { LicCertType } from "@/model/license";
+import { LicCertType, LicTypes } from "@/model/license";
 export default {
   oncreate({ attrs }) {
     dialogPolyfill.registerDialog(
@@ -97,7 +97,9 @@ export default {
                       <option>Node-Locked</option>
                       <option>Floating</option>
                     </select> */}
-                    <span class="pt-1">{attrs.Data.type}</span>
+                    <span class="pt-1">
+                      {LicTypes[attrs.Data.type?.toLocaleLowerCase()]}
+                    </span>
                   </div>
                 </td>
                 <td>可用席位</td>
@@ -113,7 +115,9 @@ export default {
                 <td>
                   <div class="flex flex-col ">
                     {/* <input type="text" required /> */}
-                    <span class="pt-1">{attrs.Data.host_id}</span>
+                    <span class="pt-1">
+                      {attrs.Data.host_id?.toLocaleUpperCase()}
+                    </span>
                   </div>
                 </td>
                 <td>有效期*</td>

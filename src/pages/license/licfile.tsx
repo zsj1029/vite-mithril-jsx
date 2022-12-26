@@ -1,5 +1,6 @@
 import m from "mithril";
 import dialogPolyfill from "dialog-polyfill";
+import { Download } from "@/utils/request";
 
 let leftTime = {
   d: 0,
@@ -17,7 +18,7 @@ export const CountDown = (endTime: string, refresh = 500) => {
   const min = 60;
   const end = Date.parse(endTime);
   expiration = new Date(endTime).toLocaleDateString();
-  console.log(end, Date.now());
+  // console.log(end, Date.now());
   timer = setInterval(() => {
     let leftSec = ((end - Date.now()) / 1000) | 0;
     leftSec = leftSec > 0 ? leftSec : 0;
@@ -86,14 +87,12 @@ export default {
                 alert("证书下载失败");
                 return;
               }
-              const blob = new Blob([attrs.Data.licContent], {
-                type: "text/plain",
-              });
-              const link = document.createElement("a");
-              link.download = `${attrs.Data.customer}-${attrs.Data.product}-${attrs.Data.host_id}.lic`;
-              link.href = URL.createObjectURL(blob);
-              link.click();
-              URL.revokeObjectURL(link.href);
+              Download(
+                attrs.Data.licContent,
+                `${attrs.Data.customer}-${attrs.Data.product}-${attrs.Data.host_id}.lic`,
+                "text/plain"
+              );
+
               //   alert(attrs.Data.licContent);
             }}
           >

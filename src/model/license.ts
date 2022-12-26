@@ -1,4 +1,4 @@
-import request, { Api } from "@/utils/request";
+import request, { Api, Download } from "@/utils/request";
 import { SortEnum } from "@/coms/sort";
 import m from "mithril";
 import { MsgAdd, State } from "@/coms/message";
@@ -47,6 +47,10 @@ export const SearchValidtime = {
 };
 
 export const LicType = ["Node-Locked", "Floating"];
+export enum LicTypes {
+  "node-locked" = "Node-Locked",
+  "floating" = "Floating",
+}
 
 export type LicItem = {
   order_id?: string;
@@ -127,6 +131,7 @@ export const SetData = (data?: LicItem) => {
 
 export const GetData = async () => {
   Search.sort = JSON.stringify(Search.sort);
+  Search.filters["license_status"] = LicStatus.未生成;
   Search.filters = JSON.stringify(Search.filters);
   console.log(Search);
   request("get", Api.LicenseList, Search).then((resp) => {
@@ -192,32 +197,6 @@ export const Reset = () => {
   GetData();
 };
 
-export const Export = async () => {
-  Search.sort = JSON.stringify(Search.sort);
-  Search.filters = JSON.stringify(Search.filters);
-  const tmp = {
-    page: Search.page,
-    size: Search.size,
-  };
-  Search.page = 0;
-  Search.size = 9999999999;
-  console.log(Search);
-  const resp = await request("get", Api.LicenseExport, Search, "blob");
-  Search.sort = JSON.parse(Search.sort);
-  Search.filters = JSON.parse(Search.filters);
-  Search.page = tmp.page;
-  Search.size = tmp.size;
-
-  const blob = new Blob([resp], {
-    type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-  });
-  const link = document.createElement("a");
-  link.download = `导出数据.xlsx`;
-  link.href = URL.createObjectURL(blob);
-  link.click();
-  URL.revokeObjectURL(link.href);
-};
-
 export const Batch = async (operation: "批量生成" | "提醒" | "删除") => {
   if (!List.some((item) => item.checked === "checked")) {
     MsgAdd(State.failed, "请至少选择一条记录");
@@ -232,6 +211,7 @@ export const Batch = async (operation: "批量生成" | "提醒" | "删除") => 
         await request("post", Api.LicenseGenerate, {
           order_ids: JSON.stringify(data),
         });
+        MsgAdd(State.success, "操作成功");
       } catch (e) {
         alert(`以下许可证生成失败\n${e.data.error_list}`);
       }
@@ -243,6 +223,9 @@ export const Batch = async (operation: "批量生成" | "提醒" | "删除") => 
       MsgAdd(State.success, "操作成功");
       break;
     case "删除":
+      await request("post", Api.LicenseDelete, {
+        order_ids: JSON.stringify(data),
+      });
       MsgAdd(State.success, "操作成功");
       break;
   }
