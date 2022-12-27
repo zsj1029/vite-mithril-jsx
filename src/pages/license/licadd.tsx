@@ -78,7 +78,7 @@ export default {
                       value={Data.name}
                       oninput={(e) => (Data.name = e.target?.value)}
                     />
-                    <span class="pt-1">用于接受许可证的联系人姓名</span>
+                    <span class="pt-1">用于接收许可证的联系人姓名</span>
                   </div>
                 </td>
               </tr>

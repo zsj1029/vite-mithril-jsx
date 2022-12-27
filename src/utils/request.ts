@@ -10,6 +10,7 @@ export default async (
     method,
     url: import.meta.env.VITE_API_URL + "/openapi/s2c" + url,
     responseType,
+    timeout: 5 * 1000,
   };
   const body = { ...data };
   delete body.loading;
@@ -30,7 +31,7 @@ export default async (
   if (data && "loading" in data) {
     data.loading = true;
   }
-  // await Sleep(3);
+  // await Sleep(6);
   try {
     resp = await m.request(options);
     if (options.responseType === "blob") {
