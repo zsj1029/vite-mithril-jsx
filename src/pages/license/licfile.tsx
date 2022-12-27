@@ -47,7 +47,7 @@ export default {
       <dialog id="licFile" class="pb-4">
         <header>许可证号：{attrs.Data.order_id}</header>
 
-        <form class="pt-2">
+        <p class="pt-2">
           <div class="w-1/2 min-w-[400px] h-[600px] mx-auto flex flex-col justify-evenly  border-2 bg-yellow-100 shadow-lg border-green-500 border-dashed rounded-2xl">
             <p class=" text-gray-700 font-semibold text-center text-2xl">
               Certificate of License
@@ -98,7 +98,7 @@ export default {
           >
             下载
           </button>
-        </form>
+        </p>
       </dialog>
     );
   },

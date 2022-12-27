@@ -4,6 +4,7 @@ import TopBar from "@/coms/topbar";
 import { ProductList } from "@/model/common";
 import {
   Data,
+  GetData,
   LicCertType,
   LicType,
   LicValidtime,
@@ -21,6 +22,7 @@ const CreateLic = async () => {
   MsgAdd(State.success, "创建成功");
   Data.product_code = "";
   // UpdtSession(Data);
+  GetData();
 };
 
 export default {

@@ -1,11 +1,12 @@
 import m from "mithril";
 import { Routes } from "@/model/routeCfg";
 import TopBar from "@/coms/topbar";
-import { Data, SetData } from "@/model/account";
+import { Data, SetData, GetData } from "@/model/account";
 import Password from "@/coms/password";
 import { RoleList } from "@/model/common";
 import request, { Api } from "@/utils/request";
 import { MsgAdd, State } from "@/coms/message";
+
 const topBar = Routes.find((item) => item.key === "system");
 
 const CreateUser = async () => {
@@ -19,7 +20,7 @@ const CreateUser = async () => {
   await request("post", Api.AccountAdd, data);
   MsgAdd(State.success, "创建成功");
   delete Data.password, delete Data.rePwd;
-  // UpdtSession(Data);
+  GetData();
 };
 
 export default {

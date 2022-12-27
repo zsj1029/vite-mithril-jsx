@@ -9,7 +9,7 @@ import legacy from "@vitejs/plugin-legacy";
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode, ssrBuild }) => {
   return {
-    base: "/vite-mithril-jsx/",
+    base: "",
     server: {
       host: "0.0.0.0",
       proxy: {
@@ -37,7 +37,7 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
       },
     },
     plugins: [
-      basicSsl(),
+      // basicSsl(),
       // WindiCSS(),
       viteMockServe({ prodEnabled: false }),
       // legacy(),

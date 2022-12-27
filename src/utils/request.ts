@@ -8,7 +8,7 @@ export default async (
 ): Promise<any> => {
   let options = {
     method,
-    url: "/openapi/s2c" + url,
+    url: "http://192.168.18.253:5173/openapi/s2c" + url,
     responseType,
   };
   const body = { ...data };
