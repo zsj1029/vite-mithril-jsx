@@ -111,7 +111,7 @@ export default [
     },
   },
   {
-    url: "/openapi/s2c/license/delete/",
+    url: "/openapi/s2c/license/input_license_info/",
     method: "delete",
     response: (req: any) => {
       return {
