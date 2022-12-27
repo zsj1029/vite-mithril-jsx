@@ -2,7 +2,7 @@ import m from "mithril";
 import Header from "./header";
 import Leftmenu from "./leftmenu";
 import Message, { MsgAdd, State } from "@/coms/message";
-import { GetProducts, GetRoles } from "@/model/common";
+import { GetPrev, GetProducts, GetRoles } from "@/model/common";
 import { Session } from "@/model/session";
 
 export default {
@@ -13,6 +13,7 @@ export default {
     //登录后系统初始化获取相关下拉框列表
     GetRoles();
     GetProducts();
+    GetPrev.startTimer();
     console.log("create...");
   },
   onupdate() {

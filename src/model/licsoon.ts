@@ -1,6 +1,7 @@
 import { MsgAdd, State } from "@/coms/message";
 import { SortEnum } from "@/coms/sort";
 import request, { Api } from "@/utils/request";
+import { GetPrevNum } from "./common";
 import { LicItem, LicStatus } from "./license";
 
 export const CheckAll = () => {
@@ -65,6 +66,8 @@ export const GetData = async () => {
   if (Search.filters["countdown"] === 60) {
     delete Search.filters.countdown;
   }
+
+  GetPrevNum();
 };
 
 export let SortAttrs = {

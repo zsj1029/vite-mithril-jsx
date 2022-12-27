@@ -112,7 +112,7 @@ export default [
   },
   {
     url: "/openapi/s2c/license/delete/",
-    method: "post",
+    method: "delete",
     response: (req: any) => {
       return {
         code: 200,
@@ -203,7 +203,7 @@ export default [
       return {
         code: 200,
         data: {
-          total: 100,
+          total: 20,
           list: [
             {
               order_id: "88888888888888",

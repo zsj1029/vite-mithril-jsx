@@ -2,6 +2,7 @@ import request, { Api, Download } from "@/utils/request";
 import { SortEnum } from "@/coms/sort";
 import m from "mithril";
 import { MsgAdd, State } from "@/coms/message";
+import { GetPrevNum } from "./common";
 export enum LicState {
   过期,
   有效,
@@ -140,6 +141,7 @@ export const GetData = async () => {
   });
   Search.sort = JSON.parse(Search.sort);
   Search.filters = JSON.parse(Search.filters);
+  GetPrevNum();
 };
 
 export let SortAttrs = {
@@ -217,7 +219,7 @@ export const Batch = async (operation: "批量生成" | "删除") => {
       }
       break;
     case "删除":
-      await request("post", Api.LicenseDelete, {
+      await request("delete", Api.LicenseDelete, {
         order_ids: JSON.stringify(data),
       });
       MsgAdd(State.success, "操作成功");

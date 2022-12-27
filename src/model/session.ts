@@ -4,6 +4,7 @@ import Utf8 from "crypto-js/enc-utf8";
 
 import { encrypt } from "crypto-js/aes";
 import { AccountItem } from "./account";
+import { GetPrev } from "./common";
 
 export type LoginData = {
   username: string;
@@ -38,6 +39,7 @@ export const Login = async () => {
 export const Logout = async () => {
   await Request("get", Api.Logout);
   localStorage.clear();
+  GetPrev.clearTimer();
   m.route.set("/login");
 };
 

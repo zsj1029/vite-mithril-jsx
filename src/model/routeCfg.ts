@@ -24,19 +24,23 @@ export const Routes: Array<Menu> = [
     children: [
       {
         path: "/list/wait",
-        name: "待生成(3)",
+        key: "wait",
+        name: `待生成`,
       },
       {
+        key: "send",
         path: "/list/send",
         name: "已生成",
       },
       {
         path: "/list/soon",
-        name: "即将到期(1)",
+        key: "soon",
+        name: `即将到期`,
       },
       {
         path: "/list/wait/add",
         name: "录入许可证",
+        key: "licAdd",
         hide: true,
         action: true,
       },

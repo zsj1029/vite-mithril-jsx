@@ -3,6 +3,7 @@ import { Routes } from "@/model/routeCfg";
 import { Arrow } from "@/coms/icon";
 import { Session } from "@/model/session";
 import request, { Api, Sleep } from "@/utils/request";
+import { SoonNum, WaitNum } from "@/model/common";
 
 export default {
   routes: [],
@@ -91,6 +92,8 @@ export default {
                               } flex items-center pl-9 py-2 cursor-pointer overflow-hidden rounded transition duration-100 ease-in-out`}
                             >
                               {v.name}
+                              {v.key === "wait" ? ` (${WaitNum})` : ""}
+                              {v.key === "soon" ? ` (${SoonNum})` : ""}
                             </li>
                           );
                         }

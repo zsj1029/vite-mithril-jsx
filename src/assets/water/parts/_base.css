@@ -65,7 +65,8 @@ textarea {
 }
 .form-info span{
   padding-top: 0 !important;
-  font-size: 14.5px !important;
+  user-select: all !important;
+  font-size: 14px !important;
 }
 .form-table tbody tr {
   background-color: var(--background-body) !important;
