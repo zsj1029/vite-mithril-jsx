@@ -89,14 +89,14 @@ export default {
           </select>
           <div class="flex justify-between rounded items-center space-x-1 border-t border-b">
             <input
-              class="w-[125px]  h-8"
+              class="w-[127px]  h-8"
               type="date"
               value={Search.filters.start_time}
               onchange={(e) => (Search.filters.start_time = e.target.value)}
             />
             <span class="inline-block">&lt; 生成时间 &lt;</span>
             <input
-              class="w-[125px] h-8"
+              class="w-[127px] h-8"
               type="date"
               value={Search.filters.end_time}
               onchange={(e) => (Search.filters.end_time = e.target.value)}

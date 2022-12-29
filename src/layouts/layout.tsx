@@ -24,7 +24,7 @@ export default {
       <>
         <Message />
         {/* <button onclick={() => MsgAdd(State.success, "xxxxx")}>add</button> */}
-        <div class="h-full min-w-[1240px] flex flex-col justify-between ">
+        <div class="h-full min-w-[1270px] flex flex-col justify-between ">
           <Header />
           <p class="flex h-full ">
             <p class="theme border-r pt-2">

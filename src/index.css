@@ -8,10 +8,17 @@
     src: url("./assets/fonts/carnas/Carnas-Regular.ttf") ;
 } */
 
-@font-face {
+/* @font-face {
     font-family: "nunito";
     src: url("./assets/fonts/nunito/Nunito-Medium.ttf") ;
+} */
+
+
+@font-face {
+    font-family: "mono";
+    src: url("./assets/fonts/mono/JetBrainsMono-Regular.woff2") ;
 }
+
 
 
 /* @font-face {

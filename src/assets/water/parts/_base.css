@@ -3,13 +3,14 @@ html {
   scrollbar-width: thin;
 }
 
+
 body {
-  font-family: nunito, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
+  font-family: mono,nunito, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
   line-height: 1.5;
   /* max-width: 800px; */
   /* margin: 20px auto; */
   /* padding: 0 10px; */
-  font-size: 14px;
+  font-size: 13.6px;
   word-wrap: break-word;
   color: var(--text-main);
   background: var(--background-body);
@@ -25,6 +26,11 @@ textarea {
     color var(--animation-duration) linear,
     box-shadow var(--animation-duration) linear,
     transform var(--animation-duration) ease;
+}
+
+input[type='date']{
+  font-family:  nunito;
+  font-size: 12px;
 }
 
 .theme{
