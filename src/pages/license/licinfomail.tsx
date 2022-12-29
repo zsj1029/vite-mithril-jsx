@@ -21,7 +21,13 @@ export default {
       <dialog id="mailPush" class="w-2/3 z-10">
         <header>许可证号：88888888</header>
 
-        <form class="pt-2">
+        <form
+          class="pt-2"
+          onsubmit={(e) => {
+            e.preventDefault();
+            return false;
+          }}
+        >
           <table class="mb-6 form-table form-info">
             <tbody>
               <tr>

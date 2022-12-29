@@ -77,8 +77,8 @@ export default {
             ))}
           </select>
           <select
-            value={Search.filters.license_status ?? ""}
-            onchange={(e) => (Search.filters.license_status = e.target.value)}
+            value={Search.filters.status ?? ""}
+            onchange={(e) => (Search.filters.status = e.target.value)}
           >
             <option value="">[状态]</option>
             {Object.values(LicState)

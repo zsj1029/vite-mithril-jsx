@@ -131,8 +131,8 @@ export const Batch = async (operation: "再次提醒") => {
   );
   switch (operation) {
     case "再次提醒":
-      await request("post", Api.AccountDelete, {
-        username: data[0],
+      await request("get", Api.LicenseRemind, {
+        order_ids: JSON.stringify(data),
       });
       MsgAdd(State.success, "操作成功");
       break;

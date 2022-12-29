@@ -63,9 +63,9 @@ export default {
                 license expiration at:
                 <span class="underline ">{expiration}</span>
               </h3>
-              <h3 class="font-serif mt-4 text-red-500 tracking-widest">
+              <h3 class="font-thin mt-4 text-red-500 tracking-widest">
                 time left:&nbsp;
-                <span class="underline font-thin">
+                <span class="underline ">
                   {leftTime.d}d·{leftTime.h}h·{leftTime.m}m·{leftTime.s}s
                 </span>
               </h3>

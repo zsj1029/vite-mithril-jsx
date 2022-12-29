@@ -3,14 +3,19 @@
 @tailwind utilities;
 
 
-@font-face {
+/* @font-face {
     font-family: "carnas";
     src: url("./assets/fonts/carnas/Carnas-Regular.ttf") ;
+} */
+
+@font-face {
+    font-family: "nunito";
+    src: url("./assets/fonts/nunito/Nunito-Medium.ttf") ;
 }
 
 
 /* @font-face {
-    font-family: "mona-sans";
-    src: url("./assets/fonts/mona/Mona-Sans.woff2");
+    font-family: "notosans";
+    src: url("./assets/fonts/notosans/NotoSansSC-Medium.otf");
 } */
 

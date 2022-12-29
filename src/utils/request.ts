@@ -91,8 +91,9 @@ export enum Api {
   LicenseDownload = "/license/info/",
   LicenseExport = "/license/data_export/",
   LicenseDelete = "/license/input_license_info/",
-  RemindGet = "/license/get_remind/",
-  RemindSet = "/license/set_remind/",
+  RemindGet = "/license/remind/",
+  RemindSet = "/license/remind/",
+  LicenseRemind = "/license/notices/",
 }
 
 export function DeepClone(obj, hash = new WeakMap()) {

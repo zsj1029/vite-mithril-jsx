@@ -18,7 +18,7 @@ export const SetRemind = async () => {
   const v = document.querySelector("#remindInput")?.value;
   data.remind = v;
   try {
-    await request("post", Api.RemindSet, data);
+    await request("put", Api.RemindSet, data);
     MsgAdd(State.success, "操作成功");
     RemindDays = v;
     document.querySelector("#remind")?.close();

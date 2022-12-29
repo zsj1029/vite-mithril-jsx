@@ -171,8 +171,8 @@ export default [
     },
   },
   {
-    url: "/openapi/s2c/license/set_remind/",
-    method: "post",
+    url: "/openapi/s2c/license/remind/",
+    method: "put",
     response: (req: any) => {
       return {
         code: 200,
@@ -183,7 +183,7 @@ export default [
     },
   },
   {
-    url: "/openapi/s2c/license/get_remind/",
+    url: "/openapi/s2c/license/remind/",
     method: "get",
     response: (req: any) => {
       return {
