@@ -11,8 +11,8 @@ export default {
   },
   async oncreate(vnode) {
     //登录后系统初始化获取相关下拉框列表
-    GetRoles();
-    GetProducts();
+    await GetRoles();
+    await GetProducts();
     GetPrev.startTimer();
     console.log("create...");
   },

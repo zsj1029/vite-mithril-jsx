@@ -4,6 +4,7 @@
 import "@/index.css";
 import "@/assets/water/builds/water.css";
 import m from "mithril";
+import "@/coms/alert";
 
 // import ESM from "./esm";
 // const ESM = (await import("./esm")).default;

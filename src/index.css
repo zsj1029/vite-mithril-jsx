@@ -8,16 +8,19 @@
     src: url("./assets/fonts/carnas/Carnas-Regular.ttf") ;
 } */
 
-@font-face {
+/* @font-face {
     font-family: "maple";
     src: url("./assets/fonts/maple/MapleMono-Light.ttf") ;
-}
+} */
 
 
-/* @font-face {
+@font-face {
     font-family: "mono";
     src: url("./assets/fonts/mono/JetBrainsMono-Regular.woff2") ;
-} */
+    /* font-variant-ligatures: none;
+    font-feature-settings: "liga" 0; */
+    font-variant-ligatures: no-common-ligatures;
+}
 
 
 

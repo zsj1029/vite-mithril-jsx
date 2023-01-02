@@ -144,8 +144,8 @@ dialog > header:first-child {
 }
 
 dialog::backdrop {
-  background: #0000009c;
-  backdrop-filter: blur(4px);
+  background: #312f2f9c;
+  backdrop-filter: blur(3px);
 }
 
 footer {
