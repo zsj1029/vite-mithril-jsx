@@ -57,8 +57,13 @@ export default async (
   } catch (e) {
     console.log(e.code);
     //http code 异常
-    if (e.code) alert("接口异常，请稍后再试");
+    if (e.code === 0) {
+      alert("网络异常");
+    } else if (e.code > 0) {
+      alert(`HTTP:${e.code} 接口异常`);
+    }
     throw e;
+    // if (e.code !== null) alert("接口异常，请稍后再试");
   } finally {
     if (data && "loading" in data) {
       data.loading = false;
