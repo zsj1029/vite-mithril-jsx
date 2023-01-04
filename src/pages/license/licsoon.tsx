@@ -114,11 +114,12 @@ export default {
                   />
                 </th>
                 <th>
-                  <Sort
+                  倒计时
+                  {/* <Sort
                     order={SortAttrs.countdown}
-                    value={{ name: "倒计时", attr: "countdown" }}
+                    value={{ name: "倒计时", attr: "end_time" }}
                     sortEvent={SortEvent}
-                  />
+                  /> */}
                 </th>
                 <th>已提醒</th>
               </tr>

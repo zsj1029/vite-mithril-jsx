@@ -32,7 +32,7 @@ export default {
       <>
         <TopBar menus={topBar} />
         <form
-          onsubmit={() => {
+          onsubmit={(e) => {
             e.preventDefault();
             CreateUser();
             return false;
@@ -79,7 +79,7 @@ export default {
                 </td>
               </tr>
               <tr>
-                <td>密码</td>
+                <td>密码*</td>
                 <td>
                   <div class="flex flex-col w-72">
                     <Password
@@ -94,14 +94,12 @@ export default {
                       autocomplete="false"
                       placeholder="密码"
                     />
-                    <span class="pt-1">
-                      6-20位，必须包含数字和英文 (留空表示不修改密码)
-                    </span>
+                    <span class="pt-1">6-20位，必须包含数字和英文</span>
                   </div>
                 </td>
               </tr>
               <tr>
-                <td>确认密码</td>
+                <td>确认密码*</td>
                 <td>
                   <div class="flex flex-col w-72">
                     <Password

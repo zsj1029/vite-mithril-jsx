@@ -17,7 +17,7 @@ const topBar = Routes.find((item) => item.key === "authorization");
 
 const CreateLic = async () => {
   // console.log(Data);
-  Data.host_id = Data.host_id?.replaceAll(/:|-/g, "").toLocaleUpperCase();
+  Data.host_id = Data.host_id?.replace(/:|-/g, "").toLocaleUpperCase();
   await request("post", Api.LicenseCreate, Data);
   MsgAdd(State.success, "创建成功");
   Data.product_code = "";

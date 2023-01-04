@@ -145,7 +145,7 @@ export const GetData = async () => {
 };
 
 export let SortAttrs = {
-  create_time: SortEnum.none,
+  created_time: SortEnum.none,
   validity_periods: SortEnum.none,
 };
 
@@ -193,7 +193,7 @@ export const Reset = () => {
     total: 0,
   };
   SortAttrs = {
-    create_time: SortEnum.none,
+    created_time: SortEnum.none,
     validity_periods: SortEnum.none,
   };
   GetData();

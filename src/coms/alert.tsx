@@ -19,5 +19,7 @@ window.alert = async (text, cb?) => {
   await dialogPolyfill.registerDialog(
     document.querySelector(".alert") as HTMLDialogElement
   );
-  document.querySelector(".alert")?.showModal();
+  try {
+    document.querySelector(".alert")?.showModal();
+  } catch (e) {}
 };

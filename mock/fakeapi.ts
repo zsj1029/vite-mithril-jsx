@@ -79,6 +79,50 @@ export default [
     },
   },
   {
+    url: "/openapi/s2c/log/list/",
+    method: "get",
+    response: (req: any) => {
+      return {
+        code: 200,
+        data: {
+          list: [
+            {
+              who: "admin",
+              action: "do",
+              browser: "chrome1111111111111111111111111111111",
+              re_param: "{a:1,b:2,c:3}",
+              respond: "{a:1,b:2,c:3}",
+              module: "用户",
+              log_id: "11111",
+              ip: "8.8.8.8",
+              time: "2022-10-10 11:11:11",
+              status: 0,
+              role: 1,
+              content: "123123123\n2222222222\n3333333",
+            },
+            {
+              who: "admin",
+              action: "do",
+              browser: "chrome",
+              re_param: "{a:1,b:2,c:3}",
+              respond: "{a:1,b:2,c:3}",
+              module: "用户",
+              log_id: "11111",
+              ip: "8.8.8.8",
+              time: "2022-10-10 11:11:11",
+              status: 0,
+              role: 1,
+              content: "123123123",
+            },
+          ],
+        },
+        msg: "",
+        req,
+      };
+    },
+  },
+
+  {
     url: "/openapi/s2c/product/list/",
     method: "get",
     response: (req: any) => {

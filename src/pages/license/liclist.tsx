@@ -127,8 +127,8 @@ export default {
                 <th>来源</th>
                 <th class="w-38">
                   <Sort
-                    order={SortAttrs.create_time}
-                    value={{ name: "申请时间", attr: "create_time" }}
+                    order={SortAttrs.created_time}
+                    value={{ name: "申请时间", attr: "created_time" }}
                     sortEvent={SortEvent}
                   />
                 </th>

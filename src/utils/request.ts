@@ -99,6 +99,7 @@ export enum Api {
   RemindGet = "/license/remind/",
   RemindSet = "/license/remind/",
   LicenseRemind = "/license/notices/",
+  LogList = "/log/list/",
 }
 
 export function DeepClone(obj, hash = new WeakMap()) {
