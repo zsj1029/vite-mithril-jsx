@@ -2,7 +2,7 @@ import { MsgAdd, State } from "@/coms/message";
 import { SortEnum } from "@/coms/sort";
 import request, { Api } from "@/utils/request";
 import { GetPrevNum } from "./common";
-import { LicItem, LicStatus } from "./license";
+import { LicItem, LicState, LicStatus } from "./license";
 
 export const CheckAll = () => {
   let CheckFlag = false;
@@ -50,7 +50,8 @@ export const SetData = (data?: LicItem) => {
 
 export const GetData = async () => {
   Search.sort = JSON.stringify(Search.sort);
-  Search.filters["license_status"] = LicStatus.已生成;
+  Search.filters["status"] = LicStatus.已生成;
+  Search.filters["license_status"] = LicState.有效;
   Search.filters["countdown"] = Search.filters["countdown"]
     ? Search.filters["countdown"]
     : 60;

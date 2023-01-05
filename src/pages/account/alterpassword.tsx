@@ -8,7 +8,7 @@ import Password from "@/coms/password";
 const Data: AccountItem & { loading: boolean } = Session();
 Data.loading = false;
 const UpdtPassword = async () => {
-  if (Data.password !== Data.rePwd) {
+  if (Data.password && Data.rePwd && Data.password !== Data.rePwd) {
     alert("两次输入密码不一致，请确认");
     return;
   }

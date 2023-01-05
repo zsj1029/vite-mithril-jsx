@@ -9,7 +9,8 @@ import { MsgAdd, State } from "@/coms/message";
 const topBar = Routes.find((item) => item.key === "system");
 
 const ModifyUser = async () => {
-  if (Data.password !== Data.rePwd) {
+  console.log(Data.password, Data.rePwd);
+  if (Data.password && Data.rePwd && Data.password !== Data.rePwd) {
     alert("两次输入密码不一致，请确认");
     return;
   }

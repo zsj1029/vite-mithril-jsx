@@ -132,7 +132,7 @@ export const SetData = (data?: LicItem) => {
 
 export const GetData = async () => {
   Search.sort = JSON.stringify(Search.sort);
-  Search.filters["license_status"] = LicStatus.未生成;
+  Search.filters["status"] = LicStatus.未生成;
   Search.filters = JSON.stringify(Search.filters);
   console.log(Search);
   request("get", Api.LicenseList, Search).then((resp) => {

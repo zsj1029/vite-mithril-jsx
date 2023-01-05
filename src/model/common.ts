@@ -35,14 +35,14 @@ export const GetPrevNum = async () => {
     page: 0,
     size: 1,
     sort: "[]",
-    filters: JSON.stringify({ license_status: 0 }),
+    filters: JSON.stringify({ status: 0 }),
   });
   WaitNum = resp.total;
   resp = await Request("get", Api.LicenseList, {
     page: 0,
     size: 1,
     sort: "[]",
-    filters: JSON.stringify({ license_status: 1, countdown: 60 }),
+    filters: JSON.stringify({ status: 1, countdown: 60, license_status: 1 }),
   });
   SoonNum = resp.total;
 };
