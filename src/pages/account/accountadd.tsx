@@ -47,7 +47,7 @@ export default {
                   <div class="flex flex-col">
                     <input
                       value={Data.username}
-                      oninput={(e) => (Data.username = e.target?.value)}
+                      onchange={(e) => (Data.username = e.target?.value)}
                       type="text"
                       required
                       minlength="3"
@@ -119,7 +119,7 @@ export default {
                 </td>
               </tr>
               <tr>
-                <td>全名</td>
+                <td>员工姓名</td>
                 <td>
                   <div class="flex flex-col">
                     <input
@@ -185,7 +185,9 @@ export default {
             保存
           </button>
 
-          <button type="reset">重置</button>
+          <button type="reset" onclick={() => SetData()}>
+            重置
+          </button>
         </form>
       </>
     );

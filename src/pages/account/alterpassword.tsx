@@ -110,7 +110,7 @@ export default {
                 </td>
               </tr>
               <tr>
-                <td>全名</td>
+                <td>员工姓名</td>
                 <td>
                   <div class="flex flex-col">
                     <input

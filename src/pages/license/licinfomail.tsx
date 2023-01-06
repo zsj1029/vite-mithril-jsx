@@ -1,6 +1,6 @@
 import m from "mithril";
 import dialogPolyfill from "dialog-polyfill";
-import { LicCertType } from "@/model/license";
+import { LicCertType, LicTypes } from "@/model/license";
 import request, { Api } from "@/utils/request";
 import { MsgAdd, State } from "@/coms/message";
 
@@ -19,7 +19,7 @@ export default {
   view({ attrs }) {
     return (
       <dialog id="mailPush" class="w-2/3 z-10">
-        <header>许可证号：88888888</header>
+        <header>许可证号：{attrs.Data.order_id}</header>
 
         <form
           class="pt-2"
@@ -112,7 +112,9 @@ export default {
                       <option>Node-Locked</option>
                       <option>Floating</option>
                     </select> */}
-                    <span class="pt-1">{attrs.Data.type}</span>
+                    <span class="pt-1">
+                      {LicTypes[attrs.Data.type?.toLocaleLowerCase()]}
+                    </span>
                   </div>
                 </td>
                 <td>可用席位</td>

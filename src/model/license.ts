@@ -20,8 +20,8 @@ export const LicCountDown = {
 };
 
 export enum LicSource {
-  OA,
   录入,
+  OA,
 }
 
 export enum LicCertType {

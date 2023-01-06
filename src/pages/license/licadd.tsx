@@ -164,6 +164,7 @@ export default {
                   <div class="flex flex-col ">
                     <select
                       value={Data.type ?? ""}
+                      required
                       onchange={(e) => {
                         Data.type = e.target.value;
                         if (e.target.value === LicType[0]) {
@@ -186,7 +187,7 @@ export default {
                     >
                       <option value="">[许可证类型]</option>
                       {LicType.map((item) => (
-                        <option value={item}>{item}</option>
+                        <option value={item.toLocaleLowerCase()}>{item}</option>
                       ))}
                     </select>
                     <span class="pt-1">许可证类型</span>
@@ -199,6 +200,7 @@ export default {
                       type="number"
                       id="place"
                       min="1"
+                      max="99999"
                       value={Data.place ?? ""}
                       onchange={(e) => (Data.place = e.target.value)}
                     />
@@ -217,7 +219,7 @@ export default {
                         (Data.host_id = e.target.value.toLocaleUpperCase())
                       }
                       minlength="12"
-                      pattern="((([a-f0-9]{2}:){5})|(([a-f0-9]{2}-){5})|(([a-f0-9]{2}){5}))[a-f0-9]{2}$"
+                      pattern="((([A-F0-9]{2}:){5})|(([A-F0-9]{2}-){5})|(([A-F0-9]{2}){5}))[A-F0-9]{2}$"
                       maxlength="17"
                       required
                     />
@@ -287,7 +289,9 @@ export default {
             保存
           </button>
 
-          <button type="reset">重置</button>
+          <button type="reset" onclick={() => SetData()}>
+            重置
+          </button>
         </form>
       </>
     );

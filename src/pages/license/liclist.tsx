@@ -46,7 +46,11 @@ export default {
         <Confirm actionText={this.dialogText} YES={Batch} List={List} />
         <LicInfo Data={Data} />
         <TopBar menus={topBar} />
-        <form class="flex space-x-1.5 h-8">
+        <form
+          onchange={GetData}
+          onsubmit={() => false}
+          class="flex space-x-1.5 h-8"
+        >
           <select
             class="min-w-[120px]"
             value={Search.filters.product_code ?? ""}
@@ -93,9 +97,9 @@ export default {
             class=" w-36"
             placeholder="关键字搜索"
           />
-          <button type="button" class="px-4" onclick={GetData}>
+          {/* <button type="button" class="px-4" onclick={GetData}>
             搜索
-          </button>
+          </button> */}
           <button type="reset" onclick={Reset} class="px-4">
             重置
           </button>

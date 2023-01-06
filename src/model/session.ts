@@ -40,7 +40,8 @@ export const Logout = async () => {
   await Request("get", Api.Logout);
   localStorage.clear();
   GetPrev.clearTimer();
-  m.route.set("/login");
+  window.location.href = "/";
+  // m.route.set("/login");
 };
 
 //获取session

@@ -1,7 +1,7 @@
 import m from "mithril";
 import { Routes } from "@/model/routeCfg";
 import TopBar from "@/coms/topbar";
-import { Data } from "@/model/account";
+import { Data, GetData } from "@/model/account";
 import Password from "@/coms/password";
 import { RoleList } from "@/model/common";
 import request, { Api } from "@/utils/request";
@@ -19,10 +19,17 @@ const ModifyUser = async () => {
   await request("post", Api.AccountUpdate, data);
   MsgAdd(State.success, "修改成功");
   delete Data.password, delete Data.rePwd;
+  GetData();
 };
 
 export default {
-  oncreate() {},
+  oncreate() {
+    if (!Data.username) {
+      m.route.set("/sys/account/list", null, {
+        replace: true,
+      });
+    }
+  },
   view() {
     return (
       <>
@@ -115,7 +122,7 @@ export default {
                 </td>
               </tr>
               <tr>
-                <td>全名</td>
+                <td>员工姓名</td>
                 <td>
                   <div class="flex flex-col">
                     <input

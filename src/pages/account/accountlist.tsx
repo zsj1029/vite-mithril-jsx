@@ -39,7 +39,11 @@ export default {
         <Confirm actionText={this.dialogText} YES={Batch} List={List} />
         <TopBar menus={topBar} />
 
-        <form class="flex space-x-1.5 h-8">
+        <form
+          onchange={GetData}
+          onsubmit={() => false}
+          class="flex space-x-1.5 h-8"
+        >
           <select
             value={Search.filters.status ?? ""}
             onchange={(e) => (Search.filters.status = e.target.value)}
@@ -65,9 +69,9 @@ export default {
             oninput={(e) => (Search.filters.keyword = e.target.value)}
             placeholder="关键字搜索"
           />
-          <button type="button" class="px-4" onclick={GetData}>
+          {/* <button type="button" class="px-4" onclick={GetData}>
             搜索
-          </button>
+          </button> */}
           <button type="reset" onclick={Reset} class="px-4">
             重置
           </button>
@@ -83,7 +87,7 @@ export default {
                   </a>
                 </th>
                 <th>登录名</th>
-                <th>全名</th>
+                <th>员工姓名</th>
                 <th>角色</th>
                 <th>邮箱</th>
                 <th>电话</th>

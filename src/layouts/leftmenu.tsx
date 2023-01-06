@@ -92,8 +92,8 @@ export default {
                               } flex items-center pl-9 py-2 cursor-pointer overflow-hidden rounded transition duration-100 ease-in-out`}
                             >
                               {v.name}
-                              {v.key === "wait" ? ` (${WaitNum})` : ""}
-                              {v.key === "soon" ? ` (${SoonNum})` : ""}
+                              {v.key === "wait" ? ` (${WaitNum ?? 0})` : ""}
+                              {v.key === "soon" ? ` (${SoonNum ?? 0})` : ""}
                             </li>
                           );
                         }
@@ -104,7 +104,7 @@ export default {
               );
             }
           })}
-          <p class="absolute w-32 text-center bottom-10 ">
+          <p class="fixed w-32 text-center bottom-10 ">
             Ver:{Session().version}
           </p>
         </div>
