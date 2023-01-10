@@ -113,9 +113,9 @@ export default {
             class=" w-36"
             placeholder="关键字搜索"
           />
-          {/* <button type="button" class="px-4" onclick={GetData}>
+          <button type="button" class="px-4" onclick={GetData}>
             搜索
-          </button> */}
+          </button>
           <button type="reset" onclick={Reset} class="px-4">
             重置
           </button>
@@ -179,7 +179,9 @@ export default {
                       <blockquote class="my-0 not-italic py-1 p-2 min-h-[50px]">
                         {item.product}
                         <footer class="border-t-0 pt-0">
-                          <cite>{item.customer}</cite>
+                          <p class="w-40  truncate" title={item.customer}>
+                            {item.customer}
+                          </p>
                         </footer>
                       </blockquote>
                     </td>
@@ -211,7 +213,7 @@ export default {
                     <td>
                       <a
                         class="pt-2 "
-                        onclick={async () => {
+                        onclick={async (e) => {
                           const resp = await request(
                             "get",
                             Api.LicenseDownload,
@@ -221,6 +223,14 @@ export default {
                           item.licContent = resp.license_info;
                           SetData(item);
                           document.querySelector("#licFile")?.showModal();
+                          List.forEach(
+                            (_, index) => (List[index].checked = "")
+                          );
+                          e.target
+                            .closest("tr")
+                            .querySelector("input[type='checkbox']")
+                            .setAttribute("checked", "checked");
+                          List[index].checked = "checked";
                         }}
                         href="JavaScript:void(0);"
                       >

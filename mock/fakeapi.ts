@@ -54,7 +54,7 @@ export default [
         code: 200,
         data: {
           menu: ["authorization", "system"],
-          permission: ["authorization", "system"],
+          permission: ["role_item", "system"],
         },
         msg: "",
         req,
@@ -269,7 +269,7 @@ export default [
               validity_periods: "60天", //有效天数
               created_time: "2022-11-11 08:12:12",
               info_from: 1, //（0：oa 1：录入）
-              customer: "华为信息科技华为信",
+              customer: "华为信息科技华为信qwewqeqweqweqweqwew",
               name: "刘星",
               phone: "17821111111",
               email: "xxx@xxx.com",

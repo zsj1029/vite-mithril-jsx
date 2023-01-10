@@ -40,9 +40,13 @@ export default async (
     }
     if (resp.code === 4005) {
       alert(resp.msg);
-      m.route.set("/login", null, {
-        replace: true,
-      });
+      // m.route.set("/login", null, {
+      //   replace: true,
+      // });
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 2000);
+
       return false;
     }
 
@@ -58,7 +62,10 @@ export default async (
     console.log(e.code);
     //http code 异常
     if (e.code === 0) {
-      alert("网络异常");
+      window.document.querySelector(".messagebox")
+        ? MsgAdd(State.failed, "网络异常")
+        : alert("网络异常");
+      // alert("网络异常");
     } else if (e.code > 0) {
       alert(`HTTP:${e.code} 接口异常`);
     }

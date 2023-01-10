@@ -8,7 +8,10 @@ import Password from "@/coms/password";
 const Data: AccountItem & { loading: boolean } = Session();
 Data.loading = false;
 const UpdtPassword = async () => {
-  if (Data.password && Data.rePwd && Data.password !== Data.rePwd) {
+  if (
+    (Data.password !== undefined || Data.rePwd !== undefined) &&
+    Data.password !== Data.rePwd
+  ) {
     alert("两次输入密码不一致，请确认");
     return;
   }
@@ -129,6 +132,7 @@ export default {
                   <div class="flex flex-col">
                     <input
                       type="email"
+                      pattern="(^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*)$"
                       oninput={(e) => (Data.email = e.target?.value)}
                       value={Data.email}
                       maxlength="32"
@@ -143,12 +147,13 @@ export default {
                   <div class="flex flex-col">
                     <input
                       type="tel"
+                      pattern="([0-9-+]){6,16}$"
                       oninput={(e) => (Data.phone = e.target?.value)}
                       value={Data.phone}
                       minlength="6"
                       maxlength="16"
                     />
-                    <span class="pt-1">联系电话</span>
+                    <span class="pt-1">联系电话，只允许数字和+、-符号</span>
                   </div>
                 </td>
               </tr>

@@ -84,10 +84,16 @@ export default {
               <option value={item[1]}>{item[0]}</option>
             ))}
           </select>
-          <input type="input" class="w-36" placeholder="关键字搜索" />
-          {/* <button type="button" class="px-4" onclick={GetData}>
+          <input
+            type="input"
+            class="w-36"
+            value={Search.filters.keyword}
+            oninput={(e) => (Search.filters.keyword = e.target.value)}
+            placeholder="关键字搜索"
+          />
+          <button type="button" class="px-4" onclick={GetData}>
             搜索
-          </button> */}
+          </button>
           <button type="reset" onclick={Reset} class="px-4">
             重置
           </button>
@@ -147,13 +153,14 @@ export default {
                       <blockquote class="my-0 not-italic py-1 p-2 ">
                         {item.product}
                         <footer class="border-t-0 pt-0">
-                          <cite> {item.customer} </cite>
+                          <p class="w-40 truncate" title={item.customer}>
+                            {item.customer}
+                          </p>
                         </footer>
                       </blockquote>
                     </td>
 
                     <td>
-                      {" "}
                       <a
                         class="pt-2 "
                         onclick={() => {

@@ -1,5 +1,6 @@
 import request, { Api, Download } from "@/utils/request";
 import { SortEnum } from "@/coms/sort";
+import { GetData as SGetData } from "./licsend";
 import m from "mithril";
 import { MsgAdd, State } from "@/coms/message";
 import { GetPrevNum } from "./common";
@@ -216,6 +217,8 @@ export const Batch = async (operation: "批量生成" | "删除") => {
         MsgAdd(State.success, "操作成功");
       } catch (e) {
         alert(`以下许可证生成失败\n${e.data.error_list}`);
+      } finally {
+        SGetData();
       }
       break;
     case "删除":

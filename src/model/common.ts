@@ -17,8 +17,11 @@ export let RoleList: Array<Role> = [];
 export let ProductList: Array<Product> = [];
 
 export const GetRoles = async () => {
-  const resp = await Request("get", Api.Roles);
-  RoleList = resp.list;
+  const module = await Request("get", Api.Modules);
+  if (module.permission.includes("role_item")) {
+    const resp = await Request("get", Api.Roles);
+    RoleList = resp.list;
+  }
 };
 
 export const GetProducts = async () => {
@@ -42,7 +45,7 @@ export const GetPrevNum = async () => {
     page: 0,
     size: 1,
     sort: "[]",
-    filters: JSON.stringify({ status: 1, countdown: 60, license_status: 1 }),
+    filters: JSON.stringify({ status: 1, countdown: 120, license_status: 1 }),
   });
   SoonNum = resp.total;
 };

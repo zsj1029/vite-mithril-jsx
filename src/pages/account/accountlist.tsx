@@ -69,9 +69,9 @@ export default {
             oninput={(e) => (Search.filters.keyword = e.target.value)}
             placeholder="关键字搜索"
           />
-          {/* <button type="button" class="px-4" onclick={GetData}>
+          <button type="button" class="px-4" onclick={GetData}>
             搜索
-          </button> */}
+          </button>
           <button type="reset" onclick={Reset} class="px-4">
             重置
           </button>

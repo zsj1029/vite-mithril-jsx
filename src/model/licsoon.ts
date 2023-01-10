@@ -54,7 +54,7 @@ export const GetData = async () => {
   Search.filters["license_status"] = LicState.有效;
   Search.filters["countdown"] = Search.filters["countdown"]
     ? Search.filters["countdown"]
-    : 60;
+    : 120;
   Search.filters = JSON.stringify(Search.filters);
   console.log(Search);
   request("get", Api.LicenseList, Search).then((resp) => {
@@ -64,7 +64,7 @@ export const GetData = async () => {
 
   Search.sort = JSON.parse(Search.sort);
   Search.filters = JSON.parse(Search.filters);
-  if (Search.filters["countdown"] === 60) {
+  if (Search.filters["countdown"] === 120) {
     delete Search.filters.countdown;
   }
 

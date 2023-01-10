@@ -49,6 +49,7 @@ export default {
                   <div class="flex flex-col">
                     <input
                       type="text"
+                      maxlength="50"
                       value={Data.customer}
                       oninput={(e) => (Data.customer = e.target?.value)}
                       required
@@ -61,6 +62,7 @@ export default {
                   <div class="flex flex-col">
                     <input
                       type="text"
+                      maxlength="64"
                       value={Data.po_order_id}
                       oninput={(e) => (Data.po_order_id = e.target?.value)}
                     />
@@ -75,6 +77,7 @@ export default {
                     <input
                       type="text"
                       required
+                      maxlength="32"
                       value={Data.name}
                       oninput={(e) => (Data.name = e.target?.value)}
                     />
@@ -88,6 +91,7 @@ export default {
                   <div class="flex flex-col ">
                     <input
                       type="email"
+                      pattern="(^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*)$"
                       oninput={(e) => (Data.email = e.target?.value)}
                       value={Data.email}
                       maxlength="32"
@@ -101,13 +105,14 @@ export default {
                   <div class="flex flex-col ">
                     <input
                       type="tel"
+                      pattern="([0-9-+]){6,16}$"
                       oninput={(e) => (Data.phone = e.target?.value)}
                       value={Data.phone}
                       minlength="6"
                       maxlength="16"
                       required
                     />
-                    <span class="pt-1">联系人电话</span>
+                    <span class="pt-1">联系人电话，只允许数字和+、-符号</span>
                   </div>
                 </td>
               </tr>
@@ -167,7 +172,10 @@ export default {
                       required
                       onchange={(e) => {
                         Data.type = e.target.value;
-                        if (e.target.value === LicType[0]) {
+                        if (
+                          e.target.value.toLocaleLowerCase() ===
+                          LicType[0].toLocaleLowerCase()
+                        ) {
                           document
                             .querySelector("#place")
                             ?.setAttribute("disabled", "true");
@@ -259,6 +267,7 @@ export default {
                   <div class="flex flex-col ">
                     <input
                       type="text"
+                      maxlength="20"
                       value={Data.proposer ?? ""}
                       oninput={(e) => (Data.proposer = e.target.value)}
                       required
@@ -274,6 +283,7 @@ export default {
                   <div class="flex flex-col ">
                     <input
                       type="text"
+                      maxlength="64"
                       value={Data.oa_order_id ?? ""}
                       oninput={(e) => (Data.oa_order_id = e.target.value)}
                     />
