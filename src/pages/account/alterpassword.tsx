@@ -58,10 +58,9 @@ export default {
                 <td>
                   <div class="flex flex-col w-72">
                     <select disabled value={Data.role}>
-                      <option>[角色]</option>
-                      {RoleList.map((item) => (
-                        <option value={item.name}>{item.name_zh}</option>
-                      ))}
+                      <option value={Session().role}>
+                        {Session().role_zh}
+                      </option>
                     </select>
                     <span class="pt-1">用户当前所属角色</span>
                   </div>
@@ -127,11 +126,12 @@ export default {
                 </td>
               </tr>
               <tr>
-                <td>邮箱地址</td>
+                <td>邮箱地址*</td>
                 <td>
                   <div class="flex flex-col">
                     <input
                       type="email"
+                      required
                       pattern="(^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*)$"
                       oninput={(e) => (Data.email = e.target?.value)}
                       value={Data.email}

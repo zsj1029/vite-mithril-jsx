@@ -201,14 +201,18 @@ export default {
                     <td>{LicCertType[item.purpose]}</td>
                     <td>{LicTypes[item.type?.toLocaleLowerCase()]}</td>
 
-                    <td>{item.place ? item.place : "N/A"}</td>
+                    <td>
+                      {item.type?.toLocaleLowerCase() === "node-locked"
+                        ? "N/A"
+                        : item.place}
+                    </td>
                     <td class="font-bold ">{LicState[item.license_status]}</td>
                     <td>{item.end_time}</td>
 
                     <td class="">
                       {item.user}
                       <br></br>
-                      {item.created_time}
+                      {item.generate_time}
                     </td>
                     <td>
                       <a

@@ -65,6 +65,7 @@ export default ({ attrs }: Vnode<Attrs>) => {
         Math.ceil(pagination._total / pagination._pageSize) || 1;
       if (pagination._current > pagination._pageCount) {
         pagination._current = pagination._pageCount;
+        attrs.onChange(pagination._current, pagination._pageSize);
       }
       //外部直接修改current,判断并跳转
       // if (old.attrs.current !== attrs.current) {

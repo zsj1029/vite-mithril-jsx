@@ -22,7 +22,8 @@ const CreateUser = async () => {
   delete data.rePwd;
   await request("post", Api.AccountAdd, data);
   MsgAdd(State.success, "创建成功");
-  delete Data.password, delete Data.rePwd;
+  // delete Data.password, delete Data.rePwd;
+  SetData();
   GetData();
 };
 
@@ -136,11 +137,12 @@ export default {
                 </td>
               </tr>
               <tr>
-                <td>邮箱地址</td>
+                <td>邮箱地址*</td>
                 <td>
                   <div class="flex flex-col">
                     <input
                       type="email"
+                      required
                       pattern="(^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*)$"
                       oninput={(e) => (Data.email = e.target?.value)}
                       value={Data.email}

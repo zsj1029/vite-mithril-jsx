@@ -139,10 +139,11 @@ export default {
                 </td>
               </tr>
               <tr>
-                <td>邮箱地址</td>
+                <td>邮箱地址*</td>
                 <td>
                   <div class="flex flex-col">
                     <input
+                      required
                       type="email"
                       pattern="(^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*)$"
                       oninput={(e) => (Data.email = e.target?.value)}

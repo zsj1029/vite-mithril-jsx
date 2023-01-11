@@ -176,7 +176,11 @@ export default {
                     <td>{item.host_id?.toLocaleUpperCase()}</td>
                     <td>{LicCertType[item.purpose]}</td>
                     <td>{LicTypes[item.type?.toLocaleLowerCase()]}</td>
-                    <td>{item.place ? item.place : "N/A"}</td>
+                    <td>
+                      {item.type?.toLocaleLowerCase() === "node-locked"
+                        ? "N/A"
+                        : item.place}
+                    </td>
                     <td class="font-medium ">{item.end_time}</td>
                     <td class="font-bold ">{item.countdown}天</td>
                     <td>{item.remind_time}次</td>
