@@ -28,10 +28,12 @@ export default async (
     };
   }
   let resp: { code: number; data: unknown; msg: string };
+
   if (data && "loading" in data) {
     data.loading = true;
   }
-  // await Sleep(6);
+  // console.log(data);
+  // await Sleep(2);
   try {
     resp = await m.request(options);
     if (options.responseType === "blob") {

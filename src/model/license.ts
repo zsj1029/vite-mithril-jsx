@@ -21,8 +21,8 @@ export const LicCountDown = {
 };
 
 export enum LicSource {
-  录入,
   OA,
+  录入,
 }
 
 export enum LicCertType {
@@ -38,14 +38,14 @@ export const LicValidtime = [
   "1年",
   "2年",
   "3年",
-  "永久",
+  "5年",
 ];
 export const SearchValidtime = {
   "30天": '["30天"]',
   "60天": '["60天"]',
   "90天": '["90天"]',
   "180天": '["180天"]',
-  ">=1年": '["1年","2年","3年","永久"]',
+  ">=1年": '["1年","2年","3年","5年"]',
 };
 
 export const LicType = ["Node-Locked", "Floating"];

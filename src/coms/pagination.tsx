@@ -37,14 +37,19 @@ export default ({ attrs }: Vnode<Attrs>) => {
   };
   // 输入页码校验拦截
   const textInput = (e) => {
-    console.log("input...");
+    console.log("input...", e.target.value);
     if (e.target.value >= pagination._pageCount) {
       e.target.value = pagination._pageCount;
     }
-    pagination._current = Number(e.target.value);
+    pagination._current = pagination._current =
+      e.target.value <= 1 ? 1 : e.target.value * 1;
+
+    // attrs.current = pagination._current;
+    attrs.onChange(pagination._current, pagination._pageSize);
   };
   // 文本框变动跳转页面
   const textChange = (e) => {
+    console.log("input change...");
     pagination._current = e.target.value <= 1 ? 1 : e.target.value * 1;
     attrs.onChange(pagination._current, pagination._pageSize);
   };
@@ -63,17 +68,19 @@ export default ({ attrs }: Vnode<Attrs>) => {
       pagination._total = attrs.total;
       pagination._pageCount =
         Math.ceil(pagination._total / pagination._pageSize) || 1;
-      if (pagination._current > pagination._pageCount) {
+      // if (pagination._current > pagination._pageCount) {
+      //   console.log(pagination);
+      //   pagination._current = pagination._pageCount;
+
+      //   attrs.onChange(pagination._current, pagination._pageSize);
+      // }
+      // 外部直接修改current,判断并跳转
+      // if (old.attrs.current !== attrs.current) {
+      // console.log(attrs.current, pagination._pageCount);
+      if (attrs.current > pagination._pageCount) {
         pagination._current = pagination._pageCount;
         attrs.onChange(pagination._current, pagination._pageSize);
-      }
-      //外部直接修改current,判断并跳转
-      // if (old.attrs.current !== attrs.current) {
-      //   console.log(attrs.current, old.attrs.current);
-      //   if (attrs.current > pagination._pageCount) {
-      //     pagination._current = pagination._pageCount;
-      //   } else pagination._current = attrs.current;
-      //   attrs.onChange(pagination._current, pagination._pageSize);
+      } else pagination._current = attrs.current;
       // }
     },
     view({ attrs }: Vnode<Attrs>) {
@@ -97,7 +104,7 @@ export default ({ attrs }: Vnode<Attrs>) => {
               class="w-14  py-1 text-center"
               oninput={textInput}
               onfocus={(e) => e.target.select()}
-              onchange={textChange}
+              // onchange={textChange}
               value={pagination._current}
             />
             <span>/</span>

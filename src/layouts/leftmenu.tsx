@@ -104,7 +104,7 @@ export default {
               );
             }
           })}
-          <p class="fixed w-32 text-center bottom-10 ">
+          <p class="absolute w-32 text-center bottom-10 ">
             Ver:{Session().version}
           </p>
         </div>

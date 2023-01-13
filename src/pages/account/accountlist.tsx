@@ -77,7 +77,10 @@ export default {
           </button>
         </form>
         <hr class="my-4"></hr>
-        <div class="min-h-[675px]">
+        {/* <p>{Search.loading.toString()}</p> */}
+        <div
+          class={`${Search.loading === true ? "blur-[2px]" : ""} min-h-[675px]`}
+        >
           <table class={`mb-6 table-auto `}>
             <thead>
               <tr>
@@ -108,7 +111,8 @@ export default {
                 <th>操作</th>
               </tr>
             </thead>
-            <tbody class={`${Search.loading ? "blur-[2px]" : ""}`}>
+
+            <tbody>
               {List.map((item, index) => {
                 return (
                   <tr>

@@ -113,14 +113,12 @@ export const GetData = async () => {
   // const data = { ...Search };
   Search.sort = JSON.stringify(Search.sort);
   Search.filters = JSON.stringify(Search.filters);
-  try {
-    const resp = await request("get", Api.AccountList, Search);
-    List = resp.list;
-    Page.total = resp.total;
-  } finally {
-    Search.sort = JSON.parse(Search.sort);
-    Search.filters = JSON.parse(Search.filters);
-  }
+
+  const resp = await request("get", Api.AccountList, Search);
+  List = resp.list;
+  Page.total = resp.total;
+  Search.sort = JSON.parse(Search.sort);
+  Search.filters = JSON.parse(Search.filters);
 
   // CheckFlag = false;
 };
@@ -169,7 +167,7 @@ export const Reset = () => {
     loading: false,
     page: 0,
     size: 10,
-    filters: {} as AccountItem,
+    filters: {},
     sort: [],
   } as any;
   Page = {

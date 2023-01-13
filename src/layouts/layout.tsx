@@ -27,7 +27,7 @@ export default {
         <div class="h-full min-w-[1400px] flex flex-col justify-between ">
           <Header />
           <p class="flex h-full ">
-            <p class="theme border-r pt-2 min-h-[880px]">
+            <p class="theme border-r pt-2 h-full relative">
               <Leftmenu />
             </p>
             <p class="grow  h-full p-4 ">{children}</p>
