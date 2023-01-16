@@ -26,8 +26,9 @@ export enum LicSource {
 }
 
 export enum LicCertType {
-  评估,
-  售出,
+  客户评估,
+  订单交付,
+  内部测试,
 }
 
 export const LicValidtime = [

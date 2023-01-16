@@ -19,10 +19,10 @@ export const License = {
       return m(Layouts, vnode);
     },
   },
-  "/lic/list/wait/add": {
-    onmatch: async () => (await import("@/pages/license/licadd")).default,
-    render: function (vnode) {
-      return m(Layouts, vnode);
-    },
-  },
+  // "/lic/list/wait/add": {
+  //   onmatch: async () => (await import("@/pages/license/licadd")).default,
+  //   render: function (vnode) {
+  //     return m(Layouts, vnode);
+  //   },
+  // },
 };

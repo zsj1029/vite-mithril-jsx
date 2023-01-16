@@ -37,13 +37,13 @@ export const Routes: Array<Menu> = [
         key: "soon",
         name: `即将到期`,
       },
-      {
-        path: "/list/wait/add",
-        name: "录入许可证",
-        key: "licAdd",
-        hide: true,
-        action: true,
-      },
+      // {
+      //   path: "/list/wait/add",
+      //   name: "录入许可证",
+      //   key: "licAdd",
+      //   hide: true,
+      //   action: true,
+      // },
     ],
   },
   // {
