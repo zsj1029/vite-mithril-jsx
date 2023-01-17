@@ -12,16 +12,21 @@ let expiration = "0000/00/00";
 
 let timer;
 
-export const CountDown = (endTime: string, refresh = 500) => {
+export const CountDown = (
+  startTime: string,
+  endTime: string,
+  refresh = 500
+) => {
   const dy = 86400;
   const hr = 3600;
   const min = 60;
+  const start = Date.parse(startTime);
   const end = Date.parse(endTime);
   expiration = new Date(endTime).toLocaleDateString();
   // console.log(end, Date.now());
   timer = setInterval(() => {
-    let leftSec = ((end - Date.now()) / 1000) | 0;
-    leftSec = leftSec > 0 ? leftSec : 0;
+    let leftSec = ((end - start) / 1000) | 0;
+    leftSec = end > Date.now() ? leftSec : 0;
     const days = (leftSec / dy) | 0;
     const hours = ((leftSec - days * dy) / hr) | 0;
     const minutes = ((leftSec - days * dy - hours * hr) / min) | 0;

@@ -225,7 +225,10 @@ export default {
                             Api.LicenseDownload,
                             { order_id: item.order_id }
                           );
-                          CountDown(item.end_time ?? "0000/00/00");
+                          CountDown(
+                            item.start_time ?? Date.now().toString(),
+                            item.end_time ?? "0000/00/00"
+                          );
                           item.licContent = resp.license_info;
                           SetData(item);
                           document.querySelector("#licFile")?.showModal();
@@ -240,7 +243,7 @@ export default {
                         }}
                         href="JavaScript:void(0);"
                       >
-                        [证书下载]
+                        [License下载]
                       </a>
                     </td>
                   </tr>

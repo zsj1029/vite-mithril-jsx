@@ -42,11 +42,12 @@ export const LicValidtime = [
   "5年",
 ];
 export const SearchValidtime = {
-  "30天": '["30天"]',
+  // "30天": '["30天"]',
   "60天": '["60天"]',
-  "90天": '["90天"]',
-  "180天": '["180天"]',
-  ">=1年": '["1年","2年","3年","5年"]',
+  // "90天": '["90天"]',
+  // "180天": '["180天"]',
+  "1年": '["1年"]',
+  "3年": '["3年"]',
 };
 
 export const LicType = ["Node-Locked", "Floating"];
@@ -79,6 +80,7 @@ export type LicItem = {
   name?: string;
   phone?: string;
   email?: string;
+  start_time?: string; //证书生效开始日
   countdown?: number; //倒计时
   remind_time?: number; //已提醒次数
   loading?: boolean;

@@ -106,7 +106,11 @@ export default {
                 <td>
                   <div class="flex flex-col ">
                     {/* <input type="number" /> */}
-                    <span class="pt-1">{attrs.Data.place}</span>
+                    <span class="pt-1">
+                      {attrs.Data.type?.toLocaleLowerCase() === "node-locked"
+                        ? "N/A"
+                        : attrs.Data.place}
+                    </span>
                   </div>
                 </td>
               </tr>
@@ -123,18 +127,21 @@ export default {
                 <td>有效期*</td>
                 <td>
                   <div class="flex flex-col ">
-                    {/* <select>
-                      <option>[有效期]</option>
-                      <option>30天</option>
-                      <option>60天</option>
-                      <option>90天</option>
-                      <option>180天</option>
-                      <option>1年</option>
-                      <option>2年</option>
-                      <option>3年</option>
-                      <option>永久</option>
-                    </select> */}
                     <span class="pt-1">{attrs.Data.validity_periods}</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>生效日期*</td>
+                <td>
+                  <div class="flex flex-col ">
+                    <span class="pt-1">{attrs.Data.start_time}</span>
+                  </div>
+                </td>
+                <td>到期日*</td>
+                <td>
+                  <div class="flex flex-col ">
+                    <span class="pt-1">{attrs.Data.end_time}</span>
                   </div>
                 </td>
               </tr>

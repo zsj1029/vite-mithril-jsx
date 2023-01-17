@@ -138,7 +138,7 @@ export default {
                     sortEvent={SortEvent}
                   />
                 </th>
-                <th>操作</th>
+                {/* <th>操作</th> */}
               </tr>
             </thead>
             <tbody>
@@ -196,7 +196,7 @@ export default {
                       <br></br>
                       {item.created_time}
                     </td>
-                    <td>
+                    {/* <td>
                       <a
                         class={`pt-2 ${
                           LicSource.OA === item.info_from ? "hidden" : ""
@@ -217,7 +217,7 @@ export default {
                       >
                         [删除]
                       </a>
-                    </td>
+                    </td> */}
                   </tr>
                 );
               })}
