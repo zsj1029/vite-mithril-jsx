@@ -265,8 +265,8 @@ export default [
               proposer: "销售张三", //申请人
               user_roler: "001",
               status: 0, //状态（0未生成1已生成）
-              start_time: "2022-12-01", //生效日期
-              end_time: "2022-12-30", //到期日
+              start_time: "2023-02-01", //生效日期
+              end_time: "2023-03-30", //到期日
               validity_periods: "60天", //有效天数
               created_time: "2022-11-11 08:12:12",
               info_from: 1, //（0：oa 1：录入）

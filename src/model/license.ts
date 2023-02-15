@@ -48,6 +48,7 @@ export const SearchValidtime = {
   // "180天": '["180天"]',
   "1年": '["1年"]',
   "3年": '["3年"]',
+  "3年(永久)": '["3年(永久)"]',
 };
 
 export const LicType = ["Node-Locked", "Floating"];

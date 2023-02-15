@@ -23,10 +23,14 @@ export const CountDown = (
   const start = Date.parse(startTime);
   const end = Date.parse(endTime);
   expiration = new Date(endTime).toLocaleDateString();
-  // console.log(end, Date.now());
+  // console.log(start, end, Date.now());
+
   timer = setInterval(() => {
-    let leftSec = ((end - start) / 1000) | 0;
+    let leftSec =
+      ((end - (Date.now() > start ? Date.now() : start)) / 1000) | 0;
+    // console.log(leftSec);
     leftSec = end > Date.now() ? leftSec : 0;
+
     const days = (leftSec / dy) | 0;
     const hours = ((leftSec - days * dy) / hr) | 0;
     const minutes = ((leftSec - days * dy - hours * hr) / min) | 0;
