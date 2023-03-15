@@ -2,7 +2,7 @@ import m from "mithril";
 import dialogPolyfill from "dialog-polyfill";
 import { LicCertType, LicTypes } from "@/model/license";
 export default {
-  oncreate({ attrs }) {
+  oncreate() {
     dialogPolyfill.registerDialog(
       document.getElementById("dialog") as HTMLDialogElement
     );
@@ -173,7 +173,7 @@ export default {
           <hr class="my-4"></hr>
           <button
             class="pt-2"
-            onclick={() => document.getElementById("dialog").close()}
+            onclick={() => document.getElementById("dialog")?.close()}
           >
             关闭
           </button>

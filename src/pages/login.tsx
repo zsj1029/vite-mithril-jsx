@@ -22,7 +22,7 @@ export default {
         }}
         class="flex mx-auto w-80 h-56 -mt-20 border rounded-md shadow-md flex-col justify-evenly items-center"
       >
-        <div class="w-60 text-left font-bold">用户支持系统（USS）</div>
+        <div class="w-60 text-left font-bold">用户支持系统（Tech Hub）</div>
         <input
           type="text"
           required
