@@ -122,8 +122,8 @@ export function DeepClone(obj, hash = new WeakMap()) {
   const cloneObj = new obj.constructor();
   // 找到的是所属类原型上的constructor,而原型上的 constructor指向的是当前类本身
   hash.set(obj, cloneObj);
-  for (let key in obj) {
-    if (obj.hasOwnProperty(key)) {
+  for (const key in obj) {
+    if (Object.keys(obj).includes(key)) {
       // 实现一个递归拷贝
       cloneObj[key] = DeepClone(obj[key], hash);
     }

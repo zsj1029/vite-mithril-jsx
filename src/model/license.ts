@@ -7,6 +7,7 @@ import { GetPrevNum } from "./common";
 export enum LicState {
   过期,
   有效,
+  失败
 }
 
 export enum LicStatus {

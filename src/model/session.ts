@@ -1,5 +1,6 @@
 import m from "mithril";
 import Request, { Api } from "@/utils/request";
+import Fetch from "@/utils/fetch";
 import Utf8 from "crypto-js/enc-utf8";
 
 import { encrypt } from "crypto-js/aes";
@@ -20,6 +21,7 @@ const vv = [84, 50, 34, 36, 81, 109, 50, 126, 123, 74, 99, 99, 123, 48, 77, 98];
 export const Login = async () => {
   // console.log(111111111111);
   const random = await Request("get", Api.Random, Data);
+  await Fetch(Api.Random, { method: "get" });
   const key = random.key;
 
   Data.password = encrypt(Data.password, Utf8.parse(key), {

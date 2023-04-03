@@ -1,18 +1,7 @@
 import { SortEnum } from "@/coms/sort";
+import m from "mithril";
 import request, { Api, Download } from "@/utils/request";
-import { LicItem, LicStatus } from "./license";
-
-export const CheckAll = () => {
-  let CheckFlag = false;
-  if (List.every((item) => item.checked === "checked")) CheckFlag = true;
-  else if (!List.some((item) => item.checked === "checked")) CheckFlag = false;
-
-  CheckFlag = !CheckFlag;
-  List.forEach(
-    (_, index) => (List[index].checked = CheckFlag ? "checked" : "")
-  );
-};
-
+import {LicItem, LicState, LicStatus} from "./license";
 export let Search = {
   loading: false,
   page: 0,
@@ -113,6 +102,25 @@ export const Reset = () => {
   };
   GetData();
 };
+
+export const LicStateColor = (state:LicState)=>{
+  let text = <></>;
+  switch (state){
+    case LicState.过期:
+      text = <span class="text-gray-400">过期</span>
+      break;
+    case LicState.有效:
+      text = <span class="text-green-600">有效</span>
+      break;
+    case LicState.失败:
+      text = <span class="text-red-500">失败</span>
+      break;
+    default:
+      break;
+  }
+
+  return text;
+}
 
 export const Export = async () => {
   Search.sort = JSON.stringify(Search.sort);

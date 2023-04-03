@@ -13,7 +13,7 @@ import {
   SortAttrs,
   PageChange,
   Data,
-  Export,
+  Export, LicStateColor,
 } from "@/model/licsend";
 
 import { LicType, LicCertType, LicState, LicTypes } from "@/model/license";
@@ -166,6 +166,7 @@ export default {
                       <input
                         class="ml-2 mt-1"
                         type="checkbox"
+                        disabled={item.license_status === 2}
                         checked={item.checked}
                         onchange={(e) => {
                           List.forEach((item, i) => {
@@ -208,7 +209,10 @@ export default {
                         ? "N/A"
                         : item.place}
                     </td>
-                    <td class="font-bold ">{LicState[item.license_status]}</td>
+                    <td class="font-bold ">
+                      {/*{LicState[item.license_status]}*/}
+                      {LicStateColor(item.license_status)}
+                    </td>
                     <td>{item.end_time}</td>
 
                     <td class="">
@@ -217,34 +221,42 @@ export default {
                       {item.generate_time}
                     </td>
                     <td>
-                      <a
-                        class="pt-2 "
-                        onclick={async (e) => {
-                          const resp = await request(
-                            "get",
-                            Api.LicenseDownload,
-                            { order_id: item.order_id }
-                          );
-                          CountDown(
-                            item.start_time ?? Date.now().toString(),
-                            item.end_time ?? "0000/00/00"
-                          );
-                          item.licContent = resp.license_info;
-                          SetData(item);
-                          document.querySelector("#licFile")?.showModal();
-                          List.forEach(
-                            (_, index) => (List[index].checked = "")
-                          );
-                          e.target
-                            .closest("tr")
-                            .querySelector("input[type='checkbox']")
-                            .setAttribute("checked", "checked");
-                          List[index].checked = "checked";
-                        }}
-                        href="JavaScript:void(0);"
-                      >
-                        [License下载]
-                      </a>
+
+                      {(()=>{
+                        if(item.license_status===2){
+                          return <></>
+                        }else{
+                          return (<a
+                            class="pt-2 "
+                            onclick={async (e) => {
+                              const resp = await request(
+                                "get",
+                                Api.LicenseDownload,
+                                { order_id: item.order_id }
+                              );
+                              CountDown(
+                                item.start_time ?? Date.now().toString(),
+                                item.end_time ?? "0000/00/00"
+                              );
+                              item.licContent = resp.license_info;
+                              SetData(item);
+                              document.querySelector("#licFile")?.showModal();
+                              List.forEach(
+                                (_, index) => (List[index].checked = "")
+                              );
+                              e.target
+                                .closest("tr")
+                                .querySelector("input[type='checkbox']")
+                                .setAttribute("checked", "checked");
+                              List[index].checked = "checked";
+                            }}
+                            href="JavaScript:void(0);"
+                          >
+                            [License下载]
+                          </a>)
+                        }
+                      })()}
+
                     </td>
                   </tr>
                 );

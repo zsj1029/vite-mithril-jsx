@@ -85,7 +85,7 @@ export default {
             ))}
           </select>
           <input
-            type="input"
+            type="text"
             class="w-36"
             value={Search.filters.keyword}
             oninput={(e) => (Search.filters.keyword = e.target.value)}
@@ -102,7 +102,7 @@ export default {
         {/* </div> */}
         <hr class="my-4"></hr>
         <div
-          class={`${Search.loading === true ? "blur-[2px]" : ""} min-h-[675px]`}
+          class={`${Search.loading ? "blur-[2px]" : ""} min-h-[675px]`}
         >
           <table class="mb-6 table-auto">
             <thead>

@@ -40,7 +40,7 @@ export default {
     }
   },
 
-  view({ attrs }) {
+  view() {
     return (
       <>
         <Confirm actionText={this.dialogText} YES={Batch} List={List} />
@@ -91,7 +91,7 @@ export default {
             ))}
           </select>
           <input
-            type="input"
+            type="text"
             value={Search.filters.keyword}
             oninput={(e) => (Search.filters.keyword = e.target.value)}
             class=" w-36"
@@ -107,7 +107,7 @@ export default {
 
         <hr class="my-4"></hr>
         <div
-          class={`${Search.loading === true ? "blur-[2px]" : ""} min-h-[675px]`}
+          class={`${Search.loading ? "blur-[2px]" : ""} min-h-[675px]`}
         >
           <table class="mb-6 table-auto  h-1">
             <thead class="select-none">
@@ -150,7 +150,7 @@ export default {
                         class="ml-2 mt-1"
                         type="checkbox"
                         checked={item.checked}
-                        onchange={(e) => {
+                        onchange={() => {
                           List[index].checked =
                             item.checked === "checked" ? "" : "checked";
                         }}

@@ -307,6 +307,35 @@ export default [
               remind_time: 2, //已提醒次数
               generate_time: "2022-11-11 08:12:12", //生成时间
             },
+            {
+              order_id: "88888888888888",
+              license_id: "123",
+              license_status: 2, //（0无效1有效2失败）
+              product: "xxxx 产品",
+              product_code: "xx",
+              start_time: "2022-12-01", //生效日期
+              po_order_id: "345346435",
+              oa_order_id: "123123123",
+              host_id: "70b4e84aca3e",
+              purpose: 0, //证书类型
+              type: "Node-Locked", //许可证类型
+              place: "", //席位
+              user: "admin", //制单人
+              proposer: "销售张三", //申请人
+              user_roler: "001",
+              status: 0, //状态（0未生成1已生成）
+              end_time: "2022-12-12", //到期日
+              validity_periods: "60天", //有效天数
+              created_time: "2022-11-11 08:12:12",
+              info_from: 0, //（0：oa 1：录入）
+              customer: "华为信息科技",
+              name: "刘星",
+              phone: "17821111111",
+              email: "ssss@xxx.com",
+              countdown: 22, //倒计时
+              remind_time: 2, //已提醒次数
+              generate_time: "2022-11-11 08:12:12", //生成时间
+            },
           ],
         },
         msg: "",
