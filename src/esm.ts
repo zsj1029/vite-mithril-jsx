@@ -3,7 +3,7 @@ import m, { Vnode } from "mithril";
 import { User } from "./model";
 
 export default {
-	oninit: (vnode) => {
+	oninit: (vnode:any) => {
 		console.log("esm.ts", vnode);
 	},
 	view: ({ attrs: { name, age, sex, s } }) =>

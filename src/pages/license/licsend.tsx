@@ -200,7 +200,9 @@ export default {
                         {item.order_id}
                       </a>
                     </td>
-                    <td>{item.host_id?.toLocaleUpperCase()}</td>
+                    <td ><p class="w-32 truncate">
+                      {item.host_id?.toLocaleUpperCase()}
+                    </p></td>
                     <td>{LicCertType[item.purpose]}</td>
                     <td>{LicTypes[item.type?.toLocaleLowerCase()]}</td>
 
@@ -240,7 +242,7 @@ export default {
                               );
                               item.licContent = resp.license_info;
                               SetData(item);
-                              document.querySelector("#licFile")?.showModal();
+                              (document.querySelector("#licFile") as HTMLDialogElement).showModal();
                               List.forEach(
                                 (_, index) => (List[index].checked = "")
                               );

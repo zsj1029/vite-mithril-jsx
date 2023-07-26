@@ -1,4 +1,4 @@
-import request, { Api, Download } from "@/utils/request";
+import request, { Api } from "@/utils/request";
 import { SortEnum } from "@/coms/sort";
 import { GetData as SGetData } from "./licsend";
 import m from "mithril";
@@ -30,6 +30,7 @@ export enum LicCertType {
   客户评估,
   订单交付,
   内部测试,
+  客情维护
 }
 
 export const LicValidtime = [

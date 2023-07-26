@@ -124,7 +124,7 @@ export const LicStateColor = (state:LicState)=>{
 
 export const Export = async () => {
   Search.sort = JSON.stringify(Search.sort);
-  Search.filters["license_status"] = LicStatus.已生成;
+  // Search.filters["license_status"] = LicStatus.已生成;
   Search.filters = JSON.stringify(Search.filters);
   const tmp = {
     page: Search.page,

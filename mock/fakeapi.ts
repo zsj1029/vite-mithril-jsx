@@ -316,7 +316,7 @@ export default [
               start_time: "2022-12-01", //生效日期
               po_order_id: "345346435",
               oa_order_id: "123123123",
-              host_id: "70b4e84aca3e",
+              host_id: "70b4e84aca3e;70b4e84aca3e;70b4e84aca3e",
               purpose: 0, //证书类型
               type: "Node-Locked", //许可证类型
               place: "", //席位

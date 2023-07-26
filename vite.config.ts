@@ -3,8 +3,7 @@ import { defineConfig } from "vite";
 import { resolve } from "path";
 import { viteMockServe } from "vite-plugin-mock";
 import basicSsl from "@vitejs/plugin-basic-ssl";
-// import WindiCSS from "vite-plugin-windicss";
-import legacy from "@vitejs/plugin-legacy";
+// import legacy from "@vitejs/plugin-legacy";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode, ssrBuild }) => {
@@ -37,9 +36,8 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
       },
     },
     plugins: [
-      // basicSsl(),
-      // WindiCSS(),
-      viteMockServe({ prodEnabled: false }),
+      basicSsl(),
+      viteMockServe({ enable: true }),
       // legacy(),
     ],
   };
