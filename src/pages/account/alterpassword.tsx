@@ -74,7 +74,7 @@ export default {
                       value={Data.password}
                       oninput={(e) => (Data.password = e.target?.value)}
                       class="w-72 pr-5"
-                      pattern="^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$"
+                      pattern="[0-9])(?=.*[a-zA-Z])[0-9a-zA-Z]{6,20}$"
                       minlength="6"
                       maxlength="20"
                       autocomplete="false"
@@ -101,7 +101,7 @@ export default {
                       value={Data.rePwd}
                       oninput={(e) => (Data.rePwd = e.target?.value)}
                       class="w-72 pr-5"
-                      pattern="^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$"
+                      pattern="[0-9])(?=.*[a-zA-Z])[0-9a-zA-Z]{6,20}$"
                       minlength="6"
                       maxlength="20"
                       autocomplete="false"
@@ -132,7 +132,7 @@ export default {
                     <input
                       type="email"
                       required
-                      pattern="(^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*)$"
+                      pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
                       oninput={(e) => (Data.email = e.target?.value)}
                       value={Data.email}
                       maxlength="32"
@@ -147,7 +147,7 @@ export default {
                   <div class="flex flex-col">
                     <input
                       type="tel"
-                      pattern="([0-9-+]){6,16}$"
+                      pattern="[0-9+\-]{6,16}"
                       oninput={(e) => (Data.phone = e.target?.value)}
                       value={Data.phone}
                       minlength="6"

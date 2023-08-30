@@ -7,7 +7,9 @@ import { Session } from "@/model/session";
 
 export default {
   oninit() {
-    if (!Session().username) m.route.set("/login", null, { replace: true });
+    if (!Session().username) {
+      m.route.set("/login", null, {replace: true});
+    }
   },
   async oncreate(vnode) {
     //登录后系统初始化获取相关下拉框列表

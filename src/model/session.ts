@@ -48,7 +48,7 @@ export const Logout = async () => {
 
 //获取session
 export const Session = (): AccountItem => {
-  let sess = {};
+  const sess = {};
   Object.keys(localStorage).forEach((key) => {
     sess[key] = localStorage[key];
   });

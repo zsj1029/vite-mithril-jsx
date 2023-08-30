@@ -1,12 +1,13 @@
 /* @refresh reload */
 
-// import "virtual:windi.css";
+ //import "virtual:windi.css";
 import "@/index.css";
 import "@/assets/water/builds/water.css";
+
 import m from "mithril";
 import "@/coms/alert";
 
-// import ESM from "./esm";
+ //import ESM from "./esm";
 // const ESM = (await import("./esm")).default;
 // import Login from "@/pages/login";
 // import { User } from "@/model";
@@ -16,7 +17,7 @@ const root = document.getElementById("root") as HTMLElement;
 // import Layout from "@/layouts/layout";
 // const ASEMS = (await import("@/esm")).default;
 // const Login = (await import("@/pages/login")).default;
-// m.mount(document.getElementById("root") as HTMLElement, App);
+// m.mount(document.getElementById("root") as HTMLElement, ESM);
 Profile.autoTheme();
 
 import { Sys } from "@/routers/sys";

@@ -20,7 +20,7 @@ export default (): Component => {
 	};
 
 	return {
-		view: ({ attrs: { num } }) => (
+		view: ({ attrs}) => (
 			<>
 				<div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
 					<div class="shrink">
@@ -31,7 +31,7 @@ export default (): Component => {
 						<a class="underline" href="#!/hello">
 							Route to Lic Page
 						</a>
-						<p class="text-slate-500">{num}</p>
+						<p class="text-slate-500">{attrs.num}</p>
 					</div>
 				</div>
 				<div class="p-8 max-w-sm mx-auto bg-slate-50 rounded-lg shadow-xl space-x-4 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">

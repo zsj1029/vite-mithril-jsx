@@ -1,4 +1,4 @@
-import m from "mithril";
+import m,{Component} from "mithril";
 import dialogPolyfill from "dialog-polyfill";
 import { LicCertType, LicTypes } from "@/model/license";
 export default {
