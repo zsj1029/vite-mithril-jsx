@@ -58,3 +58,16 @@ const routes = {
 // console.log(routes);
 
 m.route(root, "/login", routes);
+
+
+//import Utf8 from "crypto-js/enc-utf8";
+//import { encrypt,decrypt } from "crypto-js/aes";
+//const key="4M9LPeC5";
+//
+//const encrypted = encrypt("test1234", key );
+//console.log(encrypted.toString())
+//
+//
+//const decrypted = decrypt(encrypted.toString(), key)
+//
+//console.log(decrypted.toString(Utf8))

@@ -8,7 +8,7 @@ export default {
       <>
         <p class="flex justify-between p-2.5 theme select-none border-b border-t">
           <p class="w-1/2 flex items-center cursor-pointer">
-            <img src={Logo} class="h-5"  alt="logo"/>
+            <img src={Logo.src} class="h-5"  alt="logo"/>
             {/* <svg
               class="h-5 w-5"
               version="1.1"
